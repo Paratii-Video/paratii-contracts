@@ -7,11 +7,11 @@
     "test": "test"
   },
   "scripts": {
+    "install": "truffle install zeppelin",
     "test": "truffle test",
     "testrpc": "pm2 start testrpc",
     "start": "pm2 start truffle -- serve"
   },
-  "install": " truffle install zeppelin",
   "devDependencies": {
     "truffle-contract": "^1.1.10",
     "ethereumjs-testrpc": "^3.0.0",
