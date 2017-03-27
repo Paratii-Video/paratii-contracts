@@ -8,7 +8,6 @@
 ## Installation
 
     npm install
-    truffle install zeppelin
 
 ## Running tests
 
