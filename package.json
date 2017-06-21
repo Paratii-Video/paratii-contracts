@@ -7,7 +7,6 @@
     "test": "test"
   },
   "scripts": {
-    "install": "truffle install zeppelin",
     "test": "truffle test",
     "testrpc": "pm2 start testrpc",
     "start": "pm2 start truffle -- serve"
@@ -37,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/Paratii-Video/paratii-contracts/issues"
   },
-  "homepage": "https://github.com/Paratii-Video/paratii-contracts"
+  "homepage": "https://github.com/Paratii-Video/paratii-contracts",
+  "dependencies": {
+    "zeppelin-solidity": "^1.0.7"
+  }
 }

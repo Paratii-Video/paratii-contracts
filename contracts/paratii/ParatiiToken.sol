@@ -1,7 +1,6 @@
 pragma solidity ^0.4.4;
 
-import "zeppelin/contracts/token/StandardToken.sol";
-
+import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 contract ParatiiToken is StandardToken {
 

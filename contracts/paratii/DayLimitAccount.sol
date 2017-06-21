@@ -1,14 +1,14 @@
 pragma solidity ^0.4.4;
 
-import "zeppelin/contracts/token/ERC20.sol";
-import "zeppelin/contracts/SafeMath.sol";
+import "zeppelin-solidity/contracts/token/ERC20.sol";
+import "zeppelin-solidity/contracts/SafeMath.sol";
 
 /* This contract manages an account of an ERC20 Token
  * it lock the tokens, and and releases not more than a given amount of tokens each day
  * to a gven beneficary
  */
 
-contract DayLimitAccount is SafeMath {
+contract DayLimitAccount {
 	ERC20 public token;
 	uint public limit; // amount of tokens to release each day
 	uint public firstDay; // last day that tokens were released
@@ -29,7 +29,7 @@ contract DayLimitAccount is SafeMath {
 
 	// returns how much tokens are claimable
 	function claimable() constant returns (uint) {
-		uint total_claimable = safeMul(today() - firstDay, limit);
+		uint total_claimable = SafeMath.mul(today() - firstDay, limit);
 		return (total_claimable - claimed);
 	}
 
