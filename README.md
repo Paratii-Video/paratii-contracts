@@ -3,11 +3,11 @@
 [![Build Status](https://travis-ci.org/Paratii-Video/paratii-contracts.svg?branch=master)](https://travis-ci.org/Paratii-Video/paratii-contracts)
 
 
-More information on [paratii.video](http://paratii.video/). Join the discussion on [gitter](https://gitter.im/Paratii-Video).
+Find more information on [paratii.video](http://paratii.video/), and join the discussion on [gitter](https://gitter.im/Paratii-Video).
 
 # Contributing
 
-Contributions and pull requests are very welcome. Join us in gitter
+Feel free to join in and create an [issue](https://github.com/Paratii-Video/paratii-contracts/issues). Pull requests are very welcome.
 
 ## Installation
 
