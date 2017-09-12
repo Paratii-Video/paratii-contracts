@@ -9,7 +9,9 @@
   "scripts": {
     "test": "truffle test",
     "testrpc": "pm2 start testrpc",
-    "start": "pm2 start truffle -- serve"
+    "start": "pm2 start truffle -- serve",
+    "lint": "standard",
+    "lint-fix": "standard --fix"
   },
   "devDependencies": {
     "ethereumjs-testrpc": "^4.1.1",
@@ -41,5 +43,17 @@
   "dependencies": {
     "yarn": "^0.27.5",
     "zeppelin-solidity": "^1.0.7"
+  },
+  "standard": {
+    "envs": [
+      "mocha"
+    ],
+    "globals": [
+      "artifacts",
+      "assert",
+      "contract"
+    ],
+    "ignore": [
+    ]
   }
 }

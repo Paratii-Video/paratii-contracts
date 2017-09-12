@@ -1,8 +1,7 @@
-var ParatiiToken = artifacts.require('./ParatiiToken.sol')
-var DayLimitAccount = artifacts.require('./DayLimitAccount.sol')
+var SendEther = artifacts.require('./SendEther.sol')
 
-contract('ParatiiToken', function (accounts) {
-  it('test basic sanity', async function () {
+contract('SentEther', function (accounts) {
+  it('shoudl send ether and log the event', async function () {
     let token = await ParatiiToken.new()
     let pti = Math.pow(10, 18)
     let balance = await token.balanceOf(accounts[0])
