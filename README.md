@@ -8,13 +8,13 @@ More information can be found on [paratii.video](http://paratii.video/), or in o
 
 ## Installation
 
-    npm install
+    yarn install
 
 ## Running tests
 
 
-    npm run testrpc
-    npm test
+    yarn run testrpc
+    yarn test
 
 
 ## Contributing
