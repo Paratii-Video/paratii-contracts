@@ -7,18 +7,18 @@ import './VideoRegistry.sol';
  * @dev A Contract that wraps the native transfer function and logs an event.
  */
 
-contract BuyVideo {
+contract VideoStore {
 
     ParatiiToken paratiiToken;
     VideoRegistry videoRegistry;
-    
+
     event LogBuyVideo(
       bytes32 videoId,
       address buyer,
       uint value
     );
 
-    function BuyVideo(ParatiiToken _paratiiToken, VideoRegistry _videoRegistry) {
+    function VideoStore(ParatiiToken _paratiiToken, VideoRegistry _videoRegistry) {
       paratiiToken = _paratiiToken;
       videoRegistry = _videoRegistry;
     }
@@ -34,6 +34,10 @@ contract BuyVideo {
      */
     function buyVideo(bytes32 videoId) returns(bool)  {
        // get the info about the video
+       /*address owner;*/
+       /*uint price;*/
+       /*videoRegistry.videos(videoId);*/
+       var (owner, price) = videoRegistry.videos(videoId);
        /*paratiiToken.transferFrom(msg.sender, owner);*/
 
        return true;

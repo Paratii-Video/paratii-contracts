@@ -8,6 +8,7 @@ contract VideoRegistry is Ownable {
 
     struct VideoInfo {
       address owner;
+      uint price; // price in PTI-wei
     }
 
     mapping (bytes32=>VideoInfo) public videos;
@@ -19,9 +20,10 @@ contract VideoRegistry is Ownable {
         owner = msg.sender;
     }
 
-    function registerVideo(bytes32 _hash, address _owner) {
+    function registerVideo(bytes32 _hash, address _owner, uint _price) {
       videos[_hash] =  VideoInfo({
-          owner: _owner
+          owner: _owner,
+          price: _price
       });
 
       LogRegisterVideo(_hash, _owner);

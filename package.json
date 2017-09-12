@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/Paratii-Video/paratii-contracts",
   "dependencies": {
-    "zeppelin-solidity": "^1.0.7"
+    "zeppelin-solidity": "^1.2.0"
   },
   "standard": {
     "envs": [
