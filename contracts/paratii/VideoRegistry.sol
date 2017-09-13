@@ -4,11 +4,9 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract VideoRegistry is Ownable {
 
-    address owner;
-
     struct VideoInfo {
       address owner;
-      uint price; // price in PTI-wei
+      uint256 price; // price in PTI-wei
     }
 
     mapping (bytes32=>VideoInfo) public videos;
@@ -20,7 +18,7 @@ contract VideoRegistry is Ownable {
         owner = msg.sender;
     }
 
-    function registerVideo(bytes32 _hash, address _owner, uint _price) {
+    function registerVideo(bytes32 _hash, address _owner, uint256 _price) {
       videos[_hash] =  VideoInfo({
           owner: _owner,
           price: _price

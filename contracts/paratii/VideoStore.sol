@@ -1,28 +1,39 @@
 pragma solidity ^0.4.13;
 
+import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
+import './ContractRegistry.sol';
+
 /**
- * @title SendEther
+ * @title VideoStore
  * @dev A Contract that wraps the native transfer function and logs an event.
  */
 
-contract VideoStore {
+contract VideoStore is ParatiiToken {
 
-    ParatiiToken paratiiToken;
-    VideoRegistry videoRegistry;
+    ContractRegistry contractRegistry;
 
     event LogBuyVideo(
       bytes32 videoId,
       address buyer,
-      uint value
+      uint price
     );
 
-    function VideoStore(ParatiiToken _paratiiToken, VideoRegistry _videoRegistry) {
-      paratiiToken = _paratiiToken;
-      videoRegistry = _videoRegistry;
+    // TODO: move next accessor function to a libary or class
+    function VideoStore(ContractRegistry _contractRegistry) {
+      contractRegistry = _contractRegistry;
     }
 
+    function videoRegistry() constant returns(VideoRegistry) {
+      return VideoRegistry(contractRegistry.contracts('VideoRegistry'));
+    }
+    function paratiiToken() constant returns(ParatiiToken) {
+      return ParatiiToken(contractRegistry.contracts('ParatiiToken'));
+    }
+    function paratiiAvatar() constant returns(ParatiiAvatar) {
+      return ParatiiAvatar(contractRegistry.contracts('ParatiiAvatar'));
+    }
     // If someone accidentally sends ether to this contract, revert;
     function () {
         revert();
@@ -32,14 +43,12 @@ contract VideoStore {
      * @dev buyVideo buys a video
      * user needs to have
      */
-    function buyVideo(bytes32 videoId) returns(bool)  {
+    function buyVideo(bytes32 videoId) public returns(bool)  {
        // get the info about the video
-       /*address owner;*/
-       /*uint price;*/
-       /*videoRegistry.videos(videoId);*/
-       var (owner, price) = videoRegistry.videos(videoId);
-       /*paratiiToken.transferFrom(msg.sender, owner);*/
-
+       var (owner, price) = videoRegistry().videos(videoId);
+       address buyer = msg.sender;
+       paratiiToken().transferFrom(buyer, owner, price);
+       LogBuyVideo(videoId, msg.sender, price);
        return true;
     }
 
