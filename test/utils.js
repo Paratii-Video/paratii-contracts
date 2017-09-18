@@ -62,5 +62,7 @@ export async function setupParatiiContracts () {
   contractRegistry.register('SendEther', sendEther.address)
   contractRegistry.register('VideoRegistry', videoRegistry.address)
   contractRegistry.register('VideoStore', videoStore.address)
+
+  paratiiAvatar.addToWhitelist(videoStore.address)
   return contractRegistry
 }
