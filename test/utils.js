@@ -8,8 +8,8 @@ export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
 export let contractRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
 
-export function getValueFromLogs (tx, arg, eventName, index) {
-  // logs look like this:
+export function getValueFromLogs (tx, arg, eventName, index = 0) {
+  // tx.logs look like this:
   //
   // [ { logIndex: 13,
   //     transactionIndex: 0,
@@ -26,8 +26,21 @@ export function getValueFromLogs (tx, arg, eventName, index) {
   //     if
   //   }
   // }
-  if (index === undefined) {
-    index = tx.logs.length - 1
+  if (eventName !== undefined) {
+    for (let i = 0; i < tx.logs.length; i++) {
+      if (tx.logs[i].event === eventName) {
+        index = i
+        break
+      }
+    }
+    if (index === undefined) {
+      let msg = `There is no event logged with eventName ${eventName}`
+      throw msg
+    }
+  } else {
+    if (index === undefined) {
+      index = tx.logs.length - 1
+    }
   }
   let result = tx.logs[index].args[arg]
   if (!result) {
@@ -39,7 +52,7 @@ export function getValueFromLogs (tx, arg, eventName, index) {
 
 export async function setupParatiiContracts () {
   contractRegistry = await ContractRegistry.new()
-  paratiiAvatar = await ParatiiAvatar.new()
+  paratiiAvatar = await ParatiiAvatar.new(contractRegistry.address)
   paratiiToken = await ParatiiToken.new()
   sendEther = await SendEther.new()
   videoRegistry = await VideoRegistry.new()

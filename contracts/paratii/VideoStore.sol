@@ -3,14 +3,14 @@ pragma solidity ^0.4.13;
 import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
-import './ContractRegistry.sol';
+
 
 /**
  * @title VideoStore
  * @dev A Contract that wraps the native transfer function and logs an event.
  */
 
-contract VideoStore is ParatiiToken {
+contract VideoStore {
 
     ContractRegistry contractRegistry;
 
@@ -20,20 +20,10 @@ contract VideoStore is ParatiiToken {
       uint price
     );
 
-    // TODO: move next accessor function to a libary or class
     function VideoStore(ContractRegistry _contractRegistry) {
       contractRegistry = _contractRegistry;
     }
 
-    function videoRegistry() constant returns(VideoRegistry) {
-      return VideoRegistry(contractRegistry.contracts('VideoRegistry'));
-    }
-    function paratiiToken() constant returns(ParatiiToken) {
-      return ParatiiToken(contractRegistry.contracts('ParatiiToken'));
-    }
-    function paratiiAvatar() constant returns(ParatiiAvatar) {
-      return ParatiiAvatar(contractRegistry.contracts('ParatiiAvatar'));
-    }
     // If someone accidentally sends ether to this contract, revert;
     function () {
         revert();
@@ -45,9 +35,11 @@ contract VideoStore is ParatiiToken {
      */
     function buyVideo(bytes32 videoId) public returns(bool)  {
        // get the info about the video
-       var (owner, price) = videoRegistry().videos(videoId);
+       VideoRegistry videoRegistry = VideoRegistry(contractRegistry.contracts('VideoRegistry'));
+       ParatiiAvatar paratiiAvatar = ParatiiAvatar(contractRegistry.contracts('ParatiiAvatar'));
+       var (owner, price) = videoRegistry.videos(videoId);
        address buyer = msg.sender;
-       paratiiToken().transferFrom(buyer, owner, price);
+       paratiiAvatar.transferFrom(buyer, address(paratiiAvatar), price);
        LogBuyVideo(videoId, msg.sender, price);
        return true;
     }

@@ -14,12 +14,12 @@ contract ContractRegistry is Ownable {
       owner = msg.sender;
   }
 
-  function register(bytes32 _name, address _address) public {
+  function register(bytes32 _name, address _address) public onlyOwner {
     contracts[_name] = _address;
     LogRegisterContract(_name, _address);
   }
 
-  function unregister(bytes32 _name) public {
+  function unregister(bytes32 _name) public onlyOwner {
     delete contracts[_name];
     LogUnregisterContract(_name);
   }

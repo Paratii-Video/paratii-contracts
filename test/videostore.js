@@ -1,4 +1,4 @@
-import { getValueFromLogs, setupParatiiContracts, videoRegistry, paratiiToken, videoStore } from './utils.js'
+import { getValueFromLogs, setupParatiiContracts, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
 
 contract('VideoStore', function (accounts) {
   it('should be able to buy a registered video', async function () {
@@ -11,14 +11,13 @@ contract('VideoStore', function (accounts) {
 
     await videoRegistry.registerVideo(hash, owner, price, {from: accounts[1]})
     // get the buyer some PTI
-    // TODO: we really want to give an allowance to the paratiiAvatar
-    // let spenderAddress = paratiiAvatar.address
-    let spenderAddress = videoStore.address
+    await paratiiToken.transfer(buyer, price + 1 * 10 ** 18)
 
-    await paratiiToken.approve(spenderAddress, price)
-    assert.equal(Number(await paratiiToken.allowance(buyer, spenderAddress)), price)
-    assert.equal(paratiiToken.address, await videoStore.paratiiToken())
-    assert.equal((await videoStore.videoRegistry()), videoRegistry.address)
+    // the actualtransaction takes two steps:
+    //  (1) give the paratiiAvatar an allowance to spend the price fo the video
+    await paratiiToken.approve(paratiiAvatar.address, price, {from: buyer})
+    assert.equal(Number(await paratiiToken.allowance(buyer, paratiiAvatar.address)), price)
+    //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
     let tx = await videoStore.buyVideo(hash)
     assert.equal(getValueFromLogs(tx, 'videoId'), hashPadded)
     assert.equal(getValueFromLogs(tx, 'buyer'), buyer)
