@@ -62,6 +62,8 @@ export async function setupParatiiContracts () {
   paratiiRegistry.registerContract('SendEther', sendEther.address)
   paratiiRegistry.registerContract('VideoRegistry', videoRegistry.address)
   paratiiRegistry.registerContract('VideoStore', videoStore.address)
+  // give 30 percent of eah video to the redistribution pool
+  paratiiRegistry.registerNumber('VideoRedistributionPoolShare', 30 * 10 ** 16)
 
   paratiiAvatar.addToWhitelist(videoStore.address)
   return paratiiRegistry

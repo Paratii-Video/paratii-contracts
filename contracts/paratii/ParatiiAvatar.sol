@@ -57,7 +57,7 @@ contract ParatiiAvatar is Ownable {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) onlyWhitelist returns (bool)   {
-        ParatiiToken token = ParatiiToken(paratiiRegistry.getAddress('ParatiiToken'));
+        ParatiiToken token = ParatiiToken(paratiiRegistry.getContract('ParatiiToken'));
         return token.transferFrom(_from, _to, _value);
     }
 }

@@ -36,9 +36,9 @@ contract VideoStore is Ownable, Debug {
      */
     function buyVideo(bytes32 videoId) public returns(bool)  {
        // get the info about the video
-       /*LogAddress(ParatiiRegistry.getAddress('VideoRegistry'));*/
-       VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getAddress('VideoRegistry'));
-       ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getAddress('ParatiiAvatar'));
+       /*LogAddress(ParatiiRegistry.getContract('VideoRegistry'));*/
+       VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getContract('VideoRegistry'));
+       ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
        var (owner, price) = videoRegistry.videos(videoId);
        address buyer = msg.sender;
        uint paratiiPart = (price * redistributionPoolPart()) / 10 ** 18;
