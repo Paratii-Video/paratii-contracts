@@ -41,18 +41,15 @@ contract VideoStore is Ownable, Debug {
        ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
        var (owner, price) = videoRegistry.videos(videoId);
        address buyer = msg.sender;
-       uint paratiiPart = (price * redistributionPoolPart()) / 10 ** 18;
+       uint paratiiPart = (price * redistributionPoolShare()) / 10 ** 18;
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
        paratiiAvatar.transferFrom(buyer, address(owner), price - paratiiPart);
        LogBuyVideo(videoId, msg.sender, price);
        return true;
     }
 
-    function redistributionPoolPart() internal returns(uint) {
+    function redistributionPoolShare() internal returns(uint) {
         // the "percentage" in precision 10**18
-        // i.e. 100% = 10**18
-        // TODO: make this settable
-        // 30%
-        return 30 * 10 ** 16;
+        return paratiiRegistry.getNumber('VideoRedistributionPoolShare');
     }
 }
