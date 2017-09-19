@@ -58,6 +58,7 @@
       "artifacts",
       "assert",
       "contract",
+      "it",
       "web3"
     ],
     "ignore": []

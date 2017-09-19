@@ -15,8 +15,6 @@ contract('ContractRegistry', function (accounts) {
 
     videoInfo = await contractRegistry.contractAddress(contractName)
     assert.equal(videoInfo, paratiiToken.address)
-    videoInfo = await contractRegistry.contracts(contractName)
-    assert.equal(videoInfo, paratiiToken.address)
 
     await contractRegistry.unregister(contractName)
     videoInfo = await contractRegistry.contracts(contractName)

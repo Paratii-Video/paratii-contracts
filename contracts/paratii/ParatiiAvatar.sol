@@ -15,7 +15,7 @@ contract ParatiiAvatar is Ownable {
     modifier onlyWhitelist() {
       _;
     }
-    
+
     function ParatiiAvatar(ContractRegistry _contractRegistry) {
         contractRegistry = _contractRegistry;
         owner = msg.sender;
@@ -57,7 +57,7 @@ contract ParatiiAvatar is Ownable {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) onlyWhitelist returns (bool)   {
-        ParatiiToken token = ParatiiToken(contractRegistry.contracts('ParatiiToken'));
+        ParatiiToken token = ParatiiToken(contractRegistry.contractAddress('ParatiiToken'));
         return token.transferFrom(_from, _to, _value);
     }
 }
