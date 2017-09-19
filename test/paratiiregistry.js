@@ -9,15 +9,14 @@ contract('ParatiiRegistry', function (accounts) {
     let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
     let contractName = 'ParatiiToken'
-    let tx = await paratiiRegistry.register(contractName, paratiiToken.address)
+    let tx = await paratiiRegistry.registerContract(contractName, paratiiToken.address)
     assert.equal(getAddressFromLogs(tx, '_address'), paratiiToken.address)
-    // assert.equal(getAddressFromLogs(tx, '_name'), paddedHash)
 
     videoInfo = await paratiiRegistry.getAddress(contractName)
     assert.equal(videoInfo, paratiiToken.address)
 
-    await paratiiRegistry.unregister(contractName)
-    videoInfo = await paratiiRegistry.contracts(contractName)
+    await paratiiRegistry.unregisterContract(contractName)
+    videoInfo = await paratiiRegistry.getAddress(contractName)
     assert.equal(videoInfo, NULL_HASH)
   })
 

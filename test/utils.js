@@ -57,11 +57,11 @@ export async function setupParatiiContracts () {
   sendEther = await SendEther.new()
   videoRegistry = await VideoRegistry.new()
   videoStore = await VideoStore.new(paratiiRegistry.address)
-  paratiiRegistry.register('ParatiiAvatar', paratiiAvatar.address)
-  paratiiRegistry.register('ParatiiToken', paratiiToken.address)
-  paratiiRegistry.register('SendEther', sendEther.address)
-  paratiiRegistry.register('VideoRegistry', videoRegistry.address)
-  paratiiRegistry.register('VideoStore', videoStore.address)
+  paratiiRegistry.registerContract('ParatiiAvatar', paratiiAvatar.address)
+  paratiiRegistry.registerContract('ParatiiToken', paratiiToken.address)
+  paratiiRegistry.registerContract('SendEther', sendEther.address)
+  paratiiRegistry.registerContract('VideoRegistry', videoRegistry.address)
+  paratiiRegistry.registerContract('VideoStore', videoStore.address)
 
   paratiiAvatar.addToWhitelist(videoStore.address)
   return paratiiRegistry

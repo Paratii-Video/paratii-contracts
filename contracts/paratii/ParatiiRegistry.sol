@@ -17,12 +17,12 @@ contract ParatiiRegistry is Ownable  {
       owner = msg.sender;
   }
 
-  function register(string _name, address _address) public onlyOwner {
+  function registerContract(string _name, address _address) public onlyOwner {
     contracts[sha3(_name)] = _address;
     LogRegisterContract(_name, _address);
   }
 
-  function unregister(string _name) public onlyOwner {
+  function unregisterContract(string _name) public onlyOwner {
     delete contracts[sha3(_name)];
     LogUnregisterContract(_name);
   }

@@ -41,9 +41,6 @@ contract VideoStore is Ownable, Debug {
        ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getAddress('ParatiiAvatar'));
        var (owner, price) = videoRegistry.videos(videoId);
        address buyer = msg.sender;
-       LogUint(price);
-       /*LogUint((price * redistributionPoolPart())/ 10**18);*/
-       /*paratiiAvatar.transferFrom(buyer, address(paratiiAvatar), price);*/
        uint paratiiPart = (price * redistributionPoolPart()) / 10 ** 18;
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
        paratiiAvatar.transferFrom(buyer, address(owner), price - paratiiPart);
