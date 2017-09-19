@@ -1,10 +1,10 @@
 const ParatiiAvatar = artifacts.require('./ParatiiAvatar.sol')
-const ContractRegistry = artifacts.require('./ContractRegistry.sol')
+const ParatiiRegistry = artifacts.require('./ParatiiRegistry.sol')
 
 contract('ParatiiAvatar', function (accounts) {
   it('owner can add to and remove from whitelist', async function () {
-    let contractRegistry = await ContractRegistry.new()
-    let paratiiAvatar = await ParatiiAvatar.new(contractRegistry.address)
+    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
     await paratiiAvatar.addToWhitelist(accounts[2])
     await paratiiAvatar.addToWhitelist(accounts[3])
     await paratiiAvatar.addToWhitelist(accounts[4])
@@ -19,8 +19,8 @@ contract('ParatiiAvatar', function (accounts) {
   })
 
   it('can transfer tokens', async function () {
-    let contractRegistry = await ContractRegistry.new()
-    let paratiiAvatar = await ParatiiAvatar.new(contractRegistry.address)
+    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
     await paratiiAvatar.addToWhitelist(accounts[2])
   })
 })

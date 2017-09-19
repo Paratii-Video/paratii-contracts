@@ -25,7 +25,7 @@ The Paratii DAO will receive and redistribute PTI from the token contract. The P
 
 
 
-[ContractRegistry.sol](./contracts/paratii/ContractRegistry.sol): Given that we expect the contracts to be upgraded regularly, the contractregistry will contain the addrsses of the latest deployed contracts. We epect only 3 contract to remain unchanged FOREVER: ParatiiToken, ParatiiAvatar and ContractRegistry.
+[ParatiiRegistry.sol](./contracts/paratii/ParatiiRegistry.sol): Given that we expect the contracts to be upgraded regularly, the ParatiiRegistry will contain the addrsses of the latest deployed contracts. We epect only 3 contract to remain unchanged FOREVER: ParatiiToken, ParatiiAvatar and ParatiiRegistry.
 
 
 

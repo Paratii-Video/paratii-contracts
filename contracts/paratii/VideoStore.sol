@@ -3,7 +3,7 @@ pragma solidity ^0.4.13;
 import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
-import './ContractRegistry.sol';
+import './ParatiiRegistry.sol';
 import "../debug/Debug.sol";
 
 
@@ -14,7 +14,7 @@ import "../debug/Debug.sol";
 
 contract VideoStore is Ownable, Debug {
 
-    ContractRegistry contractRegistry;
+    ParatiiRegistry paratiiRegistry;
 
     event LogBuyVideo(
       bytes32 videoId,
@@ -22,8 +22,8 @@ contract VideoStore is Ownable, Debug {
       uint price
     );
 
-    function VideoStore(ContractRegistry _contractRegistry) {
-      contractRegistry = _contractRegistry;
+    function VideoStore(ParatiiRegistry _paratiiRegistry) {
+      paratiiRegistry = _paratiiRegistry;
     }
 
     // If someone accidentally sends ether to this contract, revert;
@@ -36,10 +36,9 @@ contract VideoStore is Ownable, Debug {
      */
     function buyVideo(bytes32 videoId) public returns(bool)  {
        // get the info about the video
-       /*LogAddress(contractRegistry.contractAddress('VideoRegistry'));*/
-       contractRegistry.contractAddress('VideoRegistry');
-       VideoRegistry videoRegistry = VideoRegistry(contractRegistry.contractAddress('VideoRegistry'));
-       ParatiiAvatar paratiiAvatar = ParatiiAvatar(contractRegistry.contractAddress('ParatiiAvatar'));
+       /*LogAddress(ParatiiRegistry.getAddress('VideoRegistry'));*/
+       VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getAddress('VideoRegistry'));
+       ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getAddress('ParatiiAvatar'));
        var (owner, price) = videoRegistry.videos(videoId);
        address buyer = msg.sender;
        LogUint(price);

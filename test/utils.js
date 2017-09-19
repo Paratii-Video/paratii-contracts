@@ -1,4 +1,4 @@
-const ContractRegistry = artifacts.require('./ContractRegistry')
+const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
 const ParatiiAvatar = artifacts.require('./ParatiiAvatar')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 const SendEther = artifacts.require('./SendEther')
@@ -6,9 +6,9 @@ const VideoRegistry = artifacts.require('./VideoRegistry')
 const VideoStore = artifacts.require('./VideoStore')
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
-export let contractRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
+export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
 
-export function getValueFromLogs (tx, arg, eventName, index = 0) {
+export function getAddressFromLogs (tx, arg, eventName, index = 0) {
   // tx.logs look like this:
   //
   // [ { logIndex: 13,
@@ -51,18 +51,18 @@ export function getValueFromLogs (tx, arg, eventName, index = 0) {
 }
 
 export async function setupParatiiContracts () {
-  contractRegistry = await ContractRegistry.new()
-  paratiiAvatar = await ParatiiAvatar.new(contractRegistry.address)
+  paratiiRegistry = await ParatiiRegistry.new()
+  paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
   paratiiToken = await ParatiiToken.new()
   sendEther = await SendEther.new()
   videoRegistry = await VideoRegistry.new()
-  videoStore = await VideoStore.new(contractRegistry.address)
-  contractRegistry.register('ParatiiAvatar', paratiiAvatar.address)
-  contractRegistry.register('ParatiiToken', paratiiToken.address)
-  contractRegistry.register('SendEther', sendEther.address)
-  contractRegistry.register('VideoRegistry', videoRegistry.address)
-  contractRegistry.register('VideoStore', videoStore.address)
+  videoStore = await VideoStore.new(paratiiRegistry.address)
+  paratiiRegistry.register('ParatiiAvatar', paratiiAvatar.address)
+  paratiiRegistry.register('ParatiiToken', paratiiToken.address)
+  paratiiRegistry.register('SendEther', sendEther.address)
+  paratiiRegistry.register('VideoRegistry', videoRegistry.address)
+  paratiiRegistry.register('VideoStore', videoStore.address)
 
   paratiiAvatar.addToWhitelist(videoStore.address)
-  return contractRegistry
+  return paratiiRegistry
 }

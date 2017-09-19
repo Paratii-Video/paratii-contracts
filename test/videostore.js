@@ -1,4 +1,4 @@
-import { getValueFromLogs, setupParatiiContracts, contractRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
+import { getAddressFromLogs, setupParatiiContracts, ParatiiRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
 
 contract('VideoStore', function (accounts) {
   it('should be able to buy a registered video', async function () {
@@ -24,9 +24,9 @@ contract('VideoStore', function (accounts) {
 
     //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
     let tx = await videoStore.buyVideo(hash)
-    assert.equal(getValueFromLogs(tx, 'videoId', 'LogBuyVideo'), hashPadded)
-    assert.equal(getValueFromLogs(tx, 'buyer', 'LogBuyVideo'), buyer)
-    assert.equal(Number(getValueFromLogs(tx, 'price', 'LogBuyVideo')), price)
+    assert.equal(getAddressFromLogs(tx, 'videoId', 'LogBuyVideo'), hashPadded)
+    assert.equal(getAddressFromLogs(tx, 'buyer', 'LogBuyVideo'), buyer)
+    assert.equal(Number(getAddressFromLogs(tx, 'price', 'LogBuyVideo')), price)
 
     // 30% of the price should have gone to the redistribution pool (i.e. the avatar)
     assert.equal(Number(await paratiiToken.balanceOf(paratiiAvatar.address)) - avatarBalance, 0.3 * price)

@@ -1,26 +1,26 @@
-import { getValueFromLogs, NULL_HASH } from './utils.js'
-var ContractRegistry = artifacts.require('./ContractRegistry')
-var ParatiiToken = artifacts.require('./ParatiiToken')
+import { getAddressFromLogs, NULL_HASH } from './utils.js'
+const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
+const ParatiiToken = artifacts.require('./ParatiiToken')
 
-contract('ContractRegistry', function (accounts) {
+contract('ParatiiRegistry', function (accounts) {
   let videoInfo
 
   it('should register a contract', async function () {
-    let contractRegistry = await ContractRegistry.new()
+    let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
     let contractName = 'ParatiiToken'
-    let tx = await contractRegistry.register(contractName, paratiiToken.address)
-    assert.equal(getValueFromLogs(tx, '_address'), paratiiToken.address)
-    // assert.equal(getValueFromLogs(tx, '_name'), paddedHash)
+    let tx = await paratiiRegistry.register(contractName, paratiiToken.address)
+    assert.equal(getAddressFromLogs(tx, '_address'), paratiiToken.address)
+    // assert.equal(getAddressFromLogs(tx, '_name'), paddedHash)
 
-    videoInfo = await contractRegistry.contractAddress(contractName)
+    videoInfo = await paratiiRegistry.getAddress(contractName)
     assert.equal(videoInfo, paratiiToken.address)
 
-    await contractRegistry.unregister(contractName)
-    videoInfo = await contractRegistry.contracts(contractName)
+    await paratiiRegistry.unregister(contractName)
+    videoInfo = await paratiiRegistry.contracts(contractName)
     assert.equal(videoInfo, NULL_HASH)
   })
 
-  it('only ownwer can unregister a video [TODO]', async function () {
+  it('only owner can unregister a video [TODO]', async function () {
   })
 })

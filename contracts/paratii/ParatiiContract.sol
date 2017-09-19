@@ -1,5 +1,5 @@
 pragma solidity ^0.4.13;
-import './ContractRegistry.sol';
+import './ParatiiRegistry.sol';
 /*import './ParatiiToken.sol';*/
 /*import './VideoRegistry.sol';*/
 
@@ -9,19 +9,19 @@ import './ContractRegistry.sol';
  */
 
 contract ParatiiContract {
-    ContractRegistry contractRegistry;
+    ParatiiRegistry paratiiRegistry;
 
-    function ParatiiContract(ContractRegistry _contractRegistry) {
-        contractRegistry = _contractRegistry;
+    function ParatiiContract(ParatiiRegistry _paratiiRegistry) {
+        paratiiRegistry = _paratiiRegistry;
     }
 
     /*function videoRegistry() constant returns(VideoRegistry) {
-      return VideoRegistry(contractRegistry.contracts('VideoRegistry'));
+      return VideoRegistry(ParatiiRegistry.contracts('VideoRegistry'));
     }*/
     /*function paratiiToken() constant returns(ParatiiToken) {
-      return ParatiiToken(contractRegistry.contracts('ParatiiToken'));
+      return ParatiiToken(ParatiiRegistry.contracts('ParatiiToken'));
     }*/
     /*function paratiiAvatar() constant returns(ParatiiAvatar) {
-      return ParatiiAvatar(contractRegistry.contracts('ParatiiAvatar'));
+      return ParatiiAvatar(ParatiiRegistry.contracts('ParatiiAvatar'));
     }*/
 }
