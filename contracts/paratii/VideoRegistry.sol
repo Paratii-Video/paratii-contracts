@@ -1,15 +1,11 @@
 pragma solidity ^0.4.13;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./VideoContract.sol";
 
 contract VideoRegistry is Ownable {
 
-    struct VideoInfo {
-      address owner;
-      uint256 price; // price in PTI-wei
-    }
-
-    mapping (bytes32=>VideoInfo) public videos;
+    mapping (bytes32=>address) public videos;
 
     event LogRegisterVideo(bytes32 hash, address owner);
     event LogUnregisterVideo(bytes32 hash);
@@ -18,13 +14,9 @@ contract VideoRegistry is Ownable {
         owner = msg.sender;
     }
 
-    function registerVideo(bytes32 _hash, address _owner, uint256 _price) {
-      videos[_hash] =  VideoInfo({
-          owner: _owner,
-          price: _price
-      });
-
-      LogRegisterVideo(_hash, _owner);
+    function registerVideo(bytes32 _hash, address video_contract) {
+      videos[_hash] = video_contract;
+      LogRegisterVideo(_hash, msg.sender);
     }
 
     function unregisterVideo(bytes32 _hash) onlyOwner {

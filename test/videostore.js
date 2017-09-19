@@ -1,4 +1,4 @@
-import { getValueFromLogs, setupParatiiContracts, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
+import { getValueFromLogs, setupParatiiContracts, videoRegistry, paratiiAvatar, paratiiToken, videoStore, videoContract } from './utils.js'
 
 contract('VideoStore', function (accounts) {
   it('should be able to buy a registered video', async function () {
@@ -9,7 +9,7 @@ contract('VideoStore', function (accounts) {
     let hashPadded = '0x1234000000000000000000000000000000000000000000000000000000000000'
     let price = 7 * 10 ** 18
 
-    await videoRegistry.registerVideo(hash, owner, price, {from: accounts[1]})
+    await videoRegistry.registerVideo(hash, videoContract, {from: accounts[1]})
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, price + 1 * 10 ** 18)
 

@@ -3,7 +3,7 @@ pragma solidity ^0.4.13;
 import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
-
+import './VideoContract.sol';
 
 /**
  * @title VideoStore
@@ -37,8 +37,10 @@ contract VideoStore {
        // get the info about the video
        VideoRegistry videoRegistry = VideoRegistry(contractRegistry.contracts('VideoRegistry'));
        ParatiiAvatar paratiiAvatar = ParatiiAvatar(contractRegistry.contracts('ParatiiAvatar'));
-       var (owner, price) = videoRegistry.videos(videoId);
+       address videoContract_address = videoRegistry.videos(videoId);
+       VideoContract videoContract = VideoContract(videoContract_address);
        address buyer = msg.sender;
+       uint price = videoContract.get_price(buyer);
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar), price);
        LogBuyVideo(videoId, msg.sender, price);
        return true;

@@ -4,9 +4,10 @@ const ParatiiToken = artifacts.require('./ParatiiToken')
 const SendEther = artifacts.require('./SendEther')
 const VideoRegistry = artifacts.require('./VideoRegistry')
 const VideoStore = artifacts.require('./VideoStore')
+const VideoContract = artifacts.require('./VideoContract')
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
-export let contractRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
+export let contractRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore, videoContract
 
 export function getValueFromLogs (tx, arg, eventName, index = 0) {
   // tx.logs look like this:
@@ -57,11 +58,13 @@ export async function setupParatiiContracts () {
   sendEther = await SendEther.new()
   videoRegistry = await VideoRegistry.new()
   videoStore = await VideoStore.new(contractRegistry.address)
+  videoContract = await VideoContract.new(10)
   contractRegistry.register('ParatiiAvatar', paratiiAvatar.address)
   contractRegistry.register('ParatiiToken', paratiiToken.address)
   contractRegistry.register('SendEther', sendEther.address)
   contractRegistry.register('VideoRegistry', videoRegistry.address)
   contractRegistry.register('VideoStore', videoStore.address)
+  contractRegistry.register('VideoContract', videoContract.address)
 
   paratiiAvatar.addToWhitelist(videoStore.address)
   return contractRegistry
