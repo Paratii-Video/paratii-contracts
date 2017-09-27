@@ -11,24 +11,35 @@ contract VideoRegistry is Ownable {
 
     mapping (bytes32=>VideoInfo) public videos;
 
-    event LogRegisterVideo(bytes32 hash, address owner);
-    event LogUnregisterVideo(bytes32 hash);
+    event LogRegisterVideo(string videoId, address owner);
+    event LogUnregisterVideo(string videoId);
 
     function VideoRegistry() {
         owner = msg.sender;
     }
 
-    function registerVideo(bytes32 _hash, address _owner, uint256 _price) {
-      videos[_hash] =  VideoInfo({
+    function registerVideo(string _videoId, address _owner, uint256 _price) {
+      videos[sha3(_videoId)] =  VideoInfo({
           owner: _owner,
           price: _price
       });
 
-      LogRegisterVideo(_hash, _owner);
+      LogRegisterVideo(_videoId, _owner);
     }
 
-    function unregisterVideo(bytes32 _hash) onlyOwner {
-        delete videos[_hash];
-        LogUnregisterVideo(_hash);
+    function unregisterVideo(string _videoId) public onlyOwner {
+        delete videos[sha3(_videoId)];
+        LogUnregisterVideo(_videoId);
     }
+
+    function unregisterVideo2(string _videoId) {
+      LogRegisterVideo(_videoId, owner);
+    }
+
+
+    function getVideoInfo(string _videoId) constant returns(address, uint256)  {
+      VideoInfo storage videoInfo = videos[sha3(_videoId)];
+      return (videoInfo.owner, videoInfo.price);
+    }
+
 }

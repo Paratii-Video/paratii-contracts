@@ -17,7 +17,7 @@ contract VideoStore is Ownable, Debug {
     ParatiiRegistry paratiiRegistry;
 
     event LogBuyVideo(
-      bytes32 videoId,
+      string videoId,
       address buyer,
       uint price
     );
@@ -34,12 +34,12 @@ contract VideoStore is Ownable, Debug {
     /**
      * @dev buyVideo buys a video
      */
-    function buyVideo(bytes32 videoId) public returns(bool)  {
+    function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video
        /*LogAddress(ParatiiRegistry.getContract('VideoRegistry'));*/
        VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getContract('VideoRegistry'));
        ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
-       var (owner, price) = videoRegistry.videos(videoId);
+       var (owner, price) = videoRegistry.getVideoInfo(videoId);
        address buyer = msg.sender;
        uint paratiiPart = (price * redistributionPoolShare()) / 10 ** 18;
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);

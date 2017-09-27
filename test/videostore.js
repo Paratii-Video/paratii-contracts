@@ -5,11 +5,10 @@ contract('VideoStore', function (accounts) {
     await setupParatiiContracts()
     let buyer = accounts[0]
     let owner = accounts[2]
-    let hash = '0x1234'
-    let hashPadded = '0x1234000000000000000000000000000000000000000000000000000000000000'
+    let videoId = '0x1234'
     let price = 7 * 10 ** 18
 
-    await videoRegistry.registerVideo(hash, owner, price, {from: accounts[1]})
+    await videoRegistry.registerVideo(videoId, owner, price, {from: accounts[1]})
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, price + (1 * 10 ** 18))
 
@@ -23,8 +22,8 @@ contract('VideoStore', function (accounts) {
     assert.equal(Number(await paratiiToken.allowance(buyer, paratiiAvatar.address)), price)
 
     //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
-    let tx = await videoStore.buyVideo(hash)
-    assert.equal(getAddressFromLogs(tx, 'videoId', 'LogBuyVideo'), hashPadded)
+    let tx = await videoStore.buyVideo(videoId)
+    assert.equal(getAddressFromLogs(tx, 'videoId', 'LogBuyVideo'), videoId)
     assert.equal(getAddressFromLogs(tx, 'buyer', 'LogBuyVideo'), buyer)
     assert.equal(Number(getAddressFromLogs(tx, 'price', 'LogBuyVideo')), price)
 
