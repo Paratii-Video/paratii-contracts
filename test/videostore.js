@@ -6,7 +6,7 @@ contract('VideoStore', function (accounts) {
     let buyer = accounts[0]
     let owner = accounts[2]
     let videoId = '0x1234'
-    let price = 7 * 10 ** 18
+    let price = 14 * 10 ** 18
 
     await videoRegistry.registerVideo(videoId, owner, price, {from: accounts[1]})
     // get the buyer some PTI

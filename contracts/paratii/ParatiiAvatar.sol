@@ -8,7 +8,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
  */
 
 contract ParatiiAvatar is Ownable {
-    ParatiiRegistry paratiiRegistry;
+    ParatiiRegistry public paratiiRegistry;
 
     address[] public whitelist;
 

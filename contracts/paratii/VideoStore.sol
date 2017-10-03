@@ -14,7 +14,7 @@ import "../debug/Debug.sol";
 
 contract VideoStore is Ownable, Debug {
 
-    ParatiiRegistry paratiiRegistry;
+    ParatiiRegistry public paratiiRegistry;
 
     event LogBuyVideo(
       string videoId,
@@ -36,7 +36,6 @@ contract VideoStore is Ownable, Debug {
      */
     function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video
-       /*LogAddress(ParatiiRegistry.getContract('VideoRegistry'));*/
        VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getContract('VideoRegistry'));
        ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
        var (owner, price) = videoRegistry.getVideoInfo(videoId);
