@@ -1,9 +1,10 @@
 import { getAddressFromLogs, setupParatiiContracts, ParatiiRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
 
 contract('VideoStore', function (accounts) {
+  
   it('should be able to buy a registered video', async function () {
     await setupParatiiContracts()
-    let buyer = accounts[0]
+    let buyer = accounts[1]
     let owner = accounts[2]
     let videoId = '0x1234'
     let price = 14 * 10 ** 18
@@ -22,7 +23,7 @@ contract('VideoStore', function (accounts) {
     assert.equal(Number(await paratiiToken.allowance(buyer, paratiiAvatar.address)), price)
 
     //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
-    let tx = await videoStore.buyVideo(videoId)
+    let tx = await videoStore.buyVideo(videoId, {from: buyer})
     assert.equal(getAddressFromLogs(tx, 'videoId', 'LogBuyVideo'), videoId)
     assert.equal(getAddressFromLogs(tx, 'buyer', 'LogBuyVideo'), buyer)
     assert.equal(Number(getAddressFromLogs(tx, 'price', 'LogBuyVideo')), price)
