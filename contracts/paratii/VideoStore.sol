@@ -1,5 +1,6 @@
 pragma solidity ^0.4.13;
 
+import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
@@ -14,12 +15,14 @@ import "../debug/Debug.sol";
 
 contract VideoStore is Ownable, Debug {
 
+    using SafeMath for uint256;
+
     ParatiiRegistry public paratiiRegistry;
 
     event LogBuyVideo(
       string videoId,
       address buyer,
-      uint price
+      uint256 price
     );
 
     function VideoStore(ParatiiRegistry _paratiiRegistry) {
@@ -40,14 +43,14 @@ contract VideoStore is Ownable, Debug {
        ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
        var (owner, price) = videoRegistry.getVideoInfo(videoId);
        address buyer = msg.sender;
-       uint paratiiPart = (price * redistributionPoolShare()) / 10 ** 18;
+       uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
-       paratiiAvatar.transferFrom(buyer, address(owner), price - paratiiPart);
+       paratiiAvatar.transferFrom(buyer, address(owner), price.sub(paratiiPart));
        LogBuyVideo(videoId, msg.sender, price);
        return true;
     }
 
-    function redistributionPoolShare() internal returns(uint) {
+    function redistributionPoolShare() internal returns(uint256) {
         // the "percentage" in precision 10**18
         return paratiiRegistry.getNumber('VideoRedistributionPoolShare');
     }
