@@ -15,6 +15,16 @@ module.exports = {
       host: 'localhost',
       port: 8545,
       network_id: '*' // Match any network id
+    },
+    paratii: {
+      host: 'chain.paratii.video',
+      port: 80,
+      network_id: '1' // Match any network id
+    },
+    paratii_local: {
+      host: 'localhost',
+      port: 8999,
+      network_id: '1' // Match any network id
     }
   }
 }
