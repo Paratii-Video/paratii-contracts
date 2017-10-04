@@ -17,4 +17,4 @@ before_install:
 
 install:
   - npm install
-  - npm run testrpc
+  - npm run testrpc_pm2
