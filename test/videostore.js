@@ -1,17 +1,22 @@
 import { getAddressFromLogs, setupParatiiContracts, ParatiiRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
 
 contract('VideoStore', function (accounts) {
-  
+
   it('should be able to buy a registered video', async function () {
     await setupParatiiContracts()
     let buyer = accounts[1]
     let owner = accounts[2]
     let videoId = '0x1234'
     let price = 14 * 10 ** 18
+    console.log(price)
+    console.log(web3.toWei(14))
+    assert.equal(price, web3.toWei(14))
+    assert.isOk(price === Number(web3.toWei(14)))
+    price = web3.toWei(14)
 
-    await videoRegistry.registerVideo(videoId, owner, price, {from: accounts[1]})
+    await videoRegistry.registerVideo(videoId, owner, Number(price), {from: accounts[1]})
     // get the buyer some PTI
-    await paratiiToken.transfer(buyer, price + (1 * 10 ** 18))
+    await paratiiToken.transfer(buyer, Number(price) + (1 * 10 ** 18))
 
     // PTI balance of owner before the transaction
     let ownerBalance = await paratiiToken.balanceOf(owner)
@@ -19,7 +24,7 @@ contract('VideoStore', function (accounts) {
 
     // the actualtransaction takes two steps:
     //  (1) give the paratiiAvatar an allowance to spend the price fo the video
-    await paratiiToken.approve(paratiiAvatar.address, price, {from: buyer})
+    await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: buyer})
     assert.equal(Number(await paratiiToken.allowance(buyer, paratiiAvatar.address)), price)
 
     //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())

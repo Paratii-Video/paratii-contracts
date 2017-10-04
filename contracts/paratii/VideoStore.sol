@@ -45,12 +45,13 @@ contract VideoStore is Ownable, Debug {
        address buyer = msg.sender;
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
-       paratiiAvatar.transferFrom(buyer, address(owner), price.sub(paratiiPart));
-       LogBuyVideo(videoId, msg.sender, price);
+       uint256 ownerPart = price.sub(paratiiPart);
+       paratiiAvatar.transferFrom(buyer, owner, ownerPart);
+       LogBuyVideo(videoId, buyer, price);
        return true;
     }
 
-    function redistributionPoolShare() internal returns(uint256) {
+    function redistributionPoolShare() internal constant returns(uint256) {
         // the "percentage" in precision 10**18
         return paratiiRegistry.getNumber('VideoRedistributionPoolShare');
     }
