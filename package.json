@@ -8,12 +8,11 @@
   },
   "scripts": {
     "test": "truffle test",
-    "testrpc": "pm2 start testrpc",
-    "start": "pm2 start truffle -- serve",
+    "testrpc": "testrpc",
+    "start": "truffle -- serve",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "truffle": "truffle"
-
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",
@@ -22,10 +21,10 @@
     "babel-register": "^6.24.1",
     "ethereumjs-testrpc": "^4.1.3",
     "pm2": "^1.1.3",
-    "solc": "^0.4.16",
+    "solc": "^0.4.17",
     "solc-cli": "^0.3.0",
     "standard": "^10.0.3",
-    "truffle": "^3.4.9",
+    "truffle": "^3.4.11",
     "truffle-contract": "^2.0.5",
     "yarn": "^0.27.5"
   },
