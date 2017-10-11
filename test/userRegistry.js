@@ -1,4 +1,4 @@
-import { getInfoFromLogs } from './utils.js'
+import { getInfoFromLogs, expectError } from './utils.js'
 var UserRegistry = artifacts.require('./UserRegistry.sol')
 
 contract('UserRegistry', function (accounts) {
@@ -22,15 +22,18 @@ contract('UserRegistry', function (accounts) {
     assert.equal(userInfo[1], email)
   })
 
-  it('only owner can or the user itself can register or unregister [TODO]', async function () {
+  it('the user itself can register or unregister [TODO]', async function () {
     let userRegistry = await UserRegistry.new()
-    await userRegistry.registerUser(userAddress, name, email)
-
-    // unregister as woner
-
+    await userRegistry.registerUser(userAddress, name, email, {from: userAddress})
   })
 
-  it('like a video should work as expected', async function () {
+  it('an non-owner cannot register a user (other than itself)', async function() {
+    let userRegistry = await UserRegistry.new({from: web3.eth.accounts[0]})
+    await expectError(async function() {
+      await userRegistry.registerUser(web3.eth.accounts[1], name, email, {from: web3.eth.accounts[2]})
+    })
+  })
+  it('like and dislike a video should work as expected', async function () {
     let userRegistry = await UserRegistry.new()
     await userRegistry.registerUser(userAddress, name, email)
 

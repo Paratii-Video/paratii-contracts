@@ -29,5 +29,4 @@ module.exports = async function (deployer) {
   paratiiRegistry.registerNumber('VideoRedistributionPoolShare', 30 * 10 ** 18)
   paratiiAvatar.addToWhitelist(videoStore.address)
 
-  console.log(`paratiiRegistry.address: ${paratiiRegistry.address}`)
 }

@@ -9,6 +9,4 @@ module.exports = async function (deployer) {
   let paratiiRegistry = await ParatiiRegistry.deployed()
 
   paratiiRegistry.registerContract('ParatiiToken', '0x385b2E03433C816DeF636278Fb600ecd056B0e8d')
-
-  console.log(`paratiiRegistry.address: ${paratiiRegistry.address}`)
 }
