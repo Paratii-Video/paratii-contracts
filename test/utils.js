@@ -8,7 +8,7 @@ export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
 export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
 
-export function getAddressFromLogs (tx, arg, eventName, index = 0) {
+export function getInfoFromLogs (tx, arg, eventName, index = 0) {
   // tx.logs look like this:
   //
   // [ { logIndex: 13,
@@ -42,10 +42,13 @@ export function getAddressFromLogs (tx, arg, eventName, index = 0) {
       index = tx.logs.length - 1
     }
   }
+  if (tx.logs[index] === undefined) {
+    throw Error(`No log with index ${index} found in ${tx.logs}`)
+  }
   let result = tx.logs[index].args[arg]
-  if (!result) {
+  if (result === undefined) {
     let msg = `This log does not seem to have a field "${arg}": ${tx.logs[index].args}`
-    throw msg
+    throw Error(msg)
   }
   return result
 }

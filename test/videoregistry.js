@@ -1,4 +1,4 @@
-import { getAddressFromLogs } from './utils.js'
+import { getInfoFromLogs } from './utils.js'
 var VideoRegistry = artifacts.require('./VideoRegistry.sol')
 
 contract('VideoRegistry', function (accounts) {
@@ -11,8 +11,8 @@ contract('VideoRegistry', function (accounts) {
     let videoRegistry = await VideoRegistry.new()
     // let paddedHash = '0x1234000000000000000000000000000000000000000000000000000000000000'
     let tx = await videoRegistry.registerVideo(videoId, videoOwner, price, {from: accounts[1]})
-    assert.equal(getAddressFromLogs(tx, 'videoId'), videoId)
-    assert.equal(getAddressFromLogs(tx, 'owner'), videoOwner)
+    assert.equal(getInfoFromLogs(tx, 'videoId'), videoId)
+    assert.equal(getInfoFromLogs(tx, 'owner'), videoOwner)
 
     videoInfo = await videoRegistry.getVideoInfo(videoId)
     assert.equal(videoInfo[0], videoOwner)

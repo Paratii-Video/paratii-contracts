@@ -35,7 +35,11 @@ contract VideoStore is Ownable, Debug {
     }
 
     /**
-     * @dev buyVideo buys a video
+     * @dev buyVideo msg.sender buys a video
+     * For the transaction to succeed, the buyer must have approved for the ParatiiAvatar to transfer
+     * the sum to the owner and the redistribution pool.
+     * [TODO] The fact that the user has bought this video will be registred in the VideoRegistry.
+     * A successful transaction logs the LogBuyVideo event
      */
     function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video

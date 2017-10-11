@@ -1,4 +1,4 @@
-import { getAddressFromLogs, NULL_HASH } from './utils.js'
+import { getInfoFromLogs, NULL_HASH } from './utils.js'
 const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 
@@ -10,7 +10,7 @@ contract('ParatiiRegistry', function (accounts) {
     let paratiiToken = await ParatiiToken.new()
     let contractName = 'ParatiiToken'
     let tx = await paratiiRegistry.registerContract(contractName, paratiiToken.address)
-    assert.equal(getAddressFromLogs(tx, '_address'), paratiiToken.address)
+    assert.equal(getInfoFromLogs(tx, '_address'), paratiiToken.address)
 
     videoInfo = await paratiiRegistry.getContract(contractName)
     assert.equal(videoInfo, paratiiToken.address)
