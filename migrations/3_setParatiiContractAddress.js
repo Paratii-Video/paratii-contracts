@@ -8,5 +8,5 @@ var VideoStore = artifacts.require('./VideoStore.sol')
 module.exports = async function (deployer) {
   let paratiiRegistry = await ParatiiRegistry.deployed()
 
-  paratiiRegistry.registerContract('ParatiiToken', '0x385b2E03433C816DeF636278Fb600ecd056B0e8d')
+  paratiiRegistry.registerAddress('ParatiiToken', '0x385b2E03433C816DeF636278Fb600ecd056B0e8d')
 }

@@ -10,15 +10,15 @@ contract('ParatiiRegistry', function (accounts) {
   it('should register a contract', async function () {
     let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
-    tx = await paratiiRegistry.registerContract(contractName, paratiiToken.address)
-    assert.equal(getInfoFromLogs(tx, '_name', 'LogRegisterContract'), contractName)
-    assert.equal(getInfoFromLogs(tx, '_address', 'LogRegisterContract'), paratiiToken.address)
+    tx = await paratiiRegistry.registerAddress(contractName, paratiiToken.address)
+    assert.equal(getInfoFromLogs(tx, '_name', 'LogRegisterAddress'), contractName)
+    assert.equal(getInfoFromLogs(tx, '_address', 'LogRegisterAddress'), paratiiToken.address)
 
     videoInfo = await paratiiRegistry.getContract(contractName)
     assert.equal(videoInfo, paratiiToken.address)
 
-    await paratiiRegistry.unregisterContract(contractName)
-    assert.equal(getInfoFromLogs(tx, '_name', 'LogUnregisterContract'), contractName)
+    await paratiiRegistry.unregisterAddress(contractName)
+    assert.equal(getInfoFromLogs(tx, '_name', 'LogUnregisterAddress'), contractName)
     videoInfo = await paratiiRegistry.getContract(contractName)
     assert.equal(videoInfo, NULL_HASH)
   })
@@ -27,16 +27,16 @@ contract('ParatiiRegistry', function (accounts) {
     let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
     await expectError(async function() {
-       await paratiiRegistry.registerContract(contractName, paratiiToken.address, {from: web3.eth.accounts[1]})
+       await paratiiRegistry.registerAddress(contractName, paratiiToken.address, {from: web3.eth.accounts[1]})
     })
   })
 
   it('a non-owner of the registry can not unregister a contract', async function () {
     let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
-    await paratiiRegistry.registerContract(contractName, paratiiToken.address)
+    await paratiiRegistry.registerAddress(contractName, paratiiToken.address)
     await expectError(async function() {
-       await paratiiRegistry.unregisterContract(contractName, {from: web3.eth.accounts[1]})
+       await paratiiRegistry.unregisterAddress(contractName, {from: web3.eth.accounts[1]})
     })
   })
 

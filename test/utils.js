@@ -74,11 +74,11 @@ export async function setupParatiiContracts () {
   sendEther = await SendEther.new()
   videoRegistry = await VideoRegistry.new()
   videoStore = await VideoStore.new(paratiiRegistry.address)
-  paratiiRegistry.registerContract('ParatiiAvatar', paratiiAvatar.address)
-  paratiiRegistry.registerContract('ParatiiToken', paratiiToken.address)
-  paratiiRegistry.registerContract('SendEther', sendEther.address)
-  paratiiRegistry.registerContract('VideoRegistry', videoRegistry.address)
-  paratiiRegistry.registerContract('VideoStore', videoStore.address)
+  paratiiRegistry.registerAddress('ParatiiAvatar', paratiiAvatar.address)
+  paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
+  paratiiRegistry.registerAddress('SendEther', sendEther.address)
+  paratiiRegistry.registerAddress('VideoRegistry', videoRegistry.address)
+  paratiiRegistry.registerAddress('VideoStore', videoStore.address)
   // give 30 percent of eah video to the redistribution pool
   paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 

@@ -12,8 +12,8 @@ contract ParatiiRegistry is Ownable  {
   mapping (bytes32=>uint) public numbers;
   mapping (bytes32=>string) public strings;
 
-  event LogRegisterContract(string _name, address _address);
-  event LogUnregisterContract(string _name);
+  event LogRegisterAddress(string _name, address _address);
+  event LogUnregisterAddress(string _name);
   event LogRegisterUint(string _name, uint _number);
   event LogUnregisterUint(string _name);
   event LogRegisterString(string _name, string _string);
@@ -23,14 +23,14 @@ contract ParatiiRegistry is Ownable  {
       owner = msg.sender;
   }
 
-  function registerContract(string _name, address _address) public onlyOwner {
+  function registerAddress(string _name, address _address) public onlyOwner {
     contracts[sha3(_name)] = _address;
-    LogRegisterContract(_name, _address);
+    LogRegisterAddress(_name, _address);
   }
 
-  function unregisterContract(string _name) public onlyOwner {
+  function unregisterAddress(string _name) public onlyOwner {
     delete contracts[sha3(_name)];
-    LogUnregisterContract(_name);
+    LogUnregisterAddress(_name);
   }
 
   function getContract(string _name) public constant returns(address) {
