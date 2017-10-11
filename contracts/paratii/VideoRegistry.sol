@@ -18,7 +18,7 @@ contract VideoRegistry is Ownable {
         owner = msg.sender;
     }
 
-    function registerVideo(string _videoId, address _owner, uint256 _price) {
+    function registerVideo(string _videoId, address _owner, uint256 _price) public onlyOwner {
       videos[sha3(_videoId)] =  VideoInfo({
           owner: _owner,
           price: _price

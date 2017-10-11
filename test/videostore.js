@@ -8,13 +8,11 @@ contract('VideoStore', function (accounts) {
     let owner = accounts[2]
     let videoId = '0x1234'
     let price = 14 * 10 ** 18
-    console.log(price)
-    console.log(web3.toWei(14))
     assert.equal(price, web3.toWei(14))
     assert.isOk(price === Number(web3.toWei(14)))
     price = web3.toWei(14)
 
-    await videoRegistry.registerVideo(videoId, owner, Number(price), {from: accounts[1]})
+    await videoRegistry.registerVideo(videoId, owner, Number(price))
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, Number(price) + (1 * 10 ** 18))
 

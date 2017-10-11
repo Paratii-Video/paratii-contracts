@@ -60,12 +60,13 @@ export async function expectError(f) {
     await f()
   } catch(err) {
     assert.equal(String(err), expectedErrorMsg)
-  }
     return
+  } 
+
   let msg = `Expected an error - function executed without error instead`
   throw Error(msg)
-
 }
+
 export async function setupParatiiContracts () {
   paratiiRegistry = await ParatiiRegistry.new()
   paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
