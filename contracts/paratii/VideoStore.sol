@@ -57,6 +57,6 @@ contract VideoStore is Ownable, Debug {
 
     function redistributionPoolShare() internal constant returns(uint256) {
         // the "percentage" in precision 10**18
-        return paratiiRegistry.getNumber('VideoRedistributionPoolShare');
+        return paratiiRegistry.getUint('VideoRedistributionPoolShare');
     }
 }

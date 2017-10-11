@@ -26,7 +26,7 @@ module.exports = async function (deployer) {
   paratiiRegistry.registerContract('VideoRegistry', videoRegistry.address)
   paratiiRegistry.registerContract('VideoStore', videoStore.address)
   // give 30 percent of each video to the redistribution pool
-  paratiiRegistry.registerNumber('VideoRedistributionPoolShare', 30 * 10 ** 18)
+  paratiiRegistry.registerUint('VideoRedistributionPoolShare', 30 * 10 ** 18)
   paratiiAvatar.addToWhitelist(videoStore.address)
 
 }

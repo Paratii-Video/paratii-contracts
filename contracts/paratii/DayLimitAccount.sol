@@ -4,7 +4,7 @@ import "zeppelin-solidity/contracts/token/ERC20.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
 /* This contract manages an account of an ERC20 Token
- * it lock the tokens, and and releases not more than a given amount of tokens each day
+ * it locks the tokens, and and releases not more than a given amount of tokens each day
  * to a gven beneficary
  */
 
