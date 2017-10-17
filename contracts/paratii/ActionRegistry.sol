@@ -97,6 +97,7 @@ contract ActionRegistry is Ownable, Debug {
 
     /**
      * @dev Potentially useful method for converting strings to uints
+     * shamelessly stolen from https://ethereum.stackexchange.com/questions/10932/how-to-convert-string-to-int
      * [TODO] check input for sanity
      */
     function stringToUint(string s) constant returns (uint result) {
