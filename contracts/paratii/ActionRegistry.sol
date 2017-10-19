@@ -47,11 +47,11 @@ contract ActionRegistry is Ownable, Debug {
     }
 
     /**
-     * @dev TransferFunds, and log action
+     * @dev Transfer funds to avatar and recipients, and log action
      * For the transaction to succeed, the buyer must have approved for the ParatiiAvatar to transfer
      * the sum to the owner and the redistribution pool.
      */
-    function transfer(string videoId, string action) public {
+    function transferFunds(string videoId, string action) public {
         address actor = msg.sender;
         Receipt[] memory receipts = getReceipts(actor, videoId, action);
         uint256 amount;
