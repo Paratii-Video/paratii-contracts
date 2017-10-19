@@ -16,8 +16,6 @@ contract('VideoRegistry', function (accounts) {
     videoInfo = await videoRegistry.getVideoInfo(videoId)
     assert.equal(videoInfo[0], videoOwner)
     assert.equal(videoInfo[1], price)
-
-
   })
 
   it('a non-owner cannot register a video', async function () {
