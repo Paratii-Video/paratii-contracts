@@ -76,9 +76,10 @@ contract ActionRegistry is Ownable, Debug {
      * @dev getReceipts returns a series of recipients and the amounts they should receive
      * to be overridden by specific subcontracts
      */
-    function getReceipts(address actor, string videoId, string action) internal returns (Receipt[]) {
+    function getReceipts(address actor,
+                         string videoId,
+                         string action) internal returns (Receipt[]) {
 
-        videoRegistry = VideoRegistry(paratiiRegistry.getContract('VideoRegistry'));
         var (owner, price) = videoRegistry.getVideoInfo(videoId);
 
         Receipt receipt;
