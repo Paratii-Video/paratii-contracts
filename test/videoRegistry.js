@@ -1,4 +1,4 @@
-import { getInfoFromLogs, expectError } from './utils.js'
+import { getInfoFromLogs, expectError, setupParatiiContracts, videoRegistry} from './utils.js'
 var VideoRegistry = artifacts.require('./VideoRegistry.sol')
 
 contract('VideoRegistry', function (accounts) {
@@ -8,7 +8,7 @@ contract('VideoRegistry', function (accounts) {
   let videoInfo
 
   it('should register a video', async function () {
-    let videoRegistry = await VideoRegistry.new()
+    await setupParatiiContracts()
     let tx = await videoRegistry.registerVideo(videoId, videoOwner, price)
     assert.equal(getInfoFromLogs(tx, 'videoId'), videoId)
     assert.equal(getInfoFromLogs(tx, 'owner'), videoOwner)

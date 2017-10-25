@@ -8,14 +8,16 @@ contract('UserRegistry', function (accounts) {
   let userAddress = web3.eth.accounts[3]
   let name = 'Flash Gordon'
   let email = 'flash@theuniver.se'
+  let avatar = '/avatar'
   let tx
 
   it('should register a user', async function () {
     let userRegistry = await UserRegistry.new()
-    tx = await userRegistry.registerUser(userAddress, name, email)
+    tx = await userRegistry.registerUser(userAddress, name, email, avatar)
     assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
     assert.equal(getInfoFromLogs(tx, '_name'), name)
     assert.equal(getInfoFromLogs(tx, '_email'), email)
+    assert.equal(getInfoFromLogs(tx, '_avatar'), avatar)
 
     userInfo = await userRegistry.getUserInfo(userAddress)
     assert.equal(userInfo[0], name, userInfo)
@@ -24,25 +26,25 @@ contract('UserRegistry', function (accounts) {
 
   it('the owner can register and unregister', async function () {
     let userRegistry = await UserRegistry.new()
-    await userRegistry.registerUser(userAddress, name, email, {from: web3.eth.accounts[0]})
+    await userRegistry.registerUser(userAddress, name, email, avatar, {from: web3.eth.accounts[0]})
     await userRegistry.unregisterUser(userAddress, {from: web3.eth.accounts[0]})
   })
 
   it('the user itself can register or unregister', async function () {
     let userRegistry = await UserRegistry.new()
-    await userRegistry.registerUser(userAddress, name, email, {from: userAddress})
+    await userRegistry.registerUser(userAddress, name, email, avatar, {from: userAddress})
     await userRegistry.unregisterUser(userAddress, {from: userAddress})
   })
 
   it('an non-owner cannot register or unregister a user (other than itself)', async function() {
     let userRegistry = await UserRegistry.new({from: web3.eth.accounts[0]})
     await expectError(async function() {
-      await userRegistry.registerUser(web3.eth.accounts[1], name, email, {from: web3.eth.accounts[2]})
+      await userRegistry.registerUser(web3.eth.accounts[1], name, email, avatar, {from: web3.eth.accounts[2]})
     })
 
     return
     // now register a user and try to unregister it from another account
-    await userRegistry.registerUser(web3.eth.accounts[1], name, email)
+    await userRegistry.registerUser(web3.eth.accounts[1], name, email, avatar)
 
     await expectError(async function() {
       await userRegistry.unregisterUser(web3.eth.accounts[1], {from: web3.eth.accounts[2]})
@@ -51,7 +53,7 @@ contract('UserRegistry', function (accounts) {
 
   it('like and dislike a video should work as expected', async function () {
     let userRegistry = await UserRegistry.new()
-    await userRegistry.registerUser(userAddress, name, email)
+    await userRegistry.registerUser(userAddress, name, email, avatar)
 
     assert.equal(await userRegistry.userLikesVideo(userAddress, videoId).valueOf(), false)
     assert.equal(await userRegistry.userDislikesVideo(userAddress, videoId).valueOf(), false)
