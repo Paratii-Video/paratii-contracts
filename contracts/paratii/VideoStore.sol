@@ -18,8 +18,8 @@ contract VideoStore is Ownable, Debug {
     using SafeMath for uint256;
 
     ParatiiRegistry public paratiiRegistry;
-    mapping (address => string[]) user_purchases;
-    mapping (string => address[]) video_sales;
+    mapping (address => bytes32[]) public user_purchases;
+    mapping (bytes32 => address[]) public video_sales;
 
     event LogBuyVideo(
       string videoId,
@@ -53,18 +53,33 @@ contract VideoStore is Ownable, Debug {
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
-       user_purchases[buyer].push(videoId);
-       video_sales[videoId].push(buyer);
+       bytes32 video_hash = sha3(videoId);
+       user_purchases[buyer].push(video_hash);
+       video_sales[video_hash].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
     }
 
-    function getPurchases() returns(mapping (address => string[])) {
-        return user_purchases;
+    function videoPurchased(string videoId, address user) returns(bool) {
+        bytes32 video_hash = sha3(videoId);
+        address[] users = video_sales[video_hash];
+        for (uint i=0;i<users.length;++i) {
+            if (user == users[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    function getsales() returns(mapping (string => address[])) {
-        return video_sales;
+    function userOwns(address user, string videoId) returns(bool) {
+        bytes32[] videoIds = user_purchases[user];
+        bytes32 videoId_hash = sha3(videoId);
+        for (uint i=0;i<videoIds.length;++i) {
+            if (videoId_hash == videoIds[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function redistributionPoolShare() internal constant returns(uint256) {
