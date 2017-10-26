@@ -18,6 +18,8 @@ contract VideoStore is Ownable, Debug {
     using SafeMath for uint256;
 
     ParatiiRegistry public paratiiRegistry;
+    mapping (address => string[]) user_purchases;
+    mapping (string => address[]) video_sales;
 
     event LogBuyVideo(
       string videoId,
