@@ -13,7 +13,12 @@ contract ParatiiAvatar is Ownable {
     address[] public whitelist;
 
     modifier onlyWhitelist() {
-      _;
+      for (uint i=0; i<whitelist.length; ++i) {
+         if (msg.sender == whitelist[i]) {
+            _;
+           return;
+         }
+      }
     }
 
     function ParatiiAvatar(ParatiiRegistry _paratiiRegistry) {
