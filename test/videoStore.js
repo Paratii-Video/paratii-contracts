@@ -36,5 +36,9 @@ contract('VideoStore', function (accounts) {
 
     // and 70% to the owner
     assert.equal(Number(await paratiiToken.balanceOf(owner)) - ownerBalance, 0.7 * price)
+
+   // video purchase was properly recorded
+   assert.equal(Boolean(videoStore.userOwns(buyer, videoId)), true)
+   assert.equal(Boolean(videoStore.videoPurchased(videoId, buyer)), true)
   })
 })

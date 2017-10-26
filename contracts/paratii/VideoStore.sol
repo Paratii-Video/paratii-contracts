@@ -18,6 +18,7 @@ contract VideoStore is Ownable, Debug {
     using SafeMath for uint256;
 
     ParatiiRegistry public paratiiRegistry;
+
     mapping (address => bytes32[]) public user_purchases;
     mapping (bytes32 => address[]) public video_sales;
 
@@ -72,10 +73,10 @@ contract VideoStore is Ownable, Debug {
     }
 
     function userOwns(address user, string videoId) returns(bool) {
-        bytes32[] videoIds = user_purchases[user];
+        bytes32[] video_hashes = user_purchases[user];
         bytes32 videoId_hash = sha3(videoId);
-        for (uint i=0;i<videoIds.length;++i) {
-            if (videoId_hash == videoIds[i]) {
+        for (uint i=0;i<video_hashes.length;++i) {
+            if (videoId_hash == video_hashes[i]) {
                 return true;
             }
         }
