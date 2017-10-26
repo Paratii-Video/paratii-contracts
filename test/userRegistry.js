@@ -1,4 +1,4 @@
-import { getInfoFromLogs, expectError, setupParatiiContracts, userRegistry } from './utils.js'
+import { getInfoFromLogs, expectError, setupParatiiContracts, userRegistry, videoRegistry } from './utils.js'
 var UserRegistry = artifacts.require('./UserRegistry.sol')
 
 contract('UserRegistry', function (accounts) {
@@ -22,6 +22,7 @@ contract('UserRegistry', function (accounts) {
     userInfo = await userRegistry.getUserInfo(userAddress)
     assert.equal(userInfo[0], name)
     assert.equal(userInfo[1], email)
+    assert.equal(userInfo[2], avatar)
   })
 
   it('the owner can register and unregister', async function () {
@@ -69,6 +70,12 @@ contract('UserRegistry', function (accounts) {
     tx = await userRegistry.userDislikesVideo(userAddress, videoId)
     assert.equal(tx, false)
 
+    var likes_percentage, views, likes, dislikes = await videoRegistry.getStats(videoId)
+//    assert.equal(likes_percentage, 100)
+//    assert.equal(views, 0)
+//    assert.equal(likes, 1)
+//    assert.equal(dislikes, 0)
+
     tx = await userRegistry.likeVideo(videoId, false, {from: userAddress})
     assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
     assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
@@ -78,5 +85,12 @@ contract('UserRegistry', function (accounts) {
     assert.equal(tx, false)
     tx = await userRegistry.userDislikesVideo(userAddress, videoId)
     assert.equal(tx, true)
+
+//    likes_percentage, views, likes, dislikes = await videoRegistry.getStats(videoId)
+//    assert.equal(likes_percentage, 50)
+//    assert.equal(views, 0)
+//    assert.equal(likes, 1)
+//    assert.equal(dislikes, 1)
+
   })
 })
