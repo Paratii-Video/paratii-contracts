@@ -1,4 +1,4 @@
-import { getInfoFromLogs, expectError } from './utils.js'
+import { getInfoFromLogs, expectError, setupParatiiContracts, userRegistry } from './utils.js'
 var UserRegistry = artifacts.require('./UserRegistry.sol')
 
 contract('UserRegistry', function (accounts) {
@@ -12,7 +12,7 @@ contract('UserRegistry', function (accounts) {
   let tx
 
   it('should register a user', async function () {
-    let userRegistry = await UserRegistry.new()
+    await setupParatiiContracts()
     tx = await userRegistry.registerUser(userAddress, name, email, avatar)
     assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
     assert.equal(getInfoFromLogs(tx, '_name'), name)
@@ -20,24 +20,24 @@ contract('UserRegistry', function (accounts) {
     assert.equal(getInfoFromLogs(tx, '_avatar'), avatar)
 
     userInfo = await userRegistry.getUserInfo(userAddress)
-    assert.equal(userInfo[0], name, userInfo)
+    assert.equal(userInfo[0], name)
     assert.equal(userInfo[1], email)
   })
 
   it('the owner can register and unregister', async function () {
-    let userRegistry = await UserRegistry.new()
+    await setupParatiiContracts()
     await userRegistry.registerUser(userAddress, name, email, avatar, {from: web3.eth.accounts[0]})
     await userRegistry.unregisterUser(userAddress, {from: web3.eth.accounts[0]})
   })
 
   it('the user itself can register or unregister', async function () {
-    let userRegistry = await UserRegistry.new()
+    await setupParatiiContracts()
     await userRegistry.registerUser(userAddress, name, email, avatar, {from: userAddress})
     await userRegistry.unregisterUser(userAddress, {from: userAddress})
   })
 
   it('an non-owner cannot register or unregister a user (other than itself)', async function() {
-    let userRegistry = await UserRegistry.new({from: web3.eth.accounts[0]})
+    await setupParatiiContracts()
     await expectError(async function() {
       await userRegistry.registerUser(web3.eth.accounts[1], name, email, avatar, {from: web3.eth.accounts[2]})
     })
@@ -52,7 +52,7 @@ contract('UserRegistry', function (accounts) {
   })
 
   it('like and dislike a video should work as expected', async function () {
-    let userRegistry = await UserRegistry.new()
+    await setupParatiiContracts()
     await userRegistry.registerUser(userAddress, name, email, avatar)
 
     assert.equal(await userRegistry.userLikesVideo(userAddress, videoId).valueOf(), false)

@@ -1,14 +1,17 @@
 pragma solidity ^0.4.13;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 
 contract VideoRegistry is Ownable {
 
+    using SafeMath for uint256;
+    
     struct Stats {
-        uint32 likes_percentage;
-        uint32 views;
-        uint32 likes;
-        uint32 disklikes;
+        uint256 likes_percentage;
+        uint256 views;
+        uint256 likes;
+        uint256 dislikes;
     }
 
     struct VideoInfo {
@@ -39,7 +42,7 @@ contract VideoRegistry is Ownable {
         likes_percentage: 0,
         views: 0,
         likes: 0,
-        disklikes: 0
+        dislikes: 0
       });
 
       videos[id] = VideoInfo({
@@ -66,10 +69,26 @@ contract VideoRegistry is Ownable {
       LogRegisterVideo(_videoId, owner);
     }
 
-
     function getVideoInfo(string _videoId) constant returns(address, uint256)  {
       VideoInfo storage videoInfo = videos[sha3(_videoId)];
       return (videoInfo.owner, videoInfo.price);
     }
-
+    
+     function likeVideo(string _videoId) {
+         VideoInfo storage videoInfo = videos[sha3(_videoId)];
+         Stats stats = videoInfo.stats;
+         stats.likes = stats.likes + 1;
+         stats.likes_percentage = stats.likes.mul(10 ** 18).div(stats.likes + stats.dislikes).div(10 ** 17);
+         videoInfo.stats = stats;
+         videos[sha3(_videoId)] = videoInfo;
+    }
+    
+    function dislikeVideo(string _videoId) {
+         VideoInfo storage videoInfo = videos[sha3(_videoId)];
+         Stats stats = videoInfo.stats;
+         stats.dislikes = stats.dislikes + 1;
+         stats.likes_percentage = stats.likes.mul(10 ** 18).div(stats.likes + stats.dislikes).div(10 ** 17);
+         videoInfo.stats = stats;
+         videos[sha3(_videoId)] = videoInfo;
+    }
 }
