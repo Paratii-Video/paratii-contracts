@@ -18,6 +18,8 @@ contract VideoStore is Ownable, Debug {
     using SafeMath for uint256;
 
     ParatiiRegistry public paratiiRegistry;
+    mapping (address => string[]) user_purchases;
+    mapping (string => address[]) video_sales;
 
     event LogBuyVideo(
       string videoId,
@@ -51,8 +53,18 @@ contract VideoStore is Ownable, Debug {
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
+       user_purchases[buyer].push(videoId);
+       video_sales[videoId].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
+    }
+
+    function getPurchases() returns(mapping (address => string[])) {
+        return user_purchases;
+    }
+
+    function getsales() returns(mapping (string => address[])) {
+        return video_sales;
     }
 
     function redistributionPoolShare() internal constant returns(uint256) {
