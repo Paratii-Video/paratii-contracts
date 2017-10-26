@@ -13,6 +13,7 @@ contract VideoRegistry is Ownable {
 
     struct VideoInfo {
       bytes32 _id;
+      string ipfs_hash;
       string title;
       string description;
       string thumb;
@@ -31,7 +32,7 @@ contract VideoRegistry is Ownable {
         owner = msg.sender;
     }
 
-    function registerVideo(string _videoId, address _owner, uint256 _price) public onlyOwner {
+    function registerVideo(string _videoId, address _owner, uint256 _price, string ipfs_hash) public onlyOwner {
       bytes32 id = sha3(_videoId);
 
       Stats memory _stats = Stats({
@@ -43,6 +44,7 @@ contract VideoRegistry is Ownable {
 
       videos[id] = VideoInfo({
           _id: id,
+          ipfs_hash: ipfs_hash,
           title: _videoId,
           description: "",
           thumb: "",
