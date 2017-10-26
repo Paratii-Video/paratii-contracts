@@ -91,4 +91,11 @@ contract VideoRegistry is Ownable {
          videoInfo.stats = stats;
          videos[sha3(_videoId)] = videoInfo;
     }
+
+    function getStats(string _videoId) returns (uint256, uint256, uint256, uint256) {
+         VideoInfo storage videoInfo = videos[sha3(_videoId)];
+         Stats stats = videoInfo.stats;
+         return (stats.likes_percentage, stats.views, stats.likes, stats.dislikes);
+    }
+
 }
