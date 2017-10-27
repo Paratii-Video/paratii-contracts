@@ -85,14 +85,14 @@ contract UserRegistry is Ownable {
 
       if (_liked && !video.liked) {
         video.liked = true;
-        videoRegistry.likeVideo(_videoId, _userAddress, video.disliked);
+        videoRegistry.likeVideo(_videoId, video.disliked);
         video.disliked = false;
         LogLikeVideo(_userAddress, _videoId, _liked);
       } 
 
       if (!_liked && !video.disliked) {
         video.disliked = true;
-        videoRegistry.dislikeVideo(_videoId, _userAddress, video.liked);
+        videoRegistry.dislikeVideo(_videoId, video.liked);
         video.liked = false;
         LogLikeVideo(_userAddress, _videoId, _liked);
       }

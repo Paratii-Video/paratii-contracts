@@ -68,7 +68,7 @@ contract VideoRegistry is Ownable {
       return (videoInfo.owner, videoInfo.price);
     }
     
-     function likeVideo(string _videoId, address user, bool changed_opinion) {
+     function likeVideo(string _videoId, bool changed_opinion) {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
          videoInfo.stats.likes = videoInfo.stats.likes + 1;
 
@@ -77,7 +77,7 @@ contract VideoRegistry is Ownable {
          }
     }
     
-    function dislikeVideo(string _videoId, address user, bool changed_opinion) {
+    function dislikeVideo(string _videoId, bool changed_opinion) {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
          videoInfo.stats.dislikes = videoInfo.stats.dislikes + 1;
 

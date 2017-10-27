@@ -9,8 +9,8 @@ contract('UserRegistry', function (accounts) {
   let name = 'Flash Gordon'
   let email = 'flash@theuniver.se'
   let avatar = '/avatar'
+  let ipfs_hash = "QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQy7U1xxhMt"
   let tx
-  let stats
 
   it('should register a user', async function () {
     await setupParatiiContracts()
@@ -52,10 +52,10 @@ contract('UserRegistry', function (accounts) {
     })
   })
 
-  it('like and dislike a video should work as expected', async function () {
+  it('like video should work as expected', async function () {
     await setupParatiiContracts()
     await userRegistry.registerUser(userAddress, name, email, avatar)
-    await videoRegistry.registerVideo(videoId, userAddress, 10, "QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQy7U1xxhMt")
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
 
     assert.equal(await userRegistry.userLikesVideo(userAddress, videoId).valueOf(), false)
     assert.equal(await userRegistry.userDislikesVideo(userAddress, videoId).valueOf(), false)
@@ -71,10 +71,16 @@ contract('UserRegistry', function (accounts) {
     tx = await userRegistry.userDislikesVideo(userAddress, videoId)
     assert.equal(tx, false)
 
-    stats = await videoRegistry.getStats(videoId)
+    var stats = await videoRegistry.getStats(videoId)
     assert.equal(stats[0], 0)
     assert.equal(stats[1], 1)
     assert.equal(stats[2], 0)
+  }) 
+
+  it('dislike video should work as expected', async function () {
+    await setupParatiiContracts()
+    await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
 
     tx = await userRegistry.likeVideo(videoId, false, {from: userAddress})
     assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
@@ -86,9 +92,99 @@ contract('UserRegistry', function (accounts) {
     tx = await userRegistry.userDislikesVideo(userAddress, videoId)
     assert.equal(tx, true)
 
-    stats = await videoRegistry.getStats(videoId)
+    var stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 0)
+    assert.equal(stats[2], 1)
+  })
+
+  it('dislike video should override like', async function () {
+    await setupParatiiContracts()
+    await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
+
+    await userRegistry.likeVideo(videoId, true, {from: userAddress})
+    await userRegistry.likeVideo(videoId, false, {from: userAddress})
+
+    tx = await userRegistry.userLikesVideo(userAddress, videoId)
+    assert.equal(tx, false)
+    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
+    assert.equal(tx, true)
+
+    var stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 0)
+    assert.equal(stats[2], 1)
+  })
+
+  it('like video should override dislike', async function () {
+    await setupParatiiContracts()
+    await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
+
+    await userRegistry.likeVideo(videoId, false, {from: userAddress})
+    await userRegistry.likeVideo(videoId, true, {from: userAddress})
+
+    tx = await userRegistry.userLikesVideo(userAddress, videoId)
+    assert.equal(tx, true)
+    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
+    assert.equal(tx, false)
+
+    var stats = await videoRegistry.getStats(videoId)
     assert.equal(stats[0], 0)
     assert.equal(stats[1], 1)
     assert.equal(stats[2], 0)
+  })
+
+  it('like video should be cumulative', async function () {
+    await setupParatiiContracts()
+    await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
+
+    await userRegistry.likeVideo(videoId, true, {from: userAddress})
+    await userRegistry.likeVideo(videoId, true, {from: accounts[1]})
+
+    tx = await userRegistry.userLikesVideo(userAddress, videoId)
+    assert.equal(tx, true)
+    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
+    assert.equal(tx, false)
+
+    var stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 2)
+    assert.equal(stats[2], 0)
+  })
+
+  it('dislike video should be cumulative', async function () {
+    await setupParatiiContracts()
+    await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
+
+    await userRegistry.likeVideo(videoId, false, {from: userAddress})
+    await userRegistry.likeVideo(videoId, false, {from: accounts[1]})
+
+    tx = await userRegistry.userLikesVideo(userAddress, videoId)
+    assert.equal(tx, false)
+    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
+    assert.equal(tx, true)
+
+    var stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 0)
+    assert.equal(stats[2], 2)
+  })
+
+  it('dislikes and likes can coexist', async function () {
+    await setupParatiiContracts()
+    await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, price, ipfs_hash)
+
+    await userRegistry.likeVideo(videoId, false, {from: userAddress})
+    await userRegistry.likeVideo(videoId, true, {from: accounts[1]})
+
+    var stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 1)
+    assert.equal(stats[2], 1)
   })
 })
