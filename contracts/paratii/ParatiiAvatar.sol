@@ -13,12 +13,8 @@ contract ParatiiAvatar is Ownable {
     address[] public whitelist;
 
     modifier onlyWhitelist() {
-      for (uint i=0; i<whitelist.length; ++i) {
-         if (msg.sender == whitelist[i]) {
-            _;
-           return;
-         }
-      }
+        require(isOnWhiteList(msg.sender));
+        _;
     }
 
     function ParatiiAvatar(ParatiiRegistry _paratiiRegistry) {
@@ -49,8 +45,8 @@ contract ParatiiAvatar is Ownable {
           if (whitelist[i] == _address) {
               delete whitelist[i];
           }
-      }
-    }
+  }
+}
 
     function isOnWhiteList(address _address) public constant returns(bool) {
       for (uint i=0; i < whitelist.length; i++) {
