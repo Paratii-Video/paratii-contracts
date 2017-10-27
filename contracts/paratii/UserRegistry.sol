@@ -83,17 +83,19 @@ contract UserRegistry is Ownable {
         acquireVideo(_videoId, _userAddress); 
       }
 
-      if (_liked) {
+      if (_liked && !video.liked) {
         video.liked = true;
+        videoRegistry.likeVideo(_videoId, _userAddress, video.disliked);
         video.disliked = false;
-        videoRegistry.likeVideo(_videoId);
-      } else {
-        video.liked = false;
-        video.disliked = true;
-        videoRegistry.dislikeVideo(_videoId);
-      }
+        LogLikeVideo(_userAddress, _videoId, _liked);
+      } 
 
-      LogLikeVideo(_userAddress, _videoId, _liked);
+      if (!_liked && !video.disliked) {
+        video.disliked = true;
+        videoRegistry.dislikeVideo(_videoId, _userAddress, video.liked);
+        video.liked = false;
+        LogLikeVideo(_userAddress, _videoId, _liked);
+      }
     }
 
     function userLikesVideo(address _userAddress, string _videoId) constant returns(bool) {

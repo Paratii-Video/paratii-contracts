@@ -5,10 +5,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 
 contract VideoRegistry is Ownable {
 
-    using SafeMath for uint256;
-    
     struct Stats {
-        uint256 likes_percentage;
         uint256 views;
         uint256 likes;
         uint256 dislikes;
@@ -35,27 +32,18 @@ contract VideoRegistry is Ownable {
         owner = msg.sender;
     }
 
-    function registerVideo(string _videoId, address _owner, uint256 _price, string ipfs_hash) public onlyOwner {
+    function registerVideo(string _videoId, address _owner, uint256 _price, string _ipfs_hash) public onlyOwner {
       bytes32 id = sha3(_videoId);
 
-      Stats memory _stats = Stats({
-        likes_percentage: 0,
-        views: 0,
-        likes: 0,
-        dislikes: 0
-      });
-
-      videos[id] = VideoInfo({
-          _id: id,
-          ipfs_hash: ipfs_hash,
-          title: _videoId,
-          description: "",
-          thumb: "",
-          duration: "",
-          price: _price,
-          owner: _owner,
-          stats: _stats
-      });
+      VideoInfo storage videoInfo = videos[id];
+      videoInfo._id = id;
+      videoInfo.ipfs_hash = _ipfs_hash;
+      videoInfo.title = _videoId;
+      videoInfo.price = _price;
+      videoInfo.owner = _owner;
+      videoInfo.stats.views = 0;
+      videoInfo.stats.likes = 0;
+      videoInfo.stats.dislikes = 0;
 
       LogRegisterVideo(_videoId, _owner);
     }
@@ -74,28 +62,27 @@ contract VideoRegistry is Ownable {
       return (videoInfo.owner, videoInfo.price);
     }
     
-     function likeVideo(string _videoId) {
+     function likeVideo(string _videoId, address user, bool changed_opinion) {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
-         Stats stats = videoInfo.stats;
-         stats.likes = stats.likes + 1;
-         stats.likes_percentage = stats.likes.mul(10 ** 18).div(stats.likes + stats.dislikes).div(10 ** 17);
-         videoInfo.stats = stats;
-         videos[sha3(_videoId)] = videoInfo;
+         videoInfo.stats.likes = videoInfo.stats.likes + 1;
+
+         if (changed_opinion) {
+             videoInfo.stats.dislikes = videoInfo.stats.dislikes - 1;
+         }
     }
     
-    function dislikeVideo(string _videoId) {
+    function dislikeVideo(string _videoId, address user, bool changed_opinion) {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
-         Stats stats = videoInfo.stats;
-         stats.dislikes = stats.dislikes + 1;
-         stats.likes_percentage = stats.likes.mul(10 ** 18).div(stats.likes + stats.dislikes).div(10 ** 17);
-         videoInfo.stats = stats;
-         videos[sha3(_videoId)] = videoInfo;
+         videoInfo.stats.dislikes = videoInfo.stats.dislikes + 1;
+
+         if (changed_opinion) {
+             videoInfo.stats.likes = videoInfo.stats.likes - 1;
+         }
     }
 
-    function getStats(string _videoId) returns (uint256, uint256, uint256, uint256) {
+    function getStats(string _videoId) returns (uint256, uint256, uint256) {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
-         Stats stats = videoInfo.stats;
-         return (stats.likes_percentage, stats.views, stats.likes, stats.dislikes);
+         return (videoInfo.stats.views, videoInfo.stats.likes, videoInfo.stats.dislikes);
     }
 
 }

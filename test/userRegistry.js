@@ -43,7 +43,6 @@ contract('UserRegistry', function (accounts) {
       await userRegistry.registerUser(web3.eth.accounts[1], name, email, avatar, {from: web3.eth.accounts[2]})
     })
 
-    return
     // now register a user and try to unregister it from another account
     await userRegistry.registerUser(web3.eth.accounts[1], name, email, avatar)
 
@@ -70,26 +69,24 @@ contract('UserRegistry', function (accounts) {
     tx = await userRegistry.userDislikesVideo(userAddress, videoId)
     assert.equal(tx, false)
 
-    var likes_percentage, views, likes, dislikes = await videoRegistry.getStats(videoId)
-//    assert.equal(likes_percentage, 100)
+    var views, likes, dislikes = await videoRegistry.getStats(videoId)
+    assert.equal(views, 0)
+    assert.equal(likes, 1)
+    assert.equal(dislikes, 0)
+
+//    tx = await userRegistry.likeVideo(videoId, false, {from: userAddress, gas: 10000000000})
+//    assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
+//    assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
+//    assert.equal(getInfoFromLogs(tx, '_liked'), false)
+//
+//    tx = await userRegistry.userLikesVideo(userAddress, videoId)
+//    assert.equal(tx, false)
+//    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
+//    assert.equal(tx, true)
+//
+//    views, likes, dislikes = await videoRegistry.getStats(videoId)
 //    assert.equal(views, 0)
-//    assert.equal(likes, 1)
-//    assert.equal(dislikes, 0)
-
-    tx = await userRegistry.likeVideo(videoId, false, {from: userAddress})
-    assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
-    assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
-    assert.equal(getInfoFromLogs(tx, '_liked'), false)
-
-    tx = await userRegistry.userLikesVideo(userAddress, videoId)
-    assert.equal(tx, false)
-    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
-    assert.equal(tx, true)
-
-//    likes_percentage, views, likes, dislikes = await videoRegistry.getStats(videoId)
-//    assert.equal(likes_percentage, 50)
-//    assert.equal(views, 0)
-//    assert.equal(likes, 1)
+//    assert.equal(likes, 0)
 //    assert.equal(dislikes, 1)
 
   })
