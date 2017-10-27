@@ -10,6 +10,7 @@ contract('UserRegistry', function (accounts) {
   let email = 'flash@theuniver.se'
   let avatar = '/avatar'
   let tx
+  let stats
 
   it('should register a user', async function () {
     await setupParatiiContracts()
@@ -54,6 +55,7 @@ contract('UserRegistry', function (accounts) {
   it('like and dislike a video should work as expected', async function () {
     await setupParatiiContracts()
     await userRegistry.registerUser(userAddress, name, email, avatar)
+    await videoRegistry.registerVideo(videoId, userAddress, 10, "QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQy7U1xxhMt")
 
     assert.equal(await userRegistry.userLikesVideo(userAddress, videoId).valueOf(), false)
     assert.equal(await userRegistry.userDislikesVideo(userAddress, videoId).valueOf(), false)
@@ -69,25 +71,24 @@ contract('UserRegistry', function (accounts) {
     tx = await userRegistry.userDislikesVideo(userAddress, videoId)
     assert.equal(tx, false)
 
-    var views, likes, dislikes = await videoRegistry.getStats(videoId)
-    assert.equal(views, 0)
-    assert.equal(likes, 1)
-    assert.equal(dislikes, 0)
+    stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 1)
+    assert.equal(stats[2], 0)
 
-//    tx = await userRegistry.likeVideo(videoId, false, {from: userAddress, gas: 10000000000})
-//    assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
-//    assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
-//    assert.equal(getInfoFromLogs(tx, '_liked'), false)
-//
-//    tx = await userRegistry.userLikesVideo(userAddress, videoId)
-//    assert.equal(tx, false)
-//    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
-//    assert.equal(tx, true)
-//
-//    views, likes, dislikes = await videoRegistry.getStats(videoId)
-//    assert.equal(views, 0)
-//    assert.equal(likes, 0)
-//    assert.equal(dislikes, 1)
+    tx = await userRegistry.likeVideo(videoId, false, {from: userAddress})
+    assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
+    assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
+    assert.equal(getInfoFromLogs(tx, '_liked'), false)
 
+    tx = await userRegistry.userLikesVideo(userAddress, videoId)
+    assert.equal(tx, false)
+    tx = await userRegistry.userDislikesVideo(userAddress, videoId)
+    assert.equal(tx, true)
+
+    stats = await videoRegistry.getStats(videoId)
+    assert.equal(stats[0], 0)
+    assert.equal(stats[1], 1)
+    assert.equal(stats[2], 0)
   })
 })

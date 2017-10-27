@@ -35,15 +35,21 @@ contract VideoRegistry is Ownable {
     function registerVideo(string _videoId, address _owner, uint256 _price, string _ipfs_hash) public onlyOwner {
       bytes32 id = sha3(_videoId);
 
-      VideoInfo storage videoInfo = videos[id];
-      videoInfo._id = id;
-      videoInfo.ipfs_hash = _ipfs_hash;
-      videoInfo.title = _videoId;
-      videoInfo.price = _price;
-      videoInfo.owner = _owner;
-      videoInfo.stats.views = 0;
-      videoInfo.stats.likes = 0;
-      videoInfo.stats.dislikes = 0;
+      videos[id] = VideoInfo({
+      _id: id,
+      ipfs_hash: _ipfs_hash,
+      title: _videoId,
+      price: _price,
+      owner: _owner,
+      thumb: "",
+      duration: "",
+      description: "",
+      stats: Stats({
+        views: 0,
+        likes: 0,
+        dislikes: 0
+        })
+      });
 
       LogRegisterVideo(_videoId, _owner);
     }
@@ -80,9 +86,10 @@ contract VideoRegistry is Ownable {
          }
     }
 
-    function getStats(string _videoId) returns (uint256, uint256, uint256) {
+    function getStats(string _videoId) constant returns (uint256, uint256, uint256) {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
-         return (videoInfo.stats.views, videoInfo.stats.likes, videoInfo.stats.dislikes);
+         Stats storage stats = videoInfo.stats;
+         return (stats.views, stats.likes, stats.dislikes);
     }
 
 }
