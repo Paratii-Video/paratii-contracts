@@ -8,7 +8,7 @@ contract UserRegistry is Ownable {
       bool isAcquired; // did the user buy this video?
       bool liked; // did the user like this video
       bool disliked; // did the user dislike this video
-      uint256 _index; // index in the UserInfo.videosIndex
+      uint _index; // index in the UserInfo.videosIndex
     }
 
     struct UserInfo {
@@ -55,16 +55,11 @@ contract UserRegistry is Ownable {
       return (userInfo.name, userInfo.email);
     }
 
-    function acquireVideo(bytes32 video_hash, address _userAddress) {
-      VideoInfo storage video = users[_userAddress].videos[video_hash];
-
-      // if the video is not known yet
-      if (video._index == 0) {
-        video._index = users[_userAddress].videoIndex.push(video_hash);
-        users[_userAddress].videos[video_hash] = video;
-      }
-
+    function acquireVideo(string _videoId, address _userAddress) {
+      VideoInfo storage video = users[_userAddress].videos[sha3(_videoId)];
+      video._index = users[_userAddress].videoIndex.push(sha3(_videoId));
       video.isAcquired = true;
+      users[_userAddress].videos[sha3(_videoId)] = video;
     }
 
     /* like/dislike a video.
@@ -76,8 +71,7 @@ contract UserRegistry is Ownable {
 
       // if the video is not known yet
       if (video._index == 0) {
-        video._index = users[_userAddress].videoIndex.push(sha3(_videoId));
-        users[_userAddress].videos[sha3(_videoId)] = video;
+        acquireVideo(_videoId, _userAddress); 
       }
 
       if (_liked) {

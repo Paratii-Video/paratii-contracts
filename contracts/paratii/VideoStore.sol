@@ -58,16 +58,14 @@ contract VideoStore is Ownable, Debug {
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
-       bytes32 video_hash = sha3(videoId);
-//       userRegistry.acquireVideo(video_hash, buyer);
-       video_sales[video_hash].push(buyer);
+       userRegistry.acquireVideo(videoId, buyer);
+       video_sales[sha3(videoId)].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
     }
 
     function videoPurchased(string videoId, address user) returns(bool) {
-        bytes32 video_hash = sha3(videoId);
-        address[] storage users = video_sales[video_hash];
+        address[] storage users = video_sales[sha3(videoId)];
         for (uint i=0;i<users.length;++i) {
             if (user == users[i]) {
                 return true;

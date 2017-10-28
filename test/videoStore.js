@@ -19,6 +19,10 @@ contract('VideoStore', function (accounts) {
     let ownerBalance = await paratiiToken.balanceOf(owner)
     let avatarBalance = await paratiiToken.balanceOf(paratiiAvatar.address)
 
+    assert.equal(await userRegistry.userLikesVideo(buyer, videoId).valueOf(), false)
+    assert.equal(await userRegistry.userDislikesVideo(buyer, videoId).valueOf(), false)
+    assert.equal(await userRegistry.userAcquiredVideo(buyer, videoId).valueOf(), false)
+
     // the actualtransaction takes two steps:
     //  (1) give the paratiiAvatar an allowance to spend the price fo the video
     await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: buyer})

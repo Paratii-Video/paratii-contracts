@@ -78,13 +78,13 @@ export async function setupParatiiContracts () {
   paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
   paratiiRegistry.registerAddress('SendEther', sendEther.address)
   paratiiRegistry.registerAddress('VideoRegistry', videoRegistry.address)
+  userRegistry = await UserRegistry.new()
+  paratiiRegistry.registerAddress('UserRegistry', userRegistry.address)
   videoStore = await VideoStore.new(paratiiRegistry.address)
   paratiiRegistry.registerAddress('VideoStore', videoStore.address)
   // give 30 percent of eah video to the redistribution pool
   paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 
-  userRegistry = await UserRegistry.new()
-  paratiiRegistry.registerAddress('UserRegistry', userRegistry.address)
   paratiiAvatar.addToWhitelist(videoStore.address)
   return paratiiRegistry
 }
