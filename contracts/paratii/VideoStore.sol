@@ -4,6 +4,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
+import './UserRegistry.sol';
 import './ParatiiRegistry.sol';
 import "../debug/Debug.sol";
 
@@ -18,8 +19,10 @@ contract VideoStore is Ownable, Debug {
     using SafeMath for uint256;
 
     ParatiiRegistry public paratiiRegistry;
+    UserRegistry public userRegistry;
+    VideoRegistry public videoRegistry;
+    ParatiiAvatar public paratiiAvatar;
 
-    mapping (address => bytes32[]) public user_purchases;
     mapping (bytes32 => address[]) public video_sales;
 
     event LogBuyVideo(
@@ -30,6 +33,9 @@ contract VideoStore is Ownable, Debug {
 
     function VideoStore(ParatiiRegistry _paratiiRegistry) {
       paratiiRegistry = _paratiiRegistry;
+      userRegistry = UserRegistry(paratiiRegistry.getContract("UserRegistry"));
+      videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
+      paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
     }
 
     // If someone accidentally sends ether to this contract, revert;
@@ -46,8 +52,6 @@ contract VideoStore is Ownable, Debug {
      */
     function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video
-       VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getContract('VideoRegistry'));
-       ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
        var (owner, price) = videoRegistry.getVideoInfo(videoId);
        address buyer = msg.sender;
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
@@ -55,7 +59,7 @@ contract VideoStore is Ownable, Debug {
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
        bytes32 video_hash = sha3(videoId);
-       user_purchases[buyer].push(video_hash);
+//       userRegistry.acquireVideo(video_hash, buyer);
        video_sales[video_hash].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
@@ -63,20 +67,9 @@ contract VideoStore is Ownable, Debug {
 
     function videoPurchased(string videoId, address user) returns(bool) {
         bytes32 video_hash = sha3(videoId);
-        address[] users = video_sales[video_hash];
+        address[] storage users = video_sales[video_hash];
         for (uint i=0;i<users.length;++i) {
             if (user == users[i]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function userOwns(address user, string videoId) returns(bool) {
-        bytes32[] video_hashes = user_purchases[user];
-        bytes32 videoId_hash = sha3(videoId);
-        for (uint i=0;i<video_hashes.length;++i) {
-            if (videoId_hash == video_hashes[i]) {
                 return true;
             }
         }

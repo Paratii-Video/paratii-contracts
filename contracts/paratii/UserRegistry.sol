@@ -55,6 +55,18 @@ contract UserRegistry is Ownable {
       return (userInfo.name, userInfo.email);
     }
 
+    function acquireVideo(bytes32 video_hash, address _userAddress) {
+      VideoInfo storage video = users[_userAddress].videos[video_hash];
+
+      // if the video is not known yet
+      if (video._index == 0) {
+        video._index = users[_userAddress].videoIndex.push(video_hash);
+        users[_userAddress].videos[video_hash] = video;
+      }
+
+      video.isAcquired = true;
+    }
+
     /* like/dislike a video.
      * @param like If true, register a like, if false, register a dislike
      */
@@ -85,5 +97,9 @@ contract UserRegistry is Ownable {
 
     function userDislikesVideo(address _userAddress, string _videoId) constant returns (bool) {
       return users[_userAddress].videos[sha3(_videoId)].disliked;
+    }
+
+    function userAcquiredVideo(address _userAddress, string _videoId) constant returns(bool) {
+      return users[_userAddress].videos[sha3(_videoId)].isAcquired;
     }
 }
