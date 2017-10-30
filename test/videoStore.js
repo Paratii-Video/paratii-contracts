@@ -1,4 +1,4 @@
-import { getInfoFromLogs, setupParatiiContracts, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
+import { getInfoFromLogs, setupParatiiContracts, userRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
 
 contract('VideoStore', function (accounts) {
   it('should be able to buy a registered video', async function () {
@@ -19,6 +19,10 @@ contract('VideoStore', function (accounts) {
     let ownerBalance = await paratiiToken.balanceOf(owner)
     let avatarBalance = await paratiiToken.balanceOf(paratiiAvatar.address)
 
+    assert.equal(await userRegistry.userLikesVideo(buyer, videoId).valueOf(), false)
+    assert.equal(await userRegistry.userDislikesVideo(buyer, videoId).valueOf(), false)
+    assert.equal(await userRegistry.userAcquiredVideo(buyer, videoId).valueOf(), false)
+
     // the actualtransaction takes two steps:
     //  (1) give the paratiiAvatar an allowance to spend the price fo the video
     await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: buyer})
@@ -35,5 +39,9 @@ contract('VideoStore', function (accounts) {
 
     // and 70% to the owner
     assert.equal(Number(await paratiiToken.balanceOf(owner)) - ownerBalance, 0.7 * price)
+
+   // video purchase was properly recorded
+    assert.equal(Boolean(userRegistry.userAcquiredVideo(buyer, videoId)), true)
+    assert.equal(Boolean(videoStore.videoPurchased(videoId, buyer)), true)
   })
 })

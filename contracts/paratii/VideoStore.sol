@@ -4,6 +4,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './ParatiiAvatar.sol';
 import './ParatiiToken.sol';
 import './VideoRegistry.sol';
+import './UserRegistry.sol';
 import './ParatiiRegistry.sol';
 import "../debug/Debug.sol";
 
@@ -18,6 +19,13 @@ contract VideoStore is Ownable, Debug {
     using SafeMath for uint256;
 
     ParatiiRegistry public paratiiRegistry;
+    UserRegistry public userRegistry;
+    VideoRegistry public videoRegistry;
+    ParatiiAvatar public paratiiAvatar;
+
+    // Registers sales of video by tracking users that bought it
+    // Maps hashes if videoIds to addresses of users that purchased them 
+    mapping (bytes32 => address[]) public videoSales;
 
     event LogBuyVideo(
       string videoId,
@@ -27,6 +35,9 @@ contract VideoStore is Ownable, Debug {
 
     function VideoStore(ParatiiRegistry _paratiiRegistry) {
       paratiiRegistry = _paratiiRegistry;
+      userRegistry = UserRegistry(paratiiRegistry.getContract("UserRegistry"));
+      videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
+      paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
     }
 
     // If someone accidentally sends ether to this contract, revert;
@@ -43,16 +54,26 @@ contract VideoStore is Ownable, Debug {
      */
     function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video
-       VideoRegistry videoRegistry = VideoRegistry(paratiiRegistry.getContract('VideoRegistry'));
-       ParatiiAvatar paratiiAvatar = ParatiiAvatar(paratiiRegistry.getContract('ParatiiAvatar'));
        var (owner, price) = videoRegistry.getVideoInfo(videoId);
        address buyer = msg.sender;
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
+       userRegistry.acquireVideo(videoId, buyer);
+       videoSales[sha3(videoId)].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
+    }
+
+    function videoPurchased(string videoId, address user) returns(bool) {
+        address[] storage users = videoSales[sha3(videoId)];
+        for (uint i=0;i<users.length;++i) {
+            if (user == users[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function redistributionPoolShare() internal constant returns(uint256) {

@@ -53,6 +53,10 @@ contract('UserRegistry', function (accounts) {
     let userRegistry = await UserRegistry.new()
     await userRegistry.registerUser(userAddress, name, email)
 
+    assert.equal(await userRegistry.userLikesVideo(userAddress, videoId).valueOf(), false)
+    assert.equal(await userRegistry.userDislikesVideo(userAddress, videoId).valueOf(), false)
+    assert.equal(await userRegistry.userAcquiredVideo(userAddress, videoId).valueOf(), false)
+
     tx = await userRegistry.likeVideo(videoId, true, {from: userAddress})
     assert.equal(getInfoFromLogs(tx, '_address'), userAddress)
     assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
