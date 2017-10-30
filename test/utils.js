@@ -54,15 +54,15 @@ export function getInfoFromLogs (tx, arg, eventName, index = 0) {
   return result
 }
 
-export async function expectError(f) {
+export async function expectError (f) {
   let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
 
   try {
     await f()
-  } catch(err) {
+  } catch (err) {
     assert.equal(String(err), expectedErrorMsg)
     return
-  } 
+  }
 
   let msg = `Expected an error - function executed without error instead`
   throw Error(msg)
