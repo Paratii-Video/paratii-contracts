@@ -7,13 +7,13 @@ contract('VideoStore', function (accounts) {
     let owner = accounts[2]
     let videoId = '0x1234'
     let price = 14 * 10 ** 18
-    let ipfs_hash = "QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQy7U1xxhMt"
+    let ipfsHash = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQy7U1xxhMt'
 
     assert.equal(price, web3.toWei(14))
     assert.isOk(price === Number(web3.toWei(14)))
     price = web3.toWei(14)
 
-    await videoRegistry.registerVideo(videoId, owner, Number(price), ipfs_hash)
+    await videoRegistry.registerVideo(videoId, owner, Number(price), ipfsHash)
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, Number(price) + (1 * 10 ** 18))
 
