@@ -25,7 +25,7 @@ contract VideoStore is Ownable, Debug {
 
     // Registers sales of video by tracking users that bought it
     // Maps hashes if videoIds to addresses of users that purchased them 
-    mapping (bytes32 => address[]) public video_sales;
+    mapping (bytes32 => address[]) public videoSales;
 
     event LogBuyVideo(
       string videoId,
@@ -61,13 +61,13 @@ contract VideoStore is Ownable, Debug {
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
        userRegistry.acquireVideo(videoId, buyer);
-       video_sales[sha3(videoId)].push(buyer);
+       videoSales[sha3(videoId)].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
     }
 
     function videoPurchased(string videoId, address user) returns(bool) {
-        address[] storage users = video_sales[sha3(videoId)];
+        address[] storage users = videoSales[sha3(videoId)];
         for (uint i=0;i<users.length;++i) {
             if (user == users[i]) {
                 return true;
