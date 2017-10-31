@@ -60,6 +60,15 @@ contract('UserRegistry', function (accounts) {
 
     assert.equal(await userRegistry.userAcquiredVideo(accounts[1], videoId).valueOf(), false)
 
+    // can't like or dislike unaqcuired videos
+    await expectError(async function () {
+      await userRegistry.likeVideo(videoId, true, {from: accounts[1]})
+    })
+
+    await expectError(async function () {
+      await userRegistry.likeVideo(videoId, false, {from: accounts[1]})
+    })
+
     await videoStore.buyVideo(videoId, {from: accounts[1]})
 
     assert.equal(await userRegistry.userLikesVideo(accounts[1], videoId).valueOf(), false)

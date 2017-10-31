@@ -44,6 +44,11 @@ contract UserRegistry is Ownable {
       _;
     }
 
+    modifier isAcquired(string _videoId) {
+        require(userAcquiredVideo(msg.sender, _videoId));
+        _;
+    }
+
     function UserRegistry(ParatiiRegistry _paratiiRegistry) {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
@@ -82,7 +87,7 @@ contract UserRegistry is Ownable {
     /* like/dislike a video.
      * @param like If true, register a like, if false, register a dislike
      */
-    function likeVideo(string _videoId, bool _liked) notOwner(_videoId) {
+    function likeVideo(string _videoId, bool _liked) notOwner(_videoId) isAcquired(_videoId) {
       address _userAddress = msg.sender;
       VideoInfo storage video = users[_userAddress].videos[sha3(_videoId)];
 
