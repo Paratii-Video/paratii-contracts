@@ -2,6 +2,7 @@ pragma solidity ^0.4.13;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
+import './ParatiiRegistry.sol';
 
 contract VideoRegistry is Ownable {
 
@@ -24,12 +25,19 @@ contract VideoRegistry is Ownable {
     }
 
     mapping (bytes32=>VideoInfo) videos;
+    ParatiiRegistry paratiiRegistry;
 
     event LogRegisterVideo(string videoId, address owner);
     event LogUnregisterVideo(string videoId);
 
-    function VideoRegistry() {
+    modifier onlyUserRegistry() {
+        require(msg.sender == paratiiRegistry.getContract('UserRegistry'));
+        _;
+    }
+
+    function VideoRegistry(ParatiiRegistry _paratiiRegistry) {
         owner = msg.sender;
+        paratiiRegistry = _paratiiRegistry;
     }
 
     function registerVideo(string _videoId, address _owner, uint256 _price, string _ipfs_hash) public onlyOwner {
@@ -68,7 +76,7 @@ contract VideoRegistry is Ownable {
       return (videoInfo.owner, videoInfo.price);
     }
     
-     function likeVideo(string _videoId, bool changed_opinion) {
+    function likeVideo(string _videoId, bool changed_opinion) onlyUserRegistry {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
          videoInfo.stats.likes = videoInfo.stats.likes + 1;
 
@@ -77,7 +85,7 @@ contract VideoRegistry is Ownable {
          }
     }
     
-    function dislikeVideo(string _videoId, bool changed_opinion) {
+    function dislikeVideo(string _videoId, bool changed_opinion) onlyUserRegistry {
          VideoInfo storage videoInfo = videos[sha3(_videoId)];
          videoInfo.stats.dislikes = videoInfo.stats.dislikes + 1;
 
