@@ -255,22 +255,4 @@ contract('UserRegistry', function (accounts) {
     assert.equal(stats[1], 1)
     assert.equal(stats[2], 1)
   })
-
-  it('users cannot like or dislike their own video', async function () {
-    await setupParatiiContracts()
-    await userRegistry.registerUser(accounts[0], names[0], emails[0], avatars[0])
-    await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
-
-    assert.equal(await userRegistry.userLikesVideo(accounts[0], videoId).valueOf(), false)
-    assert.equal(await userRegistry.userDislikesVideo(accounts[0], videoId).valueOf(), false)
-    assert.equal(await userRegistry.userAcquiredVideo(accounts[0], videoId).valueOf(), false)
-
-    expectError(async function () {
-      await userRegistry.likeVideo(videoId, true, {from: accounts[0]})
-    })
-
-    expectError(async function () {
-      await userRegistry.likeVideo(videoId, false, {from: accounts[0]})
-    })
-  })
 })

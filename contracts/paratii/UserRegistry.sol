@@ -36,14 +36,6 @@ contract UserRegistry is Ownable {
       _;
     }
 
-    modifier notOwner(string _videoId) {
-      var (owner, price) = videoRegistry.getVideoInfo(_videoId);
-
-      // users can't like or dislike their own video
-      require(msg.sender != owner); 
-      _;
-    }
-
     modifier isAcquired(string _videoId) {
         require(userAcquiredVideo(msg.sender, _videoId));
         _;
@@ -87,7 +79,7 @@ contract UserRegistry is Ownable {
     /* like/dislike a video.
      * @param like If true, register a like, if false, register a dislike
      */
-    function likeVideo(string _videoId, bool _liked) notOwner(_videoId) isAcquired(_videoId) {
+    function likeVideo(string _videoId, bool _liked) isAcquired(_videoId) {
       address _userAddress = msg.sender;
       VideoInfo storage video = users[_userAddress].videos[sha3(_videoId)];
 
