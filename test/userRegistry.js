@@ -10,6 +10,26 @@ contract('UserRegistry', function (accounts) {
   let ipfsHash = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQy7U1xxhMt'
   let tx
 
+  /**
+   * Three users are registered
+   * A video is registered
+   * accounts[0] owns the video
+   * accounts[1:2] buy the video
+   */
+  async function setStage () {
+    await setupParatiiContracts()
+    for (var i = 0; i < names.length; i++) {
+      await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
+      if (i !== 0) {
+        await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
+        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
+        videoStore.buyVideo(videoId, {from: accounts[i]})
+      } else {
+        await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
+      }
+    }
+  }
+
   it('should register a user', async function () {
     await setupParatiiContracts()
     tx = await userRegistry.registerUser(accounts[0], names[0], emails[0], avatars[0])
@@ -117,17 +137,7 @@ contract('UserRegistry', function (accounts) {
   })
 
   it('dislike video should override like', async function () {
-    await setupParatiiContracts()
-    for (var i = 0; i < names.length; i++) {
-      await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
-      if (i !== 0) {
-        await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
-        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
-        await videoStore.buyVideo(videoId, {from: accounts[i]})
-      } else {
-        await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
-      }
-    }
+    await setStage()
 
     await userRegistry.likeVideo(videoId, true, {from: accounts[1]})
     await userRegistry.likeVideo(videoId, false, {from: accounts[1]})
@@ -144,17 +154,7 @@ contract('UserRegistry', function (accounts) {
   })
 
   it('like video should override dislike', async function () {
-    await setupParatiiContracts()
-    for (var i = 0; i < names.length; i++) {
-      await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
-      if (i !== 0) {
-        await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
-        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
-        await videoStore.buyVideo(videoId, {from: accounts[i]})
-      } else {
-        await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
-      }
-    }
+    await setStage()
 
     await userRegistry.likeVideo(videoId, false, {from: accounts[1]})
     await userRegistry.likeVideo(videoId, true, {from: accounts[1]})
@@ -171,17 +171,7 @@ contract('UserRegistry', function (accounts) {
   })
 
   it('like video should be cumulative', async function () {
-    await setupParatiiContracts()
-    for (var i = 0; i < names.length; i++) {
-      await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
-      if (i !== 0) {
-        await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
-        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
-        await videoStore.buyVideo(videoId, {from: accounts[i]})
-      } else {
-        await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
-      }
-    }
+    await setStage()
 
     await userRegistry.likeVideo(videoId, true, {from: accounts[1]})
     await userRegistry.likeVideo(videoId, true, {from: accounts[2]})
@@ -203,17 +193,7 @@ contract('UserRegistry', function (accounts) {
   })
 
   it('dislike video should be cumulative', async function () {
-    await setupParatiiContracts()
-    for (var i = 0; i < names.length; i++) {
-      await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
-      if (i !== 0) {
-        await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
-        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
-        await videoStore.buyVideo(videoId, {from: accounts[i]})
-      } else {
-        await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
-      }
-    }
+    await setStage()
 
     await userRegistry.likeVideo(videoId, false, {from: accounts[1]})
     await userRegistry.likeVideo(videoId, false, {from: accounts[2]})
@@ -235,17 +215,7 @@ contract('UserRegistry', function (accounts) {
   })
 
   it('dislikes and likes can coexist', async function () {
-    await setupParatiiContracts()
-    for (var i = 0; i < names.length; i++) {
-      await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
-      if (i !== 0) {
-        await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
-        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
-        await videoStore.buyVideo(videoId, {from: accounts[i]})
-      } else {
-        await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
-      }
-    }
+    await setStage()
 
     await userRegistry.likeVideo(videoId, false, {from: accounts[1]})
     await userRegistry.likeVideo(videoId, true, {from: accounts[2]})
