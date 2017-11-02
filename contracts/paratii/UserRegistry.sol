@@ -1,8 +1,13 @@
 pragma solidity ^0.4.13;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import './VideoRegistry.sol';
+import './ParatiiRegistry.sol';
 
 contract UserRegistry is Ownable {
+
+    ParatiiRegistry paratiiRegistry;
+    VideoRegistry videoRegistry;
 
     struct VideoInfo { // user-related information about this video
       bool isAcquired; // did the user buy this video?
@@ -15,13 +20,14 @@ contract UserRegistry is Ownable {
       address _address;
       string name;
       string email;
+      string avatar;
       bytes32[] videoIndex; // the videos this user has seen
       mapping (bytes32 => VideoInfo) videos; // information about these vids
     }
 
     mapping (address=>UserInfo) public users;
 
-    event LogRegisterUser(address _address, string _name, string _email);
+    event LogRegisterUser(address _address, string _name, string _email, string _avatar);
     event LogUnregisterUser(address _address);
     event LogLikeVideo(address _address, string _videoId, bool _liked);
 
@@ -30,29 +36,32 @@ contract UserRegistry is Ownable {
       _;
     }
 
-    function UserRegistry() {
+    function UserRegistry(ParatiiRegistry _paratiiRegistry) {
         owner = msg.sender;
+        paratiiRegistry = _paratiiRegistry;
+        videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
     }
 
-    function registerUser(address _userAddress, string _name, string _email) onlyOwnerOrUser(_userAddress) {
+    function registerUser(address _userAddress, string _name, string _email, string _avatar) onlyOwnerOrUser(_userAddress) {
       bytes32[] memory emptyIndex;
       users[_userAddress] =  UserInfo({
           _address: _userAddress,
           name: _name,
           email: _email,
+          avatar: _avatar,
           videoIndex: emptyIndex
       });
 
-      LogRegisterUser(_userAddress, _name, _email);
+      LogRegisterUser(_userAddress, _name, _email, _avatar);
     }
 
     function unregisterUser(address _userAddress) public onlyOwnerOrUser(_userAddress) {
         delete users[_userAddress];
     }
 
-    function getUserInfo(address _userAddress) constant returns(string, string) {
+    function getUserInfo(address _userAddress) constant returns(string, string, string) {
       UserInfo storage userInfo = users[_userAddress];
-      return (userInfo.name, userInfo.email);
+      return (userInfo.name, userInfo.email, userInfo.avatar);
     }
 
     function acquireVideo(string _videoId, address _userAddress) {
@@ -74,15 +83,19 @@ contract UserRegistry is Ownable {
         acquireVideo(_videoId, _userAddress); 
       }
 
-      if (_liked) {
+      if (_liked && !video.liked) {
         video.liked = true;
+        videoRegistry.likeVideo(_videoId, video.disliked);
         video.disliked = false;
-      } else {
-        video.liked = false;
-        video.disliked = true;
-      }
+        LogLikeVideo(_userAddress, _videoId, _liked);
+      } 
 
-      LogLikeVideo(_userAddress, _videoId, _liked);
+      if (!_liked && !video.disliked) {
+        video.disliked = true;
+        videoRegistry.dislikeVideo(_videoId, video.liked);
+        video.liked = false;
+        LogLikeVideo(_userAddress, _videoId, _liked);
+      }
     }
 
     function userLikesVideo(address _userAddress, string _videoId) constant returns(bool) {
