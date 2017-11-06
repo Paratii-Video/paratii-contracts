@@ -25,9 +25,9 @@
     "solc": "^0.4.17",
     "solc-cli": "^0.3.0",
     "standard": "^10.0.3",
-    "truffle": "^3.4.11",
-    "truffle-contract": "^2.0.5",
-    "yarn": "^0.27.5"
+    "truffle": "^4.0.0",
+    "truffle-contract": "^3.0.0",
+    "yarn": "^0.27"
   },
   "repository": {
     "type": "git",

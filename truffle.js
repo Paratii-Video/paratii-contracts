@@ -5,6 +5,12 @@ require('babel-register')({
 })
 
 module.exports = {
+  solc: {
+    optimizer: {
+      enabled: true,
+      runs: 200
+    }
+  },
   networks: {
     development: {
       host: 'localhost',
