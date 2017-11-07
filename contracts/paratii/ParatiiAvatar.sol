@@ -1,4 +1,4 @@
-pragma solidity ^0.4.13;
+pragma solidity ^0.4.17;
 import './ParatiiRegistry.sol';
 import './ParatiiToken.sol';
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
