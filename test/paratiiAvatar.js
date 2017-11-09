@@ -47,7 +47,7 @@ contract('ParatiiAvatar', function (accounts) {
     })
 
     //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
-    paratiiAvatar.transferFrom(sender, receiver, amount, {from: whitelistAccount})
+    await paratiiAvatar.transferFrom(sender, receiver, amount, {from: whitelistAccount})
     let newSenderBalance = await paratiiToken.balanceOf(sender)
     receiverBalance = await paratiiToken.balanceOf(receiver)
     assert.equal(newSenderBalance.valueOf(), Number(senderBalance.valueOf() - amount))
