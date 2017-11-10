@@ -7,13 +7,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test",
+    "test": "test",
     "testrpc": "testrpc",
     "testrpc_pm2": "pm2 start testrpc",
     "start": "truffle -- serve",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "truffle": "truffle"
+    "develop": "truffle develop"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",
