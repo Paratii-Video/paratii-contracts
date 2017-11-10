@@ -2,11 +2,12 @@ const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
 const ParatiiAvatar = artifacts.require('./ParatiiAvatar')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 const SendEther = artifacts.require('./SendEther')
+const UserRegistry = artifacts.require('./UserRegistry')
 const VideoRegistry = artifacts.require('./VideoRegistry')
 const VideoStore = artifacts.require('./VideoStore')
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
-export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
+export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, userRegistry, videoRegistry, videoStore
 
 export function getInfoFromLogs (tx, arg, eventName, index = 0) {
   // tx.logs look like this:
@@ -69,16 +70,25 @@ export async function expectError (f) {
 
 export async function setupParatiiContracts () {
   paratiiRegistry = await ParatiiRegistry.new()
-  paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
+
   paratiiToken = await ParatiiToken.new()
-  sendEther = await SendEther.new()
-  videoRegistry = await VideoRegistry.new()
-  videoStore = await VideoStore.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('ParatiiAvatar', paratiiAvatar.address)
   paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
+
+  sendEther = await SendEther.new()
   paratiiRegistry.registerAddress('SendEther', sendEther.address)
+
+  videoRegistry = await VideoRegistry.new(paratiiRegistry.address)
   paratiiRegistry.registerAddress('VideoRegistry', videoRegistry.address)
+
+  paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('ParatiiAvatar', paratiiAvatar.address)
+
+  userRegistry = await UserRegistry.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('UserRegistry', userRegistry.address)
+
+  videoStore = await VideoStore.new(paratiiRegistry.address)
   paratiiRegistry.registerAddress('VideoStore', videoStore.address)
+
   // give 30 percent of eah video to the redistribution pool
   paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 
