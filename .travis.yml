@@ -19,5 +19,4 @@ install:
   - yarn install
 
 script:
-    - develop
     - test
