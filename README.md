@@ -16,8 +16,8 @@ More information can be found on [paratii.video](http://paratii.video/), or in o
 ## Running tests
 
 
-    yarn run testrpc
-    yarn test
+    truffle develop
+    test
 
 
 ## Contributing

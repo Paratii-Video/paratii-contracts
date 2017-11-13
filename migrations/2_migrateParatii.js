@@ -28,5 +28,4 @@ module.exports = async function (deployer) {
   // give 30 percent of each video to the redistribution pool
   paratiiRegistry.registerUint('VideoRedistributionPoolShare', 30 * 10 ** 18)
   paratiiAvatar.addToWhitelist(videoStore.address)
-
 }

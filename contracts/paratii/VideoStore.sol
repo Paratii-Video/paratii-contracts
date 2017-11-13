@@ -24,7 +24,7 @@ contract VideoStore is Ownable, Debug {
     ParatiiAvatar public paratiiAvatar;
 
     // Registers sales of video by tracking users that bought it
-    // Maps hashes if videoIds to addresses of users that purchased them 
+    // Maps hashes if videoIds to addresses of users that purchased them
     mapping (bytes32 => address[]) public videoSales;
 
     event LogBuyVideo(
