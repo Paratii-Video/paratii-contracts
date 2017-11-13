@@ -67,16 +67,12 @@ contract VideoRegistry is Ownable {
         LogUnregisterVideo(_videoId);
     }
 
-    function unregisterVideo2(string _videoId) {
-      LogRegisterVideo(_videoId, owner);
-    }
-
-    function getVideoInfo(string _videoId) constant returns(address, uint256)  {
+    function getVideoInfo(string _videoId) public constant returns(address, uint256)  {
       VideoInfo storage videoInfo = videos[keccak256(_videoId)];
       return (videoInfo.owner, videoInfo.price);
     }
 
-    function likeVideo(string _videoId, bool changed_opinion) onlyUserRegistry {
+    function likeVideo(string _videoId, bool changed_opinion) public onlyUserRegistry {
          VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          videoInfo.stats.likes = videoInfo.stats.likes + 1;
 
@@ -85,7 +81,7 @@ contract VideoRegistry is Ownable {
          }
     }
 
-    function dislikeVideo(string _videoId, bool changed_opinion) onlyUserRegistry {
+    function dislikeVideo(string _videoId, bool changed_opinion) public onlyUserRegistry {
          VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          videoInfo.stats.dislikes = videoInfo.stats.dislikes + 1;
 
@@ -94,10 +90,9 @@ contract VideoRegistry is Ownable {
          }
     }
 
-    function getStats(string _videoId) constant returns (uint256, uint256, uint256) {
+    function getStats(string _videoId) public constant returns (uint256, uint256, uint256) {
          VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          Stats storage stats = videoInfo.stats;
          return (stats.views, stats.likes, stats.dislikes);
     }
-
 }
