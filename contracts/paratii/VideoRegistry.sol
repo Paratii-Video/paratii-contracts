@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
@@ -41,7 +41,7 @@ contract VideoRegistry is Ownable {
     }
 
     function registerVideo(string _videoId, address _owner, uint256 _price, string _ipfs_hash) public onlyOwner {
-      bytes32 id = sha3(_videoId);
+      bytes32 id = keccak256(_videoId);
 
       videos[id] = VideoInfo({
       _id: id,
@@ -63,7 +63,7 @@ contract VideoRegistry is Ownable {
     }
 
     function unregisterVideo(string _videoId) public onlyOwner {
-        delete videos[sha3(_videoId)];
+        delete videos[keccak256(_videoId)];
         LogUnregisterVideo(_videoId);
     }
 
@@ -72,12 +72,12 @@ contract VideoRegistry is Ownable {
     }
 
     function getVideoInfo(string _videoId) constant returns(address, uint256)  {
-      VideoInfo storage videoInfo = videos[sha3(_videoId)];
+      VideoInfo storage videoInfo = videos[keccak256(_videoId)];
       return (videoInfo.owner, videoInfo.price);
     }
 
     function likeVideo(string _videoId, bool changed_opinion) onlyUserRegistry {
-         VideoInfo storage videoInfo = videos[sha3(_videoId)];
+         VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          videoInfo.stats.likes = videoInfo.stats.likes + 1;
 
          if (changed_opinion) {
@@ -86,7 +86,7 @@ contract VideoRegistry is Ownable {
     }
 
     function dislikeVideo(string _videoId, bool changed_opinion) onlyUserRegistry {
-         VideoInfo storage videoInfo = videos[sha3(_videoId)];
+         VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          videoInfo.stats.dislikes = videoInfo.stats.dislikes + 1;
 
          if (changed_opinion) {
@@ -95,7 +95,7 @@ contract VideoRegistry is Ownable {
     }
 
     function getStats(string _videoId) constant returns (uint256, uint256, uint256) {
-         VideoInfo storage videoInfo = videos[sha3(_videoId)];
+         VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          Stats storage stats = videoInfo.stats;
          return (stats.views, stats.likes, stats.dislikes);
     }

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
@@ -24,44 +24,44 @@ contract ParatiiRegistry is Ownable  {
   }
 
   function registerAddress(string _name, address _address) public onlyOwner {
-    contracts[sha3(_name)] = _address;
+    contracts[keccak256(_name)] = _address;
     LogRegisterAddress(_name, _address);
   }
 
   function unregisterAddress(string _name) public onlyOwner {
-    delete contracts[sha3(_name)];
+    delete contracts[keccak256(_name)];
     LogUnregisterAddress(_name);
   }
 
   function getContract(string _name) public constant returns(address) {
-    return contracts[sha3(_name)];
+    return contracts[keccak256(_name)];
   }
 
   function registerUint(string _name, uint _number) public onlyOwner {
-    numbers[sha3(_name)] = _number;
+    numbers[keccak256(_name)] = _number;
     LogRegisterUint(_name, _number);
   }
 
   function unregisterUint(string _name) public onlyOwner {
-    delete numbers[sha3(_name)];
+    delete numbers[keccak256(_name)];
     LogUnregisterUint(_name);
   }
 
   function getUint(string _name) public constant returns(uint) {
-    return numbers[sha3(_name)];
+    return numbers[keccak256(_name)];
   }
 
   function registerString(string _name, string _string) public onlyOwner {
-    strings[sha3(_name)] = _string;
+    strings[keccak256(_name)] = _string;
     LogRegisterString(_name, _string);
   }
 
   function unregisterString(string _name) public onlyOwner {
-    delete strings[sha3(_name)];
+    delete strings[keccak256(_name)];
     LogUnregisterString(_name);
   }
 
   function getString(string _name) public constant returns(string) {
-    return strings[sha3(_name)];
+    return strings[keccak256(_name)];
   }
 }

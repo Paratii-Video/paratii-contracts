@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import './VideoRegistry.sol';
@@ -70,10 +70,10 @@ contract UserRegistry is Ownable {
     }
 
     function acquireVideo(string _videoId, address _userAddress) {
-      VideoInfo storage video = users[_userAddress].videos[sha3(_videoId)];
-      video._index = users[_userAddress].videoIndex.push(sha3(_videoId));
+      VideoInfo storage video = users[_userAddress].videos[keccak256(_videoId)];
+      video._index = users[_userAddress].videoIndex.push(keccak256(_videoId));
       video.isAcquired = true;
-      users[_userAddress].videos[sha3(_videoId)] = video;
+      users[_userAddress].videos[keccak256(_videoId)] = video;
     }
 
     /* like/dislike a video.
@@ -81,7 +81,7 @@ contract UserRegistry is Ownable {
      */
     function likeVideo(string _videoId, bool _liked) isAcquired(_videoId) {
       address _userAddress = msg.sender;
-      VideoInfo storage video = users[_userAddress].videos[sha3(_videoId)];
+      VideoInfo storage video = users[_userAddress].videos[keccak256(_videoId)];
 
       // if the video is not known yet
       if (video._index == 0) {
@@ -104,14 +104,14 @@ contract UserRegistry is Ownable {
     }
 
     function userLikesVideo(address _userAddress, string _videoId) constant returns(bool) {
-      return users[_userAddress].videos[sha3(_videoId)].liked;
+      return users[_userAddress].videos[keccak256(_videoId)].liked;
     }
 
     function userDislikesVideo(address _userAddress, string _videoId) constant returns (bool) {
-      return users[_userAddress].videos[sha3(_videoId)].disliked;
+      return users[_userAddress].videos[keccak256(_videoId)].disliked;
     }
 
     function userAcquiredVideo(address _userAddress, string _videoId) constant returns(bool) {
-      return users[_userAddress].videos[sha3(_videoId)].isAcquired;
+      return users[_userAddress].videos[keccak256(_videoId)].isAcquired;
     }
 }

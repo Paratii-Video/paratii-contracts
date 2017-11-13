@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './ParatiiAvatar.sol';
@@ -61,13 +61,13 @@ contract VideoStore is Ownable, Debug {
        uint256 ownerPart = price.sub(paratiiPart);
        paratiiAvatar.transferFrom(buyer, owner, ownerPart);
        userRegistry.acquireVideo(videoId, buyer);
-       videoSales[sha3(videoId)].push(buyer);
+       videoSales[keccak256(videoId)].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
     }
 
     function videoPurchased(string videoId, address user) returns(bool) {
-        address[] storage users = videoSales[sha3(videoId)];
+        address[] storage users = videoSales[keccak256(videoId)];
         for (uint i=0;i<users.length;++i) {
             if (user == users[i]) {
                 return true;
