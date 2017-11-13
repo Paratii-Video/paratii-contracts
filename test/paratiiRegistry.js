@@ -26,8 +26,8 @@ contract('ParatiiRegistry', function (accounts) {
   it('a non-owner of the registry can not register a contract', async function () {
     let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
-    await expectError(async function() {
-       await paratiiRegistry.registerAddress(contractName, paratiiToken.address, {from: web3.eth.accounts[1]})
+    await expectError(async function () {
+      await paratiiRegistry.registerAddress(contractName, paratiiToken.address, {from: web3.eth.accounts[1]})
     })
   })
 
@@ -35,8 +35,8 @@ contract('ParatiiRegistry', function (accounts) {
     let paratiiRegistry = await ParatiiRegistry.new()
     let paratiiToken = await ParatiiToken.new()
     await paratiiRegistry.registerAddress(contractName, paratiiToken.address)
-    await expectError(async function() {
-       await paratiiRegistry.unregisterAddress(contractName, {from: web3.eth.accounts[1]})
+    await expectError(async function () {
+      await paratiiRegistry.unregisterAddress(contractName, {from: web3.eth.accounts[1]})
     })
   })
 
@@ -63,8 +63,8 @@ contract('ParatiiRegistry', function (accounts) {
     let paratiiRegistry = await ParatiiRegistry.new()
     let numberName = 'this-is-a-setting'
     let number = 1413
-    await expectError(async function() {
-       await paratiiRegistry.registerUint(numberName, number, {from: web3.eth.accounts[1]})
+    await expectError(async function () {
+      await paratiiRegistry.registerUint(numberName, number, {from: web3.eth.accounts[1]})
     })
   })
 
@@ -73,8 +73,8 @@ contract('ParatiiRegistry', function (accounts) {
     let numberName = 'this-is-a-setting'
     let number = 1413
     await paratiiRegistry.registerUint(numberName, number)
-    await expectError(async function() {
-       await paratiiRegistry.unregisterUint(numberName, {from: web3.eth.accounts[1]})
+    await expectError(async function () {
+      await paratiiRegistry.unregisterUint(numberName, {from: web3.eth.accounts[1]})
     })
   })
 
@@ -101,8 +101,8 @@ contract('ParatiiRegistry', function (accounts) {
     let paratiiRegistry = await ParatiiRegistry.new()
     let stringName = 'this-is-a-setting'
     let string = 'some kind of string'
-    await expectError(async function() {
-       await paratiiRegistry.registerString(stringName, string, {from: web3.eth.accounts[1]})
+    await expectError(async function () {
+      await paratiiRegistry.registerString(stringName, string, {from: web3.eth.accounts[1]})
     })
   })
 
@@ -111,8 +111,8 @@ contract('ParatiiRegistry', function (accounts) {
     let stringName = 'this-is-a-setting'
     let string = 'some kind of string'
     await paratiiRegistry.registerString(stringName, string)
-    await expectError(async function() {
-       await paratiiRegistry.unregisterString(stringName, {from: web3.eth.accounts[1]})
+    await expectError(async function () {
+      await paratiiRegistry.unregisterString(stringName, {from: web3.eth.accounts[1]})
     })
   })
 })

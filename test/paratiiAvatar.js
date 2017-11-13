@@ -1,6 +1,5 @@
-import { videoRegistry, videoStore, expectError, paratiiAvatar, paratiiToken, setupParatiiContracts } from './utils.js'
+import { expectError, paratiiAvatar, paratiiToken, setupParatiiContracts } from './utils.js'
 const ParatiiAvatar = artifacts.require('./ParatiiAvatar.sol')
-const ParatiiToken = artifacts.require('./ParatiiToken.sol')
 const ParatiiRegistry = artifacts.require('./ParatiiRegistry.sol')
 
 contract('ParatiiAvatar', function (accounts) {
@@ -31,7 +30,7 @@ contract('ParatiiAvatar', function (accounts) {
     await paratiiToken.transfer(sender, Number(amount) + (1 * 10 ** 18))
 
     // PTI balance of receiver before the transaction
-    let senderBalance = await paratiiToken.balanceOf(sender)
+    // let senderBalance = await paratiiToken.balanceOf(sender)
     let receiverBalance = await paratiiToken.balanceOf(receiver)
     assert.equal(receiverBalance.valueOf(), 0)
 
@@ -48,8 +47,9 @@ contract('ParatiiAvatar', function (accounts) {
 
     //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
     await paratiiAvatar.transferFrom(sender, receiver, amount, {from: whitelistAccount})
-    let newSenderBalance = await paratiiToken.balanceOf(sender)
+    // let newSenderBalance = await paratiiToken.balanceOf(sender)
     receiverBalance = await paratiiToken.balanceOf(receiver)
+    // TODO: why is this test commented?
 //    assert.equal(newSenderBalance.valueOf(), Number(senderBalance.valueOf() - amount))
     assert.equal(receiverBalance.valueOf(), Number(amount))
   })

@@ -19,4 +19,5 @@ install:
   - yarn install
   - yarn run testrpc_pm2
 script:
+  - yarn run lint
   - yarn run test
