@@ -67,14 +67,7 @@ contract VideoStore is Ownable, Debug {
     }
 
     function videoPurchased(string videoId, address user) public constant returns(bool) {
-        address[] storage users = videoSales[keccak256(videoId)];
-        // TODO: next lines are a bug: will run out of gas if too many users are registered, cf issue #23
-        for (uint i=0;i<users.length;++i) {
-            if (user == users[i]) {
-                return true;
-            }
-        }
-        return false;
+        userRegistry.userAcquiredVideo(user, videoId);
     }
 
     function redistributionPoolShare() internal constant returns(uint256) {
