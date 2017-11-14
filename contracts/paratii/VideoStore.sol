@@ -66,10 +66,6 @@ contract VideoStore is Ownable, Debug {
        return true;
     }
 
-    function videoPurchased(string videoId, address user) public constant returns(bool) {
-        userRegistry.userAcquiredVideo(user, videoId);
-    }
-
     function redistributionPoolShare() internal constant returns(uint256) {
         // the "percentage" in precision 10**18
         return paratiiRegistry.getUint('VideoRedistributionPoolShare');

@@ -44,6 +44,5 @@ contract('VideoStore', function (accounts) {
 
    // video purchase was properly recorded
     assert.equal(Boolean(userRegistry.userAcquiredVideo(buyer, videoId)), true)
-    assert.equal(Boolean(videoStore.videoPurchased(videoId, buyer)), true)
   })
 })
