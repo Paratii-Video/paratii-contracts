@@ -65,5 +65,9 @@
       "web3"
     ],
     "ignore": []
-  }
+  },
+  "pre-commit": [
+    "lint-fix"
+  ]
+
 }
