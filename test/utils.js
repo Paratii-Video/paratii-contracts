@@ -10,7 +10,8 @@ export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, userRegistry, videoRegistry, videoStore
 
 export async function expectError (f) {
-  let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
+  // let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
+  let expectedErrorMsg = 'Error: VM Exception while processing transaction: revert'
 
   try {
     await f()
