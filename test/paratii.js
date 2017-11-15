@@ -1,10 +1,11 @@
 import { Paratii } from '../lib/paratii.js'
 
-contract('test setup:', function () {
+contract('Paratii API:', function () {
   let paratii, contracts
 
   beforeEach(async function () {
     paratii = Paratii
+    // paratii.init()
     contracts = await paratii.getOrDeployContracts()
   })
 

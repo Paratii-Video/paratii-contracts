@@ -14,7 +14,8 @@
     "lint": "standard",
     "lint-fix": "standard --fix",
     "truffle": "truffle",
-    "develop": "truffle develop"
+    "develop": "truffle develop",
+    "node": "node"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",
