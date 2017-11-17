@@ -34,4 +34,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
+      - run:
+          name: run testrpc in background
+          command: yarn testrpc
+          background: true
       - run: yarn test
