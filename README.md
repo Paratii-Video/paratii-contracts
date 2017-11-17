@@ -1,6 +1,7 @@
 # Paratii Solidity Contracts
 
-[![Build Status](https://travis-ci.org/Paratii-Video/paratii-contracts.svg?branch=master)](https://travis-ci.org/Paratii-Video/paratii-contracts)
+[![CircleCI](https://circleci.com/gh/Paratii-Video/paratii-contracts.svg?style=svg)](https://circleci.com/gh/Paratii-Video/paratii-contracts)
+
 
 This is the repository for developing the Paratii Core Smart Contracts.
 
