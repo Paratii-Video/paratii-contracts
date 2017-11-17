@@ -1,3 +1,4 @@
+
 const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
 const ParatiiAvatar = artifacts.require('./ParatiiAvatar')
 const ParatiiToken = artifacts.require('./ParatiiToken')
