@@ -1,4 +1,4 @@
-import { Paratii } from '../lib/paratii.js'
+import { Paratii } from '../../lib/paratii.js'
 
 contract('Paratii API:', function () {
   let paratii, contracts

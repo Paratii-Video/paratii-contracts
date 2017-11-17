@@ -1,5 +1,5 @@
 import { expectError, setupParatiiContracts, videoRegistry } from './utils.js'
-import { getInfoFromLogs } from '../lib/utils.js'
+import { getInfoFromLogs } from '../../lib/utils.js'
 
 var VideoRegistry = artifacts.require('./VideoRegistry.sol')
 
