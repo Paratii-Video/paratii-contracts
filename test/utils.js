@@ -12,7 +12,7 @@ export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, userRegistry
 
 export async function expectError (f) {
   // let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
-  let expectedErrorMsg = 'Error: VM Exception while processing transaction: revert'
+  // let expectedErrorMsg = 'Error: VM Exception while processing transaction: revert'
 
   try {
     await f()

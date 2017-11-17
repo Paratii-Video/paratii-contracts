@@ -10,15 +10,20 @@ More information can be found on [paratii.video](http://paratii.video/), or in o
 ## Documentation
 
 [documentation.md](./documentation.md)
+
 ## Installation
 
     yarn install
 
 ## Running tests
 
+In one window, run:
 
-    truffle develop
-    test
+    yarn testrpc
+
+and in another:  
+
+    yarn test
 
 
 ## Contributing
