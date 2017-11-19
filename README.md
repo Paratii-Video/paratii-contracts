@@ -1,23 +1,31 @@
 # Paratii Solidity Contracts
 
-[![Build Status](https://travis-ci.org/Paratii-Video/paratii-contracts.svg?branch=master)](https://travis-ci.org/Paratii-Video/paratii-contracts)
+[![CircleCI](https://circleci.com/gh/Paratii-Video/paratii-contracts.svg?style=svg)](https://circleci.com/gh/Paratii-Video/paratii-contracts)
+
 
 This is the repository for developing the Paratii Core Smart Contracts.
-
-More information can be found on [paratii.video](http://paratii.video/), or in our [blueprint](https://github.com/Paratii-Video/paratii-player/wiki/Paratii-Blueprint). Join the discussion on [gitter](https://gitter.im/Paratii-Video).
-
 ## Documentation
 
-[documentation.md](./documentation.md)
+[documentation.md](./docs/README.md)
+
+
+More information about the Paratii Project can be found on [paratii.video](http://paratii.video/), or in our [blueprint](https://github.com/Paratii-Video/paratii-player/wiki/Paratii-Blueprint). Join the discussion on [gitter](https://gitter.im/Paratii-Video).
+
+
+
 ## Installation
 
     yarn install
 
 ## Running tests
 
+In one window, run:
 
-    truffle develop
-    test
+    yarn testrpc
+
+and in another:  
+
+    yarn test
 
 
 ## Contributing

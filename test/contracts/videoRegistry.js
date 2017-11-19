@@ -1,4 +1,6 @@
-import { getInfoFromLogs, expectError, setupParatiiContracts, videoRegistry } from './utils.js'
+import { expectError, setupParatiiContracts, videoRegistry } from './utils.js'
+import { getInfoFromLogs } from '../../lib/utils.js'
+
 var VideoRegistry = artifacts.require('./VideoRegistry.sol')
 
 contract('VideoRegistry', function (accounts) {
