@@ -45,8 +45,8 @@ contract ParatiiAvatar is Ownable {
           if (whitelist[i] == _address) {
               delete whitelist[i];
           }
-  }
-}
+      }
+    }
 
     function isOnWhiteList(address _address) public constant returns(bool) {
       for (uint i=0; i < whitelist.length; i++) {

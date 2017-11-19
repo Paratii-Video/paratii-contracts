@@ -1,3 +1,5 @@
-# Documentation
+# The Paratii Library
 
-* [Paratii contract library](lib.md)
+
+* [Quick Introduction](intro.md)
+* [Detailed documentation](details.md)
