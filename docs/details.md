@@ -92,5 +92,5 @@ The `VideoStore` is the place to buy Videos. Buying a video in the videostroe wi
   * the client calls `VideoStore.buyVideo(videoId)`, triggering a number of steps:
     - the price of the video will be transfered to the paratiiAvatar
     - an event will be logged that the video is unlocked for this user
-    - [not implement yet, we will use the event as a witness for payment in the first iteraration] the fact that the user has bought the video is registered on the blockchain (where?)
+    - records the purchase of a video on within the `UserRegistry` allowing the new owner to like/dislike the video
     - a part of the price will be transfered (immediately?) to the owner, other goes tot he redistrubtion pool. (In the first iteration, we can give all money to thee owner)
