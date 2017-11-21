@@ -23,6 +23,10 @@ If you want to try the next session out, make sure you have testrpc running fo
 
     import { Paratii } from 'paratii-contracts';
 
+Create an instance of 'Paratii' using default settings:
+
+    paratii = Paratii()
+
 We can now deploy the paratii contracts:
 
     contracts = await paratii.deployAllContracts()
