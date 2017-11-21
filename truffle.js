@@ -21,13 +21,13 @@ module.exports = {
     paratii: {
       host: 'chain.paratii.video',
       port: 80,
-      network_id: '1', // Match any network id
+      network_id: '1',
       gas: 4600000
     },
     paratii_local: {
       host: 'localhost',
       port: 8999,
-      network_id: '1', // Match any network id
+      network_id: '1',
       gas: 4600000
     }
   }

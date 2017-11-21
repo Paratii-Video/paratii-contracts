@@ -51,6 +51,7 @@
   },
   "homepage": "https://github.com/Paratii-Video/paratii-contracts",
   "dependencies": {
+    "ethers": "^2.1.3",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.24",
     "zeppelin-solidity": "^1.3.0"
