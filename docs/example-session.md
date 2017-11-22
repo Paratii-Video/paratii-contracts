@@ -29,7 +29,7 @@ Create an instance of 'Paratii' using default settings:
 
 We can now deploy the paratii contracts:
 
-    contracts = await paratii.getOrDeployContracts()
+    contracts = await paratii.deployAllContracts()
 
 
 At this point, all Paratii contracts will be available in `contracts`, under their class names.
@@ -46,7 +46,7 @@ We can register a new user on the UserRegistry:
 
 And check if the name is correctly registered.
 
-    (await contracts.UserRegistry.getUserInfo('id-of-this-user'))[0]
+    (await contracts.UserRegistry.getUserInfo('id-of-this-user')).name
 
 We can also register a video:
 
