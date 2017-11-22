@@ -1,19 +1,11 @@
-
-var ethers = require('ethers')
+let ethers = require('ethers')
+let settings = require('./settings.js')
+let provider = settings.provider
 // let httpProvider = 'https://chain.paratii.video'
-let httpProvider = 'http://127.0.0.1:8545'
-
-let network = {
-  name: 'paratii-parity',
-  chainId: 0
-}
-
-let provider = new ethers.providers.JsonRpcProvider(httpProvider, network)
-console.log(provider)
 // web3.setProvider(new web3.providers.HttpProvider(httpProvider))
 
 // var address = '0x00671C1B3Fb5389e8Ed5c538e5Ba05f29490cFC8'
-let address = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72'
+let address = settings.paratiiOwnerAccount
 console.log('Address: ', address)
 
 // get the current balance

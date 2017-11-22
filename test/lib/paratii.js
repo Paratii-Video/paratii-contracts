@@ -4,7 +4,7 @@ contract('Paratii API:', function () {
   let paratii, contracts
 
   beforeEach(async function () {
-    paratii = Paratii
+    paratii = Paratii()
     // paratii.init()
     contracts = await paratii.getOrDeployContracts()
   })
