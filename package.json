@@ -7,10 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test",
+    "mocha": "mocha --require truffle.js",
+    "truffle-test": "truffle test",
+    "test": "mocha && truffle test",
     "testrpc": "testrpc",
     "testrpc_pm2": "pm2 start testrpc",
-    "start": "truffle -- serve",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "truffle": "truffle",
@@ -51,7 +52,8 @@
   },
   "homepage": "https://github.com/Paratii-Video/paratii-contracts",
   "dependencies": {
-    "ethers": "^2.1.3",
+    "default-options": "^1.0.0",
+    "mocha": "^4.0.1",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.24",
     "zeppelin-solidity": "^1.3.0"
