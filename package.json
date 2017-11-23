@@ -7,10 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "mocha": "mocha --require truffle.js",
+    "mocha": "mocha --require truffle.js mocha-test/*.js",
     "truffle-test": "truffle test",
-    "test": "mocha && truffle test",
-    "testrpc": "testrpc",
+    "test": "yarn mocha && yarn truffle-test",
+    "testrpc": "testrpc --deterministic",
     "testrpc_pm2": "pm2 start testrpc",
     "lint": "standard",
     "lint-fix": "standard --fix",

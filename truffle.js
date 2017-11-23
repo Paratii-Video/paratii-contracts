@@ -19,14 +19,14 @@ module.exports = {
       gas: 4600000
     },
     paratii: {
-      host: 'chain.paratii.video',
-      port: 80,
+      host: 'https://chain.paratii.video',
+      port: 443,
       network_id: '1',
       gas: 4600000
     },
     paratii_local: {
       host: 'localhost',
-      port: 8999,
+      port: 8545,
       network_id: '1',
       gas: 4600000
     }
