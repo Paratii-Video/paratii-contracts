@@ -21,7 +21,6 @@ Installation of dependencies. After cloning the repository run:
 
     yarn
 
-
 ## Run tests
 
 To run the test locally use a local blockchain using testrpc, just run:

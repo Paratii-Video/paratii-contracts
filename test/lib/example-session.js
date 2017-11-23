@@ -3,8 +3,7 @@ import { Paratii } from '../../lib/paratii.js'
 contract('Paratii API:', function (accounts) {
   it('example session from ../docs/example-session.md should work', async function () {
     let paratii, contracts
-    paratii = Paratii
-    // paratii.init()
+    paratii = Paratii()
     contracts = await paratii.getOrDeployContracts()
 
     // BALANCE

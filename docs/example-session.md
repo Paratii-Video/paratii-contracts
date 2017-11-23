@@ -19,7 +19,8 @@ You will need `yarn` (or `npm`) installed. First get the latest version of the c
 [test/lib/example-session.js](../../test/lib/example-session.js)
 ]
 
-If you want to try the next session out, make sure you have testrpc running fo
+If you want to try the next session out, make sure you have testrpc running (`yarn run testrpc`).
+
 
     import { Paratii } from 'paratii-contracts';
 
