@@ -1,5 +1,6 @@
 node_modules/
 installed_contracts/
 build/
-yarn.lock
 .node-xmlhttprequest-sync-*
+secrets/
+secrets/

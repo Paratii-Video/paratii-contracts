@@ -7,15 +7,17 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test",
-    "testrpc": "testrpc",
+    "mocha": "mocha --require truffle.js mocha-test/*.js",
+    "truffle-test": "truffle test",
+    "test": "yarn mocha && yarn truffle-test",
+    "testrpc": "testrpc --deterministic",
     "testrpc_pm2": "pm2 start testrpc",
-    "start": "truffle -- serve",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "truffle": "truffle",
     "develop": "truffle develop",
-    "node": "node"
+    "node": "node",
+    "postinstall": "truffle compile"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",
@@ -51,6 +53,8 @@
   },
   "homepage": "https://github.com/Paratii-Video/paratii-contracts",
   "dependencies": {
+    "default-options": "^1.0.0",
+    "mocha": "^4.0.1",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.24",
     "zeppelin-solidity": "^1.3.0"

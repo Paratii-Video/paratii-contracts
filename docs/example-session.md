@@ -3,43 +3,55 @@
 
 Work in progress.  
 
-Install via `npm install paratii-contracts` ** <-- once issue #27 will be resolved **
 
-## API
+## Installation
+
+You will need `yarn` (or `npm`) installed. First get the latest version of the code and install it
+
+    git clone https://github.com/Paratii-Video/paratii-contracts
+    cd paratii-contracts
+    yarn install
 
 
 ## Example Session
 
-[next examples are not all working yet, but this is what is should/could look like]
+[next examples are not all working yet - they are being developed in
+[test/lib/example-session.js](../../test/lib/example-session.js)
+]
 
-If you want to try the next session out, make sure you have testrpc running fo
+If you want to try the next session out, make sure you have testrpc running (`yarn run testrpc`).
+
 
     import { Paratii } from 'paratii-contracts';
+
+Create an instance of 'Paratii' using default settings:
+
+    paratii = Paratii()
 
 We can now deploy the paratii contracts:
 
     contracts = await paratii.deployAllContracts()
 
 
-At this point, all Paratii contracts will be available in `paratii.contracts`, under their class names.
+At this point, all Paratii contracts will be available in `contracts`, under their class names.
 
  A fresh  `ParatiiToken` contract will hav been deployed. Because you deployed it, you will have all the tokens:
 
-    await paratii.contracts.ParatiiToken.balanceOf(web3.eth.accounts[0])
+    await contracts.ParatiiToken.balanceOf(web3.eth.accounts[0])
 
 shoud return a number starting with 21 and followed by many zeros.
 
 We can register a new user on the UserRegistry:
 
-    await paratii.contracts.UserRegistry.registerUser('0x12455', 'Marvin Pontiac', 'john@lurie.com')
+    await contracts.UserRegistry.registerUser('0x12455', 'Marvin Pontiac', 'john@lurie.com')
 
 And check if the name is correctly registered.
 
-    (await paratii.contracts.UserRegistry.getUserInfo('id-of-this-user')).name
+    (await contracts.UserRegistry.getUserInfo('id-of-this-user')).name
 
 We can also register a video:
 
-    await paratii.contracts.VideoRegistry.registerVideo(
+    await contracts.VideoRegistry.registerVideo(
       '31415', // id of the video
       '0x123455', // address of the video owner
       27182, // price (in PTI "wei")
@@ -48,18 +60,20 @@ We can also register a video:
 
 And read the video information back from the blockchain:
 
-    await paratii.contracts.VideoRegistry.getVideoInfo('31415'))
+    await contracts.VideoRegistry.getVideoInfo('31415')
 
 
 We are now ready to buy a video (if you have anough PTI)
 
-    await paratii.contracts.VideoStore.buyVideo('31415')
+    await contracts.VideoStore.buyVideo('31415')
 
 The `buyVideo` call will check the preconditions (whether the sender has enough ETH and PTI to do the transaction, if the video exists and is for sale) and throw meaningful errors if the preconditions are not met. If indeed the preconditions are met, the function will then initiate a series of transactions on the blockchain to actually acquire the video. If the operation is successful, we can do
 
-    await paratii.contracts.VideoStore.isAcquired('31415')
+    await contracts.VideoStore.isAcquired('31415')
 
 to check if we have acquired the video.
 
+This example is tested in
+[test/lib/example-session.js](../../test/lib/example-session.js), you can run it
 
-This ends the sample session.
+    yarn test test/lib/example-session.js
