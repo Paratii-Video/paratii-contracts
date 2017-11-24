@@ -2,7 +2,7 @@
   "name": "paratii-contracts",
   "version": "0.0.1",
   "description": "Paratii Smart Contracts",
-  "main": "truffle.js",
+  "main": "lib/paratii.js",
   "directories": {
     "test": "test"
   },
