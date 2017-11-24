@@ -26,7 +26,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      # install with npm because of https://github.com/ethereum/web3.js/issues/966
+      # - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
