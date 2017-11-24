@@ -26,16 +26,15 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      # install with npm because of https://github.com/ethereum/web3.js/issues/966
-      # - run: yarn install
-      - run: npm install
-
+      - run: yarn install
+      - run: yarn truffle compile
+      # next line seems to be needed to get the latest version - ???
+      - run: npm install web3
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run: yarn lint
       - run:
           name: run testrpc in background
