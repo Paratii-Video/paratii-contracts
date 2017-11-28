@@ -35,6 +35,12 @@ We can now deploy the paratii contracts:
 
 At this point, all Paratii contracts will be available in `contracts`, under their class names.
 
+    contracts.ParatiiToken
+
+Or, equivalently:
+
+    paratii.getContract('ParatiiToken')
+
  A fresh  `ParatiiToken` contract will hav been deployed. Because you deployed it, you will have all the tokens:
 
     await contracts.ParatiiToken.balanceOf(web3.eth.accounts[0])
