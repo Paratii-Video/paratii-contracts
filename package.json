@@ -2,11 +2,12 @@
   "name": "paratii-contracts",
   "version": "0.0.1",
   "description": "Paratii Smart Contracts",
-  "main": "lib/paratii.js",
+  "main": "dist/paratii.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "build": "babel ./lib -d ./dist",
     "mocha": "mocha --require truffle.js mocha-test/*.js",
     "truffle-test": "truffle test",
     "test": "yarn mocha && yarn truffle-test",
@@ -52,6 +53,7 @@
   },
   "homepage": "https://github.com/Paratii-Video/paratii-contracts",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "default-options": "^1.0.0",
     "mocha": "^4.0.1",
     "promisify-node": "^0.4.0",

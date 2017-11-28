@@ -1,21 +1,23 @@
 import { Paratii } from '../lib/paratii.js'
+import { account } from './utils.js'
 let assert = require('assert')
 
 describe('Paratii API:', function () {
   it('example session from ../docs/example-session.md should work', async function () {
-    let paratii, contracts
-    paratii = Paratii({
-        // this address and key are the first accounts on testrpc when started with the --deterministic flag
-      account: '0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1',
+    let paratii = Paratii({
+      // this address and key are the first accounts on testrpc when started with the --deterministic flag
+      account: account,
       privateKey: '4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d'
     })
-    contracts = await paratii.deployContracts()
-    assert(contracts.ParatiiToken)
+
+    let contracts = await paratii.deployContracts()
+    let paratiiToken = await paratii.getContract('ParatiiToken')
+    assert.equal(contracts.ParatiiToken.options.address, paratiiToken.options.address)
     // TODO: commented from here on - because of migration to web3 version 1.0 primitive
     // contract calls have changed
     // // BALANCE
-    // const balance = await contracts.ParatiiToken.balanceOf(web3.eth.accounts[0])
-    // assert.equal(balance.c[0], 210000000000)
+    const balance = await paratiiToken.methods.balanceOf(account).call()
+    assert.equal(balance, '21000000000000000000000000')
     //
     // // USER
     // await contracts.UserRegistry.registerUser('0x123455', 'Marvin Pontiac', 'john@lurie.com', '/img/avatar_img.svg')
