@@ -13,16 +13,15 @@ describe('Paratii API:', function () {
     let contracts = await paratii.deployContracts()
     let paratiiToken = await paratii.getContract('ParatiiToken')
     assert.equal(contracts.ParatiiToken.options.address, paratiiToken.options.address)
-    // TODO: commented from here on - because of migration to web3 version 1.0 primitive
-    // contract calls have changed
-    // // BALANCE
+
+    // check for balance
     const balance = await paratiiToken.methods.balanceOf(account).call()
     assert.equal(balance, '21000000000000000000000000')
     //
     // // USER
-    // await contracts.UserRegistry.registerUser('0x123455', 'Marvin Pontiac', 'john@lurie.com', '/img/avatar_img.svg')
+    await contracts.UserRegistry.registerUser('0x123455', 'Marvin Pontiac', 'john@lurie.com', '/img/avatar_img.svg')
     //
-    // const userInfo = await contracts.UserRegistry.getUserInfo('0x123455')
+      // const userInfo = await contracts.UserRegistry.getUserInfo('0x123455')
     // let user = {
     //   name: userInfo[0],
     //   email: userInfo[1],

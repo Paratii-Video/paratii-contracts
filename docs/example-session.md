@@ -16,12 +16,8 @@ You will need `yarn` (or `npm`) installed. First get the latest version of the c
 ## Example Session
 
 [next examples are not all working yet - they are being developed in
-[test/lib/example-session.js](../../test/lib/example-session.js)
+[test/lib/example-session.js](../../mocha-test/lib/example-session.js)
 ]
-
-If you want to try the next session out, make sure you have testrpc running (`yarn run testrpc`).
-
-
     import { Paratii } from 'paratii-contracts';
 
 Create an instance of 'Paratii' using default settings:
@@ -31,7 +27,6 @@ Create an instance of 'Paratii' using default settings:
 We can now deploy the paratii contracts:
 
     contracts = await paratii.deployAllContracts()
-
 
 At this point, all Paratii contracts will be available in `contracts`, under their class names.
 
@@ -53,7 +48,7 @@ We can register a new user on the UserRegistry:
 
 And check if the name is correctly registered.
 
-    (await contracts.UserRegistry.getUserInfo('id-of-this-user')).name
+    (await contracts.UserRegistry.getUserInfo('0x12455')).name
 
 We can also register a video:
 
@@ -67,7 +62,6 @@ We can also register a video:
 And read the video information back from the blockchain:
 
     await contracts.VideoRegistry.getVideoInfo('31415')
-
 
 We are now ready to buy a video (if you have anough PTI)
 

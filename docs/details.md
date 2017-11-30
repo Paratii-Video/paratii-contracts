@@ -28,6 +28,8 @@ The Paratii object serves as the general entry point for interacting with the fa
 
 ### `deployAllContracts()`
 
+This function will deploy are contracts and link them to the
+
   contracts = await paratii.deployAllContracts()
 
   contracts = await paratii.deployAllContracts({owner: '0x1234435'})
@@ -67,8 +69,6 @@ The `ParatiiRegistry` is an `Ownable` contract, and contains simple setters and 
 
 [ParatiiAvatar.sol](../contracts/paratii/ParatiiAvatar.sol) is a contract that can send and receive ETH and other ERC20 tokens. It is controlled by a number of whitelisted addresses.
 
-
-    paratiiAvatar = ParatiiAvatar.new()
     erc20Token = 0x12345667
     paratiiAvatar.transferFrom(erc20Token, fromAddress, toAddress, amount) // will fail because you are not whitelisted
     paratiiAvatar.addToWhitelist(0x22222222)
@@ -77,11 +77,11 @@ The `ParatiiRegistry` is an `Ownable` contract, and contains simple setters and 
 
 ## UserRegistry
 
-A registry with information about users
+A registry with information about users.
 
 ## VideoRegistry
 
-[VideoRegistry.sol](../contracts/paratii/VideoRegistry.sol): contains information about videos: their IPFS hash, its owner, and the price. The idea is that this contract only contains essential information:  is that additional data (duration, license, descriptions, etc etc) can be stored in IPFS. (This will not be implemented in the MVP))
+[VideoRegistry.sol](../contracts/paratii/VideoRegistry.sol): contains information about videos: their IPFS hash, its owner, and the price. The idea is that this contract only contains essential information:  is that additional data (duration, license, descriptions, etc etc) can be stored in IPFS.
 
 ## VideoStore
 
