@@ -1,5 +1,4 @@
-import { getInfoFromLogs } from '../lib/utils.js'
-import { NULL_HASH, expectError } from './utils.js'
+import { NULL_HASH, expectError, getInfoFromLogs } from './utils.js'
 const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 

@@ -1,4 +1,4 @@
-import { getInfoFromLogs } from '../lib/utils.js'
+import { getInfoFromLogs } from './utils.js'
 var SendEther = artifacts.require('./SendEther.sol')
 
 contract('SendEther', function (accounts) {

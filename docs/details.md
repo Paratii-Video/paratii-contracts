@@ -1,44 +1,5 @@
-# Paratii Library documentation
+# Paratii Contracts
 
-
-## The Paratii Object
-
-### importing
-
-
-    import { Paratii } from 'paratii-contracts';
-
-Or, if ES6 is not available:
-
-    Paratii = require('paratii-contracts').Paratii
-
-
-### initialization
-
-The Paratii object serves as the general entry point for interacting with the family of Paratii contracts that are deployed on the blockchain. It can be initialized in several ways. Here is an example:
-
-    paratii =  Paratii() // connect to the default node (http://localhost:8754)
-
-  Or with particular options, such as the following:
-
-    paratii = Paratii({
-      provider: 'chain.paratii.video', // optional - the address of an ethereum node (defaults to localhost:8754)
-      registry: '0x23445abcdefg', // optional - the address where the Paratii Contract registry can be found
-    })
-
-### `deployAllContracts()`
-
-This function will deploy are contracts and link them to the
-
-  contracts = await paratii.deployAllContracts()
-
-  contracts = await paratii.deployAllContracts({owner: '0x1234435'})
-
-### `contracts`
-
-The `paratii.contracts` attribute of gives access to the different contracts, and returns an array mapping contract names to addresses. For example
-
-  paratii.contracts.ParatiiToken
 
 ## ParatiiRegistry
 

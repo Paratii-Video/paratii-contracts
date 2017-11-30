@@ -1,5 +1,4 @@
-import { expectError, paratiiAvatar, paratiiToken, setupParatiiContracts, userRegistry, videoRegistry, videoStore } from './utils.js'
-import { getInfoFromLogs } from '../lib/utils.js'
+import { expectError, getInfoFromLogs, paratiiAvatar, paratiiToken, setupParatiiContracts, userRegistry, videoRegistry, videoStore } from './utils.js'
 
 contract('UserRegistry', function (accounts) {
   let videoId = '1234'

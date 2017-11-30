@@ -1,5 +1,4 @@
-import { setupParatiiContracts, userRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
-import { getInfoFromLogs } from '../lib/utils.js'
+import { getInfoFromLogs, setupParatiiContracts, userRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
 
 contract('VideoStore', function (accounts) {
   it('should be able to buy a registered video', async function () {
