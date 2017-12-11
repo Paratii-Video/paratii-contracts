@@ -14,11 +14,7 @@ contract VideoRegistry is Ownable {
 
     struct VideoInfo {
       bytes32 _id;
-      string ipfs_hash;
-      string title;
-      string description;
-      string thumb;
-      string duration;
+      string ipfsHash;
       uint256 price; // price in PTI-wei
       address owner;
       Stats stats;
@@ -27,7 +23,7 @@ contract VideoRegistry is Ownable {
     mapping (bytes32=>VideoInfo) videos;
     ParatiiRegistry paratiiRegistry;
 
-    event LogRegisterVideo(string videoId, address owner);
+    event LogRegisterVideo(string videoId, address owner, uint price, string ipfsHash);
     event LogUnregisterVideo(string videoId);
 
     modifier onlyUserRegistry() {
@@ -40,26 +36,27 @@ contract VideoRegistry is Ownable {
         paratiiRegistry = _paratiiRegistry;
     }
 
-    function registerVideo(string _videoId, address _owner, uint256 _price, string _ipfs_hash) public onlyOwner {
-      bytes32 id = keccak256(_videoId);
+    function registerVideo(
+        string _videoId,
+        address _owner,
+        uint256 _price,
+        string _ipfsHash
+    ) public onlyOwner {
+        bytes32 id = keccak256(_videoId);
 
-      videos[id] = VideoInfo({
-      _id: id,
-      ipfs_hash: _ipfs_hash,
-      title: _videoId,
-      price: _price,
-      owner: _owner,
-      thumb: "",
-      duration: "",
-      description: "",
-      stats: Stats({
-        views: 0,
-        likes: 0,
-        dislikes: 0
-        })
-      });
+        videos[id] = VideoInfo({
+            _id: id,
+            price: _price,
+            owner: _owner,
+            ipfsHash: _ipfsHash,
+            stats: Stats({
+              views: 0,
+              likes: 0,
+              dislikes: 0
+              })
+          });
 
-      LogRegisterVideo(_videoId, _owner);
+        LogRegisterVideo(_videoId, _owner, _price, _ipfsHash);
     }
 
     function unregisterVideo(string _videoId) public onlyOwner {
@@ -67,9 +64,9 @@ contract VideoRegistry is Ownable {
         LogUnregisterVideo(_videoId);
     }
 
-    function getVideoInfo(string _videoId) public constant returns(address, uint256)  {
+    function getVideoInfo(string _videoId) public constant returns(address, uint256, string)  {
       VideoInfo storage videoInfo = videos[keccak256(_videoId)];
-      return (videoInfo.owner, videoInfo.price);
+      return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHash);
     }
 
     function likeVideo(string _videoId, bool changed_opinion) public onlyUserRegistry {
