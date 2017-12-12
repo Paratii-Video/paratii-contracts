@@ -17,21 +17,41 @@ contract VideoRegistry is Ownable {
       string ipfsHash;
       uint256 price; // price in PTI-wei
       address owner;
+      address registrar; // the account that has registered this video
       Stats stats;
     }
 
     mapping (bytes32=>VideoInfo) videos;
     ParatiiRegistry paratiiRegistry;
 
-    event LogRegisterVideo(string videoId, address owner, uint price, string ipfsHash);
+    event LogRegisterVideo(string videoId, address owner, uint price, string ipfsHash, address registrar);
     event LogUnregisterVideo(string videoId);
 
+    // ???
     modifier onlyUserRegistry() {
         require(msg.sender == paratiiRegistry.getContract('UserRegistry'));
         _;
     }
 
-    function VideoRegistry(ParatiiRegistry _paratiiRegistry) {
+    /*modifier onlyOwnerOrParatiiAvatar() {
+        address paratiiAvatar = paratiiRegistry.getContract('ParatiiAvatar');
+        if (paratiiAvatar == 0) {
+            require(msg.sender == owner);
+        } else {
+            require(msg.sender == owner);
+            require((msg.sender == owner) || (msg.sender == paratiiRegistry.getContract('ParatiiAvatar')));
+        }
+        _;
+    }*/
+
+    modifier onlyRegistrarOrParatiiAvatar(string _videoId) {
+      bytes32 id = keccak256(_videoId);
+      VideoInfo storage videoInfo = videos[id];
+      require(msg.sender == owner || (videoInfo.registrar == 0 || msg.sender == videoInfo.registrar));
+      _;
+    }
+
+    function VideoRegistry(ParatiiRegistry _paratiiRegistry) public {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
     }
@@ -41,7 +61,8 @@ contract VideoRegistry is Ownable {
         address _owner,
         uint256 _price,
         string _ipfsHash
-    ) public onlyOwner {
+    ) onlyRegistrarOrParatiiAvatar(_videoId) public {
+
         bytes32 id = keccak256(_videoId);
 
         videos[id] = VideoInfo({
@@ -49,6 +70,7 @@ contract VideoRegistry is Ownable {
             price: _price,
             owner: _owner,
             ipfsHash: _ipfsHash,
+            registrar: msg.sender,
             stats: Stats({
               views: 0,
               likes: 0,
@@ -56,17 +78,18 @@ contract VideoRegistry is Ownable {
               })
           });
 
-        LogRegisterVideo(_videoId, _owner, _price, _ipfsHash);
+        LogRegisterVideo(_videoId, _owner, _price, _ipfsHash, msg.sender);
     }
 
-    function unregisterVideo(string _videoId) public onlyOwner {
-        delete videos[keccak256(_videoId)];
+    function unregisterVideo(string _videoId) public onlyRegistrarOrParatiiAvatar(_videoId) {
+        bytes32 id = keccak256(_videoId);
+        delete videos[id];
         LogUnregisterVideo(_videoId);
     }
 
-    function getVideoInfo(string _videoId) public constant returns(address, uint256, string)  {
+    function getVideoInfo(string _videoId) public constant returns(address, uint256, string, address)  {
       VideoInfo storage videoInfo = videos[keccak256(_videoId)];
-      return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHash);
+      return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHash, videoInfo.registrar);
     }
 
     function likeVideo(string _videoId, bool changed_opinion) public onlyUserRegistry {

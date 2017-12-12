@@ -21,7 +21,6 @@ export async function expectError (f) {
     // assert.equal(String(err), expectedErrorMsg)
     return
   }
-
   let msg = `Expected an error - function executed without error instead`
   throw Error(msg)
 }

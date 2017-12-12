@@ -19,7 +19,7 @@ contract ParatiiRegistry is Ownable  {
   event LogRegisterString(string _name, string _string);
   event LogUnregisterString(string _name);
 
-  function ParatiiRegistry() {
+  function ParatiiRegistry() public {
       owner = msg.sender;
   }
 
