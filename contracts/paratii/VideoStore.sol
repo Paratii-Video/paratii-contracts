@@ -33,7 +33,7 @@ contract VideoStore is Ownable, Debug {
       uint256 price
     );
 
-    function VideoStore(ParatiiRegistry _paratiiRegistry) {
+    function VideoStore(ParatiiRegistry _paratiiRegistry) public {
       paratiiRegistry = _paratiiRegistry;
       userRegistry = UserRegistry(paratiiRegistry.getContract("UserRegistry"));
       videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
@@ -41,7 +41,7 @@ contract VideoStore is Ownable, Debug {
     }
 
     // If someone accidentally sends ether to this contract, revert;
-    function () {
+    function () public {
         revert();
     }
 
@@ -54,7 +54,7 @@ contract VideoStore is Ownable, Debug {
      */
     function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video
-       var (owner, price) = videoRegistry.getVideoInfo(videoId);
+       var (owner, price, _ipfsHash, _registrar) = videoRegistry.getVideoInfo(videoId);
        address buyer = msg.sender;
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        paratiiAvatar.transferFrom(buyer, address(paratiiAvatar),  paratiiPart);
