@@ -20,13 +20,14 @@ contract Users is Ownable {
       address _address;
       string name;
       string email;
+      string ipfsHash;
       bytes32[] videoIndex; // the videos this user has seen
       mapping (bytes32 => VideoInfo) videos; // information about these vids
     }
 
     mapping (address=>UserInfo) public users;
 
-    event LogRegisterUser(address _address, string _name, string _email);
+    event LogRegisterUser(address _address, string _name, string _email, string _ipfsHash);
     event LogUnregisterUser(address _address);
     event LogLikeVideo(address _address, string _videoId, bool _liked);
 
@@ -40,34 +41,35 @@ contract Users is Ownable {
         _;
     }
 
-    function Users(Registry _paratiiRegistry) {
+    function Users(Registry _paratiiRegistry) public {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
         videoRegistry = Videos(paratiiRegistry.getContract("Videos"));
     }
 
-    function registerUser(address _userAddress, string _name, string _email) onlyOwnerOrUser(_userAddress) {
+    function registerUser(address _userAddress, string _name, string _email, string _ipfsHash) public onlyOwnerOrUser(_userAddress) {
       bytes32[] memory emptyIndex;
       users[_userAddress] =  UserInfo({
           _address: _userAddress,
           name: _name,
           email: _email,
+          ipfsHash: _ipfsHash,
           videoIndex: emptyIndex
       });
 
-      LogRegisterUser(_userAddress, _name, _email);
+      LogRegisterUser(_userAddress, _name, _email, _ipfsHash);
     }
 
     function unregisterUser(address _userAddress) public onlyOwnerOrUser(_userAddress) {
         delete users[_userAddress];
     }
 
-    function getUserInfo(address _userAddress) constant returns(string, string) {
+    function getUserInfo(address _userAddress) public constant returns(string, string, string) {
       UserInfo storage userInfo = users[_userAddress];
-      return (userInfo.name, userInfo.email);
+      return (userInfo.name, userInfo.email, userInfo.ipfsHash);
     }
 
-    function acquireVideo(string _videoId, address _userAddress) {
+    function acquireVideo(string _videoId, address _userAddress) public {
       VideoInfo storage video = users[_userAddress].videos[keccak256(_videoId)];
       video._index = users[_userAddress].videoIndex.push(keccak256(_videoId));
       video.isAcquired = true;
@@ -77,7 +79,7 @@ contract Users is Ownable {
     /* like/dislike a video.
      * @param like If true, register a like, if false, register a dislike
      */
-    function likeVideo(string _videoId, bool _liked) isAcquired(_videoId) {
+    function likeVideo(string _videoId, bool _liked) public isAcquired(_videoId) {
       address _userAddress = msg.sender;
       VideoInfo storage video = users[_userAddress].videos[keccak256(_videoId)];
 
@@ -101,15 +103,15 @@ contract Users is Ownable {
       }
     }
 
-    function userLikesVideo(address _userAddress, string _videoId) constant returns(bool) {
+    function userLikesVideo(address _userAddress, string _videoId) public constant returns(bool) {
       return users[_userAddress].videos[keccak256(_videoId)].liked;
     }
 
-    function userDislikesVideo(address _userAddress, string _videoId) constant returns (bool) {
+    function userDislikesVideo(address _userAddress, string _videoId) public constant returns (bool) {
       return users[_userAddress].videos[keccak256(_videoId)].disliked;
     }
 
-    function userAcquiredVideo(address _userAddress, string _videoId) constant returns(bool) {
+    function userAcquiredVideo(address _userAddress, string _videoId) public constant returns(bool) {
       return users[_userAddress].videos[keccak256(_videoId)].isAcquired;
     }
 }

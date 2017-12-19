@@ -18,7 +18,7 @@ contract('Users', function (accounts) {
   async function setStage () {
     await setupParatiiContracts()
     for (var i = 0; i < names.length; i++) {
-      await userRegistry.registerUser(accounts[i], names[i], emails[i])
+      await userRegistry.registerUser(accounts[i], names[i], emails[i], ipfsHash)
       if (i !== 0) {
         await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
         await paratiiToken.approve(avatar.address, Number(price), {from: accounts[i]})
@@ -31,10 +31,11 @@ contract('Users', function (accounts) {
 
   it('should register a user', async function () {
     await setupParatiiContracts()
-    tx = await userRegistry.registerUser(accounts[0], names[0], emails[0])
+    tx = await userRegistry.registerUser(accounts[0], names[0], emails[0], ipfsHash)
     assert.equal(getInfoFromLogs(tx, '_address'), accounts[0])
     assert.equal(getInfoFromLogs(tx, '_name'), names[0])
     assert.equal(getInfoFromLogs(tx, '_email'), emails[0])
+    assert.equal(getInfoFromLogs(tx, '_ipfsHash'), ipfsHash)
 
     userInfo = await userRegistry.getUserInfo(accounts[0])
     assert.equal(userInfo[0], names[0])
@@ -43,24 +44,24 @@ contract('Users', function (accounts) {
 
   it('the owner can register and unregister', async function () {
     await setupParatiiContracts()
-    await userRegistry.registerUser(accounts[0], names[0], emails[0], {from: accounts[0]})
+    await userRegistry.registerUser(accounts[0], names[0], emails[0], ipfsHash)
     await userRegistry.unregisterUser(accounts[0], {from: accounts[0]})
   })
 
   it('the user itself can register or unregister', async function () {
     await setupParatiiContracts()
-    await userRegistry.registerUser(accounts[0], names[0], emails[0], {from: accounts[0]})
+    await userRegistry.registerUser(accounts[0], names[0], emails[0], ipfsHash)
     await userRegistry.unregisterUser(accounts[0], {from: accounts[0]})
   })
 
   it('an non-owner cannot register or unregister a user (other than itself)', async function () {
     await setupParatiiContracts()
     await expectError(async function () {
-      await userRegistry.registerUser(accounts[1], names[0], emails[0], {from: accounts[2]})
+      await userRegistry.registerUser(accounts[1], names[0], emails[0], ipfsHash, {from: accounts[2]})
     })
 
     // now register a user and try to unregister it from another account
-    await userRegistry.registerUser(accounts[1], names[0], emails[0])
+    await userRegistry.registerUser(accounts[1], names[0], emails[0], ipfsHash)
 
     await expectError(async function () {
       await userRegistry.unregisterUser(accounts[1], {from: accounts[2]})
@@ -69,7 +70,7 @@ contract('Users', function (accounts) {
 
   it('like video should work as expected', async function () {
     await setupParatiiContracts()
-    await userRegistry.registerUser(accounts[0], names[0], emails[0])
+    await userRegistry.registerUser(accounts[0], names[0], emails[0], ipfsHash)
     await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
 
     await paratiiToken.transfer(accounts[1], Number(price) + (1 * 10 ** 18))
@@ -110,7 +111,7 @@ contract('Users', function (accounts) {
 
   it('dislike video should work as expected', async function () {
     await setupParatiiContracts()
-    await userRegistry.registerUser(accounts[0], names[0], emails[0])
+    await userRegistry.registerUser(accounts[0], names[0], emails[0], ipfsHash)
     await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
 
     await paratiiToken.transfer(accounts[1], Number(price) + (1 * 10 ** 18))
