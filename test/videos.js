@@ -1,8 +1,8 @@
 import { NULL_ADDRESS, expectError, getInfoFromLogs, setupParatiiContracts, videoRegistry } from './utils.js'
 
-var VideoRegistry = artifacts.require('./VideoRegistry.sol')
+var Videos = artifacts.require('./Videos.sol')
 
-contract('VideoRegistry', function (accounts) {
+contract('Videos', function (accounts) {
   let videoOwner = accounts[2]
   let videoId = '1234'
   let price = 31415
@@ -24,12 +24,12 @@ contract('VideoRegistry', function (accounts) {
   })
 
   it('anyone can register a video', async function () {
-    let videoRegistry = await VideoRegistry.new()
+    let videoRegistry = await Videos.new()
     return videoRegistry.registerVideo(videoId, videoOwner, price, ipfsHash, {from: accounts[1]})
   })
 
-  it('only registrar or the paratiiAvatar can unregister a video', async function () {
-    let videoRegistry = await VideoRegistry.new()
+  it('only registrar or the Avatar can unregister a video', async function () {
+    let videoRegistry = await Videos.new()
     await videoRegistry.registerVideo(videoId, videoOwner, price, ipfsHash, {from: accounts[1]})
 
     // accounts[1] is the registrar
@@ -48,8 +48,8 @@ contract('VideoRegistry', function (accounts) {
     assert.equal(videoInfo[3], NULL_ADDRESS)
   })
 
-  it('only registrar or the paratiiAvatar update the information of a video', async function () {
-    let videoRegistry = await VideoRegistry.new()
+  it('only registrar or the Avatar update the information of a video', async function () {
+    let videoRegistry = await Videos.new()
     await videoRegistry.registerVideo(videoId, videoOwner, price, ipfsHash, {from: accounts[1]})
 
     videoInfo = await videoRegistry.getVideoInfo(videoId)

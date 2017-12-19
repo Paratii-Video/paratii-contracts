@@ -1,13 +1,13 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import './VideoRegistry.sol';
-import './ParatiiRegistry.sol';
+import './Videos.sol';
+import './Registry.sol';
 
-contract UserRegistry is Ownable {
+contract Users is Ownable {
 
-    ParatiiRegistry paratiiRegistry;
-    VideoRegistry videoRegistry;
+    Registry paratiiRegistry;
+    Videos videoRegistry;
 
     struct VideoInfo { // user-related information about this video
       bool isAcquired; // did the user buy this video?
@@ -40,10 +40,10 @@ contract UserRegistry is Ownable {
         _;
     }
 
-    function UserRegistry(ParatiiRegistry _paratiiRegistry) {
+    function Users(Registry _paratiiRegistry) {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
-        videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
+        videoRegistry = Videos(paratiiRegistry.getContract("Videos"));
     }
 
     function registerUser(address _userAddress, string _name, string _email) onlyOwnerOrUser(_userAddress) {

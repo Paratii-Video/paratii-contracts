@@ -1,7 +1,7 @@
 import {
   getInfoFromLogs,
   likes,
-  paratiiAvatar,
+  avatar,
   paratiiToken,
   setupParatiiContracts,
   userRegistry,
@@ -30,7 +30,7 @@ contract('Likes', function (accounts) {
       await userRegistry.registerUser(accounts[i], names[i], emails[i], avatars[i])
       if (i !== 0) {
         await paratiiToken.transfer(accounts[i], Number(price) + (1 * 10 ** 18))
-        await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[i]})
+        await paratiiToken.approve(avatar.address, Number(price), {from: accounts[i]})
         videoStore.buyVideo(videoId, {from: accounts[i]})
       } else {
         await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
@@ -65,7 +65,7 @@ contract('Likes', function (accounts) {
     await videoRegistry.registerVideo(videoId, accounts[0], price, ipfsHash)
 
     await paratiiToken.transfer(accounts[1], Number(price) + (1 * 10 ** 18))
-    await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: accounts[1]})
+    await paratiiToken.approve(avatar.address, Number(price), {from: accounts[1]})
     await videoStore.buyVideo(videoId, {from: accounts[1]})
 
     tx = await userRegistry.likeVideo(videoId, false, {from: accounts[1]})

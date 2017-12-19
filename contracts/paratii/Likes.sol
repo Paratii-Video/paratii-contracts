@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
-import './ParatiiRegistry.sol';
+import './Registry.sol';
 
 contract Likes is Ownable {
 
@@ -19,7 +19,7 @@ contract Likes is Ownable {
 
     event LogLikeVideo(address _address, string _videoId, bool _liked);
 
-    function Likes(ParatiiRegistry _paratiiRegistry) public {
+    function Likes(Registry _paratiiRegistry) public {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
     }

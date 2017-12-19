@@ -1,14 +1,14 @@
 import { NULL_HASH, expectError, getInfoFromLogs } from './utils.js'
-const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
+const Registry = artifacts.require('./Registry')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 
-contract('ParatiiRegistry', function (accounts) {
+contract('Registry', function (accounts) {
   let videoInfo
   let contractName = 'ParatiiToken'
   let tx
 
   it('should register a contract', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let paratiiToken = await ParatiiToken.new()
     tx = await paratiiRegistry.registerAddress(contractName, paratiiToken.address)
     assert.equal(getInfoFromLogs(tx, '_name', 'LogRegisterAddress'), contractName)
@@ -24,7 +24,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('a non-owner of the registry can not register a contract', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let paratiiToken = await ParatiiToken.new()
     await expectError(async function () {
       await paratiiRegistry.registerAddress(contractName, paratiiToken.address, {from: web3.eth.accounts[1]})
@@ -32,7 +32,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('a non-owner of the registry can not unregister a contract', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let paratiiToken = await ParatiiToken.new()
     await paratiiRegistry.registerAddress(contractName, paratiiToken.address)
     await expectError(async function () {
@@ -41,7 +41,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('should register a number', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let numberName = 'this-is-a-setting'
     let number = 1413
     let numberFromContract
@@ -60,7 +60,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('a non-owner of the registry can not register a number', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let numberName = 'this-is-a-setting'
     let number = 1413
     await expectError(async function () {
@@ -69,7 +69,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('a non-owner of the registry can not unregister a number', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let numberName = 'this-is-a-setting'
     let number = 1413
     await paratiiRegistry.registerUint(numberName, number)
@@ -79,7 +79,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('should register a string', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let stringName = 'this-is-a-setting'
     let string = 'some kind of string'
     let stringFromContract
@@ -98,7 +98,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('a non-owner of the registry can not register a string', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let stringName = 'this-is-a-setting'
     let string = 'some kind of string'
     await expectError(async function () {
@@ -107,7 +107,7 @@ contract('ParatiiRegistry', function (accounts) {
   })
 
   it('a non-owner of the registry can not unregister a string', async function () {
-    let paratiiRegistry = await ParatiiRegistry.new()
+    let paratiiRegistry = await Registry.new()
     let stringName = 'this-is-a-setting'
     let string = 'some kind of string'
     await paratiiRegistry.registerString(stringName, string)

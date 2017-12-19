@@ -3,10 +3,10 @@ pragma solidity ^0.4.18;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
- * @dev the ParatiiRegistry contains settings and addresses of contracts for the Partii Ecosystem
+ * @dev the Registry contains settings and addresses of contracts for the Partii Ecosystem
  *
  **/
-contract ParatiiRegistry is Ownable  {
+contract Registry is Ownable  {
 
   mapping (bytes32=>address) public contracts;
   mapping (bytes32=>uint) public numbers;
@@ -19,7 +19,7 @@ contract ParatiiRegistry is Ownable  {
   event LogRegisterString(string _name, string _string);
   event LogUnregisterString(string _name);
 
-  function ParatiiRegistry() public {
+  function Registry() public {
       owner = msg.sender;
   }
 
