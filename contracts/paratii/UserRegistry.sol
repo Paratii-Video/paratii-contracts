@@ -20,14 +20,13 @@ contract UserRegistry is Ownable {
       address _address;
       string name;
       string email;
-      string avatar;
       bytes32[] videoIndex; // the videos this user has seen
       mapping (bytes32 => VideoInfo) videos; // information about these vids
     }
 
     mapping (address=>UserInfo) public users;
 
-    event LogRegisterUser(address _address, string _name, string _email, string _avatar);
+    event LogRegisterUser(address _address, string _name, string _email);
     event LogUnregisterUser(address _address);
     event LogLikeVideo(address _address, string _videoId, bool _liked);
 
@@ -47,26 +46,25 @@ contract UserRegistry is Ownable {
         videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
     }
 
-    function registerUser(address _userAddress, string _name, string _email, string _avatar) onlyOwnerOrUser(_userAddress) {
+    function registerUser(address _userAddress, string _name, string _email) onlyOwnerOrUser(_userAddress) {
       bytes32[] memory emptyIndex;
       users[_userAddress] =  UserInfo({
           _address: _userAddress,
           name: _name,
           email: _email,
-          avatar: _avatar,
           videoIndex: emptyIndex
       });
 
-      LogRegisterUser(_userAddress, _name, _email, _avatar);
+      LogRegisterUser(_userAddress, _name, _email);
     }
 
     function unregisterUser(address _userAddress) public onlyOwnerOrUser(_userAddress) {
         delete users[_userAddress];
     }
 
-    function getUserInfo(address _userAddress) constant returns(string, string, string) {
+    function getUserInfo(address _userAddress) constant returns(string, string) {
       UserInfo storage userInfo = users[_userAddress];
-      return (userInfo.name, userInfo.email, userInfo.avatar);
+      return (userInfo.name, userInfo.email);
     }
 
     function acquireVideo(string _videoId, address _userAddress) {
