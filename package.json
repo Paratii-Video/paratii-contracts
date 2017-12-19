@@ -1,6 +1,6 @@
 {
   "name": "paratii-contracts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Paratii Smart Contracts",
   "main": "dist/paratii.js",
   "directories": {
