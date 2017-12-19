@@ -1,13 +1,13 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import './VideoRegistry.sol';
-import './ParatiiRegistry.sol';
+import './Videos.sol';
+import './Registry.sol';
 
-contract UserRegistry is Ownable {
+contract Users is Ownable {
 
-    ParatiiRegistry paratiiRegistry;
-    VideoRegistry videoRegistry;
+    Registry paratiiRegistry;
+    Videos videoRegistry;
 
     struct VideoInfo { // user-related information about this video
       bool isAcquired; // did the user buy this video?
@@ -20,14 +20,14 @@ contract UserRegistry is Ownable {
       address _address;
       string name;
       string email;
-      string avatar;
+      string ipfsHash;
       bytes32[] videoIndex; // the videos this user has seen
       mapping (bytes32 => VideoInfo) videos; // information about these vids
     }
 
     mapping (address=>UserInfo) public users;
 
-    event LogRegisterUser(address _address, string _name, string _email, string _avatar);
+    event LogRegisterUser(address _address, string _name, string _email, string _ipfsHash);
     event LogUnregisterUser(address _address);
     event LogLikeVideo(address _address, string _videoId, bool _liked);
 
@@ -41,35 +41,35 @@ contract UserRegistry is Ownable {
         _;
     }
 
-    function UserRegistry(ParatiiRegistry _paratiiRegistry) {
+    function Users(Registry _paratiiRegistry) public {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
-        videoRegistry = VideoRegistry(paratiiRegistry.getContract("VideoRegistry"));
+        videoRegistry = Videos(paratiiRegistry.getContract("Videos"));
     }
 
-    function registerUser(address _userAddress, string _name, string _email, string _avatar) onlyOwnerOrUser(_userAddress) {
+    function registerUser(address _userAddress, string _name, string _email, string _ipfsHash) public onlyOwnerOrUser(_userAddress) {
       bytes32[] memory emptyIndex;
       users[_userAddress] =  UserInfo({
           _address: _userAddress,
           name: _name,
           email: _email,
-          avatar: _avatar,
+          ipfsHash: _ipfsHash,
           videoIndex: emptyIndex
       });
 
-      LogRegisterUser(_userAddress, _name, _email, _avatar);
+      LogRegisterUser(_userAddress, _name, _email, _ipfsHash);
     }
 
     function unregisterUser(address _userAddress) public onlyOwnerOrUser(_userAddress) {
         delete users[_userAddress];
     }
 
-    function getUserInfo(address _userAddress) constant returns(string, string, string) {
+    function getUserInfo(address _userAddress) public constant returns(string, string, string) {
       UserInfo storage userInfo = users[_userAddress];
-      return (userInfo.name, userInfo.email, userInfo.avatar);
+      return (userInfo.name, userInfo.email, userInfo.ipfsHash);
     }
 
-    function acquireVideo(string _videoId, address _userAddress) {
+    function acquireVideo(string _videoId, address _userAddress) public {
       VideoInfo storage video = users[_userAddress].videos[keccak256(_videoId)];
       video._index = users[_userAddress].videoIndex.push(keccak256(_videoId));
       video.isAcquired = true;
@@ -79,7 +79,7 @@ contract UserRegistry is Ownable {
     /* like/dislike a video.
      * @param like If true, register a like, if false, register a dislike
      */
-    function likeVideo(string _videoId, bool _liked) isAcquired(_videoId) {
+    function likeVideo(string _videoId, bool _liked) public isAcquired(_videoId) {
       address _userAddress = msg.sender;
       VideoInfo storage video = users[_userAddress].videos[keccak256(_videoId)];
 
@@ -103,15 +103,15 @@ contract UserRegistry is Ownable {
       }
     }
 
-    function userLikesVideo(address _userAddress, string _videoId) constant returns(bool) {
+    function userLikesVideo(address _userAddress, string _videoId) public constant returns(bool) {
       return users[_userAddress].videos[keccak256(_videoId)].liked;
     }
 
-    function userDislikesVideo(address _userAddress, string _videoId) constant returns (bool) {
+    function userDislikesVideo(address _userAddress, string _videoId) public constant returns (bool) {
       return users[_userAddress].videos[keccak256(_videoId)].disliked;
     }
 
-    function userAcquiredVideo(address _userAddress, string _videoId) constant returns(bool) {
+    function userAcquiredVideo(address _userAddress, string _videoId) public constant returns(bool) {
       return users[_userAddress].videos[keccak256(_videoId)].isAcquired;
     }
 }

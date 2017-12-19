@@ -1,5 +1,5 @@
 pragma solidity ^0.4.18;
-import './ParatiiRegistry.sol';
+import './Registry.sol';
 import './ParatiiToken.sol';
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 /*
@@ -7,8 +7,8 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
  *
  */
 
-contract ParatiiAvatar is Ownable {
-    ParatiiRegistry public paratiiRegistry;
+contract Avatar is Ownable {
+    Registry public paratiiRegistry;
 
     address[] public whitelist;
 
@@ -17,7 +17,7 @@ contract ParatiiAvatar is Ownable {
         _;
     }
 
-    function ParatiiAvatar(ParatiiRegistry _paratiiRegistry) {
+    function Avatar(Registry _paratiiRegistry) {
         paratiiRegistry = _paratiiRegistry;
         owner = msg.sender;
     }

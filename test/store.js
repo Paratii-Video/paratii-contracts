@@ -1,6 +1,6 @@
-import { getInfoFromLogs, setupParatiiContracts, userRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
+import { getInfoFromLogs, setupParatiiContracts, userRegistry, videoRegistry, avatar, paratiiToken, videoStore } from './utils.js'
 
-contract('VideoStore', function (accounts) {
+contract('Store', function (accounts) {
   it('should be able to buy a registered video', async function () {
     await setupParatiiContracts()
     let buyer = accounts[1]
@@ -19,25 +19,25 @@ contract('VideoStore', function (accounts) {
 
     // PTI balance of owner before the transaction
     let ownerBalance = await paratiiToken.balanceOf(owner)
-    let avatarBalance = await paratiiToken.balanceOf(paratiiAvatar.address)
+    let avatarBalance = await paratiiToken.balanceOf(avatar.address)
 
     assert.equal(await userRegistry.userLikesVideo(buyer, videoId).valueOf(), false)
     assert.equal(await userRegistry.userDislikesVideo(buyer, videoId).valueOf(), false)
     assert.equal(await userRegistry.userAcquiredVideo(buyer, videoId).valueOf(), false)
 
     // the actualtransaction takes two steps:
-    //  (1) give the paratiiAvatar an allowance to spend the price fo the video
-    await paratiiToken.approve(paratiiAvatar.address, Number(price), {from: buyer})
-    assert.equal(Number(await paratiiToken.allowance(buyer, paratiiAvatar.address)), price)
+    //  (1) give the avatar an allowance to spend the price fo the video
+    await paratiiToken.approve(avatar.address, Number(price), {from: buyer})
+    assert.equal(Number(await paratiiToken.allowance(buyer, avatar.address)), price)
 
-    //  (2) instruct the paratiiAvatar to actually buy the video (calling videoStore.buyVideo())
+    //  (2) instruct the avatar to actually buy the video (calling videoStore.buyVideo())
     let tx = await videoStore.buyVideo(videoId, {from: buyer})
     assert.equal(getInfoFromLogs(tx, 'videoId', 'LogBuyVideo'), videoId)
     assert.equal(getInfoFromLogs(tx, 'buyer', 'LogBuyVideo'), buyer)
     assert.equal(Number(getInfoFromLogs(tx, 'price', 'LogBuyVideo')), price)
 
     // 30% of the price should have gone to the redistribution pool (i.e. the avatar)
-    assert.equal(Number(await paratiiToken.balanceOf(paratiiAvatar.address)) - avatarBalance, 0.3 * price)
+    assert.equal(Number(await paratiiToken.balanceOf(avatar.address)) - avatarBalance, 0.3 * price)
 
     // and 70% to the owner
     assert.equal(Number(await paratiiToken.balanceOf(owner)) - ownerBalance, 0.7 * price)

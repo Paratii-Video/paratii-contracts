@@ -1,15 +1,17 @@
 
-const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
-const ParatiiAvatar = artifacts.require('./ParatiiAvatar')
+const Likes = artifacts.require('./Likes')
+const Views = artifacts.require('./Views')
+const Registry = artifacts.require('./Registry')
+const Avatar = artifacts.require('./Avatar')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 const SendEther = artifacts.require('./SendEther')
-const UserRegistry = artifacts.require('./UserRegistry')
-const VideoRegistry = artifacts.require('./VideoRegistry')
-const VideoStore = artifacts.require('./VideoStore')
+const Users = artifacts.require('./Users')
+const Videos = artifacts.require('./Videos')
+const Store = artifacts.require('./Store')
 export const NULL_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
-export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, userRegistry, videoRegistry, videoStore
+export let likes, views, paratiiRegistry, avatar, paratiiToken, sendEther, userRegistry, videoRegistry, videoStore
 
 export async function expectError (f) {
   // let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
@@ -27,7 +29,7 @@ export async function expectError (f) {
 
 export async function setupParatiiContracts () {
   // TODO: refactor this and use Paratii.getOrDeployContracts()
-  paratiiRegistry = await ParatiiRegistry.new()
+  paratiiRegistry = await Registry.new()
 
   paratiiToken = await ParatiiToken.new()
   paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
@@ -35,22 +37,28 @@ export async function setupParatiiContracts () {
   sendEther = await SendEther.new()
   paratiiRegistry.registerAddress('SendEther', sendEther.address)
 
-  videoRegistry = await VideoRegistry.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('VideoRegistry', videoRegistry.address)
+  videoRegistry = await Videos.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('Videos', videoRegistry.address)
 
-  paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('ParatiiAvatar', paratiiAvatar.address)
+  avatar = await Avatar.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('Avatar', avatar.address)
 
-  userRegistry = await UserRegistry.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('UserRegistry', userRegistry.address)
+  userRegistry = await Users.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('Users', userRegistry.address)
 
-  videoStore = await VideoStore.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('VideoStore', videoStore.address)
+  videoStore = await Store.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('Store', videoStore.address)
+
+  likes = await Likes.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('Likes', likes.address)
+
+  views = await Views.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('Views', views.address)
 
   // give 30 percent of eah video to the redistribution pool
   paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 
-  paratiiAvatar.addToWhitelist(videoStore.address)
+  avatar.addToWhitelist(videoStore.address)
   return paratiiRegistry
 }
 
