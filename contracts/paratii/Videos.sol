@@ -6,25 +6,33 @@ import './Registry.sol';
 
 contract Videos is Ownable {
 
-    struct Stats {
+    /*struct Stats {
         uint256 views;
         uint256 likes;
         uint256 dislikes;
     }
-
+*/
     struct VideoInfo {
       bytes32 _id;
       string ipfsHash;
+      string ipfsData;
       uint256 price; // price in PTI-wei
       address owner;
       address registrar; // the account that has registered this video
-      Stats stats;
+      /*Stats stats;*/
     }
 
     mapping (bytes32=>VideoInfo) videos;
     Registry paratiiRegistry;
 
-    event LogRegisterVideo(string videoId, address owner, uint price, string ipfsHash, address registrar);
+    event LogRegisterVideo(
+      string videoId,
+      address owner,
+      uint price,
+      string ipfsHash,
+      address registrar
+    );
+
     event LogUnregisterVideo(string videoId);
 
     // ???
@@ -56,11 +64,21 @@ contract Videos is Ownable {
         paratiiRegistry = _paratiiRegistry;
     }
 
+    /**
+     * @dev Register a video
+     * @param _videoId id of the video, can be any string
+     * @param _owner the address of the owner of this video
+     * @param _price the price in wei of this video
+     * @param _ipfsHash the IPFS hash where a directory with videos in different formats can be found
+     * @param _ipfsData the IPFS hash where a JSON with further information about htis video can be found
+     **/
+
     function registerVideo(
         string _videoId,
         address _owner,
         uint256 _price,
-        string _ipfsHash
+        string _ipfsHash,
+        string _ipfsData
     ) onlyRegistrarOrAvatar(_videoId) public {
 
         bytes32 id = keccak256(_videoId);
@@ -70,12 +88,8 @@ contract Videos is Ownable {
             price: _price,
             owner: _owner,
             ipfsHash: _ipfsHash,
-            registrar: msg.sender,
-            stats: Stats({
-              views: 0,
-              likes: 0,
-              dislikes: 0
-              })
+            ipfsData: _ipfsData,
+            registrar: msg.sender
           });
 
         LogRegisterVideo(_videoId, _owner, _price, _ipfsHash, msg.sender);
@@ -87,11 +101,18 @@ contract Videos is Ownable {
         LogUnregisterVideo(_videoId);
     }
 
-    function getVideoInfo(string _videoId) public constant returns(address, uint256, string, address)  {
-      VideoInfo storage videoInfo = videos[keccak256(_videoId)];
-      return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHash, videoInfo.registrar);
-    }
+    /**
+     * @dev return information about video
+     * @return a tuple (owner, price, ipfsHash, ipfsData, registrar)
+     */
 
+    function getVideoInfo(string _videoId) public constant
+      returns(address, uint256, string, string, address)
+    {
+      VideoInfo storage videoInfo = videos[keccak256(_videoId)];
+      return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHash, videoInfo.ipfsData, videoInfo.registrar);
+    }
+/*
     function likeVideo(string _videoId, bool changed_opinion) public onlyUserRegistry {
          VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          videoInfo.stats.likes = videoInfo.stats.likes + 1;
@@ -114,5 +135,5 @@ contract Videos is Ownable {
          VideoInfo storage videoInfo = videos[keccak256(_videoId)];
          Stats storage stats = videoInfo.stats;
          return (stats.views, stats.likes, stats.dislikes);
-    }
+    }*/
 }
