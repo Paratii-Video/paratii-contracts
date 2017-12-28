@@ -1,7 +1,7 @@
 import { getInfoFromLogs, setupParatiiContracts, userRegistry, videoRegistry, avatar, paratiiToken, videoStore } from './utils.js'
 
 contract('Store', function (accounts) {
-  it('should be able to buy a registered video', async function () {
+  it.skip('should be able to buy a registered video', async function () {
     await setupParatiiContracts()
     let buyer = accounts[1]
     let owner = accounts[2]
