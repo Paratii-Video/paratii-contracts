@@ -54,13 +54,14 @@ contract Store is Ownable, Debug {
      */
     function buyVideo(string videoId) public returns(bool)  {
        // get the info about the video
-       var (owner, price, _ipfsHash, _registrar) = videoRegistry.getVideoInfo(videoId);
+       var (owner, price, _ipfsHash, _ipfsData, _registrar) = videoRegistry.getVideoInfo(videoId);
        address buyer = msg.sender;
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        avatar.transferFrom(buyer, address(avatar),  paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
        avatar.transferFrom(buyer, owner, ownerPart);
-       userRegistry.acquireVideo(videoId, buyer);
+       // TODO: should call Acquistions.add(videoId, buyer)
+       /*userRegistry.acquireVideo(videoId, buyer);*/
        videoSales[keccak256(videoId)].push(buyer);
        LogBuyVideo(videoId, buyer, price);
        return true;
