@@ -8,7 +8,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
  */
 
 contract Avatar is Ownable {
-    Registry public paratiiRegistry;
+    Registry public registry;
 
     address[] public whitelist;
 
@@ -17,8 +17,8 @@ contract Avatar is Ownable {
         _;
     }
 
-    function Avatar(Registry _paratiiRegistry) {
-        paratiiRegistry = _paratiiRegistry;
+    function Avatar(Registry _registry) {
+        registry = _registry;
         owner = msg.sender;
     }
 
@@ -58,7 +58,7 @@ contract Avatar is Ownable {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) onlyWhitelist returns (bool)   {
-        ParatiiToken token = ParatiiToken(paratiiRegistry.getContract('ParatiiToken'));
+        ParatiiToken token = ParatiiToken(registry.getContract('ParatiiToken'));
         return token.transferFrom(_from, _to, _value);
     }
 }

@@ -23,7 +23,7 @@ contract Videos is Ownable {
     }
 
     mapping (bytes32=>VideoInfo) videos;
-    Registry paratiiRegistry;
+    Registry public paratiiRegistry;
 
     event LogRegisterVideo(
       string videoId,
@@ -40,17 +40,6 @@ contract Videos is Ownable {
         require(msg.sender == paratiiRegistry.getContract('Users'));
         _;
     }
-
-    /*modifier onlyOwnerOrAvatar() {
-        address Avatar = paratiiRegistry.getContract('Avatar');
-        if (Avatar == 0) {
-            require(msg.sender == owner);
-        } else {
-            require(msg.sender == owner);
-            require((msg.sender == owner) || (msg.sender == paratiiRegistry.getContract('Avatar')));
-        }
-        _;
-    }*/
 
     modifier onlyRegistrarOrAvatar(string _videoId) {
       bytes32 id = keccak256(_videoId);

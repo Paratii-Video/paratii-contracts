@@ -6,7 +6,7 @@ import './Registry.sol';
 
 contract Users is Ownable {
 
-    Registry paratiiRegistry;
+    Registry registry;
     Videos videoRegistry;
 
     struct UserInfo {
@@ -31,9 +31,9 @@ contract Users is Ownable {
       _;
     }
 
-    function Users(Registry _paratiiRegistry) public {
+    function Users(Registry _registry) public {
         owner = msg.sender;
-        paratiiRegistry = _paratiiRegistry;
+        registry = _registry;
     }
 
     /**
