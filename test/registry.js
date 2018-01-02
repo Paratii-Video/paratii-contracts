@@ -17,7 +17,7 @@ contract('Registry', function (accounts) {
     videoInfo = await paratiiRegistry.getContract(contractName)
     assert.equal(videoInfo, paratiiToken.address)
 
-    await paratiiRegistry.unregisterAddress(contractName)
+    tx = await paratiiRegistry.unregisterAddress(contractName)
     assert.equal(getInfoFromLogs(tx, '_name', 'LogUnregisterAddress'), contractName)
     videoInfo = await paratiiRegistry.getContract(contractName)
     assert.equal(videoInfo, NULL_HASH)

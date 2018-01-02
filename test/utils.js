@@ -17,11 +17,14 @@ export let
   avatar,
   likes,
   paratiiRegistry,
-  paratiiToken, sendEther, userRegistry, videoRegistry,
+  paratiiToken,
+  sendEther,
+  userRegistry,
+  videoRegistry,
   store,
   views
 
-export async function expectError (f) {
+export async function expectError (f, expectedErrorMsg) {
   // let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
   // let expectedErrorMsg = 'Error: VM Exception while processing transaction: revert'
 
@@ -29,10 +32,13 @@ export async function expectError (f) {
     await f()
   } catch (err) {
     // assert.equal(String(err), expectedErrorMsg)
+    if (expectedErrorMsg) {
+      assert(String(err).find(expectedErrorMsg) > 0)
+    }
     return
   }
-  let msg = `Expected an error - function executed without error instead`
-  throw Error(msg)
+  let errMsg = `Expected an error - function executed without error instead`
+  throw Error(errMsg)
 }
 
 export async function setupParatiiContracts () {
@@ -94,10 +100,12 @@ export function getInfoFromLogs (tx, arg, eventName, index = 0) {
       if (tx.logs[i].event === eventName) {
         index = i
         break
+      } else {
+        index = undefined
       }
     }
     if (index === undefined) {
-      let msg = `There is no event logged with eventName ${eventName}`
+      let msg = `There is no event "${eventName}" in the logs (these are the logged events)`
       throw msg
     }
   } else {

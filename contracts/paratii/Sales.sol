@@ -18,7 +18,8 @@ contract Sales is Ownable {
     // mapping from user addrsses and video ids to booleans
     mapping (address=> mapping (bytes32 => Data)) private _sales;
 
-    event LogRegisterSale(string _videoId, address _buyer, uint _price, string _ipfsData);
+    event LogCreateSale(address _buyer, string _videoId, uint _price, string _ipfsData);
+    event LogRemoveSale(address _buyer, string _videoId);
 
     modifier onlyOwnerOrStore() {
         require((msg.sender == owner) || (msg.sender == registry.getContract('Store')));
@@ -33,26 +34,42 @@ contract Sales is Ownable {
    /**
     * @dev registers a sale of a video
     * Does not do any payments - this call only registers the sale
+    * Only the Store contract (as well as the owner) can register a sale
     * @param _videoId the id of the video
     * @param _buyer the buyer of the video (an ethereum address)
     * @param _price the price that was paid for the video
     * @param _ipfsData a reference to further data that can be found on ipfs
     */
-    function create(string _videoId, address _buyer, uint _price, string _ipfsData)
-      public onlyOwnerOrStore {
-      _sales[_buyer][keccak256(_videoId)] = Data(true, _price, _ipfsData);
-       LogRegisterSale(_videoId, _buyer, _price, _ipfsData);
+    function create(address _buyer, string _videoId, uint _price, string _ipfsData)
+        public onlyOwnerOrStore {
+        _sales[_buyer][keccak256(_videoId)] = Data(true, _price, _ipfsData);
+        LogCreateSale(_buyer, _videoId, _price, _ipfsData);
     }
 
-    function deleteSale(string _videoId, address _buyer) public {
-      delete _sales[_buyer][keccak256(_videoId)];
+    /**
+     * @dev Remove the sale from the registry
+     * Only the Store contract or the owner can remove a sale
+     */
+    function remove(address _buyer, string _videoId)
+        public onlyOwnerOrStore {
+        delete _sales[_buyer][keccak256(_videoId)];
+        LogRemoveSale(_buyer, _videoId);
     }
 
-    function get(string _videoId, address _buyer) public  constant returns(Data) {
-      return _sales[_buyer][keccak256(_videoId)];
+    /**
+     * @dev Get information about the sale from the registry
+     * Only the Store contract or the owner can remove a sale
+     * @return price and ipfsData
+     */
+    function get(address _buyer, string _videoId) public  constant returns(uint, string) {
+        Data storage _data = _sales[_buyer][keccak256(_videoId)];
+        return (
+            _data._price,
+            _data._ipfsData
+        );
     }
 
-    function userBoughtVideo(string _videoId, address _buyer) public constant returns(bool) {
-      return _sales[_buyer][keccak256(_videoId)]._isRegistered;
+    function userBoughtVideo(address _buyer, string _videoId) public constant returns(bool) {
+        return _sales[_buyer][keccak256(_videoId)]._isRegistered;
     }
 }

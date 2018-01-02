@@ -48,9 +48,9 @@ contract('Store', function (accounts) {
 
     //  (2) instruct the avatar to actually buy the video (calling store.buyVideo())
     let tx = await store.buyVideo(videoId, ipfsDataProofOfBuy, {from: buyer})
-    assert.equal(getInfoFromLogs(tx, '_videoId', 'LogRegisterSale'), videoId)
-    assert.equal(getInfoFromLogs(tx, '_buyer', 'LogRegisterSale'), buyer)
-    assert.equal(Number(getInfoFromLogs(tx, '_price', 'LogRegisterSale')), price)
+    assert.equal(getInfoFromLogs(tx, '_videoId', 'LogCreateSale'), videoId)
+    assert.equal(getInfoFromLogs(tx, '_buyer', 'LogCreateSale'), buyer)
+    assert.equal(Number(getInfoFromLogs(tx, '_price', 'LogCreateSale')), price)
 
     // 30% of the price should have gone to the redistribution pool (i.e. the avatar)
     assert.equal(Number(await paratiiToken.balanceOf(avatar.address)) - avatarBalance, 0.3 * price)

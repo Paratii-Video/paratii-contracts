@@ -7,10 +7,16 @@ contract Views is Ownable {
 
     Registry public registry;
 
-    // mapping from user addrsses and video ids to booleans
-    mapping (address=> mapping (bytes32 => bool)) private _views;
+    struct Data {
+      bool _isRegistered;
+      string _ipfsData;
+    }
 
-    event LogView(address _address, string _videoId);
+    // mapping from user addrsses and video ids to booleans
+    mapping (address=> mapping (bytes32 => Data)) private _views;
+
+    event LogCreateView(address _address, string _videoId, string _ipfsData);
+    event LogRemoveView(address _address, string _videoId);
 
     modifier onlyOwnerOrAvatar() {
         require((msg.sender == owner) || (msg.sender == registry.getContract('Avatar')));
@@ -22,12 +28,21 @@ contract Views is Ownable {
         registry = _registry;
     }
 
-    function addView(string _videoId, address _viewer) public onlyOwnerOrAvatar {
-       _views[_viewer][keccak256(_videoId)] = true;
-       LogView(_viewer, _videoId);
+    function create(address _viewer, string _videoId, string _ipfsData) public onlyOwnerOrAvatar {
+       _views[_viewer][keccak256(_videoId)] = Data(true, _ipfsData);
+       LogCreateView(_viewer, _videoId, _ipfsData);
     }
 
-    function userViewedVideo(address _address, string _videoId) public constant returns(bool) {
-      return _views[_address][keccak256(_videoId)];
+    function remove(address _viewer, string _videoId) public onlyOwnerOrAvatar {
+       delete _views[_viewer][keccak256(_videoId)];
+       LogRemoveView(_viewer, _videoId);
+    }
+
+    function get(address _viewer, string _videoId) public constant onlyOwnerOrAvatar returns(Data) {
+       return _views[_viewer][keccak256(_videoId)];
+    }
+
+    function userViewedVideo(address _viewer, string _videoId) public constant returns(bool) {
+      return _views[_viewer][keccak256(_videoId)]._isRegistered;
     }
 }
