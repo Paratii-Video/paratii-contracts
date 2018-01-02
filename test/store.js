@@ -23,6 +23,7 @@ contract('Store', function (accounts) {
     let price = 14 * 10 ** 18
     let ipfsHash = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsHash'
     let ipfsData = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsData'
+    let ipfsDataProofOfBuy = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsData'
 
     assert.equal(price, web3.toWei(14))
     assert.isOk(price === Number(web3.toWei(14)))
@@ -46,7 +47,7 @@ contract('Store', function (accounts) {
     assert.equal(Number(await paratiiToken.allowance(buyer, avatar.address)), price)
 
     //  (2) instruct the avatar to actually buy the video (calling store.buyVideo())
-    let tx = await store.buyVideo(videoId, {from: buyer})
+    let tx = await store.buyVideo(videoId, ipfsDataProofOfBuy, {from: buyer})
     assert.equal(getInfoFromLogs(tx, '_videoId', 'LogRegisterSale'), videoId)
     assert.equal(getInfoFromLogs(tx, '_buyer', 'LogRegisterSale'), buyer)
     assert.equal(Number(getInfoFromLogs(tx, '_price', 'LogRegisterSale')), price)

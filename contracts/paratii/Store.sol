@@ -20,18 +20,12 @@ contract Store is Ownable, Debug {
     using SafeMath for uint256;
 
     Sales public sales;
-    Avatar public avatar;
     Registry public registry;
-    Users public userRegistry;
-    Videos public videoRegistry;
 
     event LogBuyVideo(string _videoId, address _buyer, uint _price);
 
     function Store(Registry _registry) public {
       registry = _registry;
-      avatar = Avatar(registry.getContract('Avatar'));
-      userRegistry = Users(registry.getContract("Users"));
-      videoRegistry = Videos(registry.getContract("Videos"));
     }
 
     // If someone accidentally sends ether to this contract, revert;
@@ -45,18 +39,17 @@ contract Store is Ownable, Debug {
      * For the transaction to succeed, the buyer must have approved for the Avatar to transfer
      * the sum to the owner and the redistribution pool.
      */
-    function buyVideo(string videoId) public returns(bool)  {
+    function buyVideo(string videoId, string ipfsData) public returns(bool)  {
        // get the info about the video
-       Videos videoRegistry = Videos(registry.getContract("Videos"));
-       var (owner, price, _ipfsHash, _ipfsData, _registrar) = videoRegistry.getVideoInfo(videoId);
-       address buyer = msg.sender;
+       Avatar avatar = Avatar(registry.getContract('Avatar'));
+       Videos videos = Videos(registry.getContract("Videos"));
+       var (owner, price, _3, _4_, _5) = videos.getVideoInfo(videoId);
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
-       avatar.transferFrom(buyer, address(avatar),  paratiiPart);
+       avatar.transferFrom(msg.sender, address(avatar), paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
-       avatar.transferFrom(buyer, owner, ownerPart);
-       Sales sales = Sales(registry.getContract('Sales'));
-       sales.registerSale(videoId, buyer, price);
-       LogBuyVideo(videoId, buyer, price);
+       avatar.transferFrom(msg.sender, owner, ownerPart);
+       Sales(registry.getContract('Sales')).create(videoId, msg.sender, price, ipfsData);
+       LogBuyVideo(videoId, msg.sender, price);
        return true;
     }
 

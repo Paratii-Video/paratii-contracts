@@ -6,6 +6,8 @@ import {
 
 contract('Sales contract:', function (accounts) {
   let videoId = 'some-id'
+  let price = 10e14
+  let ipfsData = 'abcdefg'
 
   beforeEach(async function () {
     await setupParatiiContracts()
@@ -17,15 +19,17 @@ contract('Sales contract:', function (accounts) {
     //
     assert.equal(await sales.userBoughtVideo(videoId, accounts[1]), false)
     // the owner can register the buying of the video
-    let tx = await sales.registerSale(videoId, accounts[1], 10e14)
+    let tx = await sales.create(videoId, accounts[1], price, ipfsData)
     assert.equal(getInfoFromLogs(tx, '_videoId', 'LogRegisterSale'), videoId)
     assert.equal(getInfoFromLogs(tx, '_buyer', 'LogRegisterSale'), accounts[1])
+    assert.equal(getInfoFromLogs(tx, '_price', 'LogRegisterSale'), price)
+    assert.equal(getInfoFromLogs(tx, '_ipfsData', 'LogRegisterSale'), ipfsData)
 
     assert.equal(await sales.userBoughtVideo(videoId, accounts[1]), true)
   })
 
   it('should be possible to "buy" a video with a price of 0', async function () {
-    let tx = await sales.registerSale(videoId, accounts[1], 0)
+    let tx = await sales.create(videoId, accounts[1], 0, ipfsData)
     assert.equal(getInfoFromLogs(tx, '_price', 'LogRegisterSale'), 0)
   })
 })
