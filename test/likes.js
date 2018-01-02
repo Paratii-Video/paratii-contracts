@@ -18,7 +18,7 @@ contract('Likes', function (accounts) {
     assert.equal(Number(await likes.userLikes(accounts[1])), 0)
 
     tx = await likes.likeVideo(videoId, true, {from: accounts[1]})
-    assert.equal(getInfoFromLogs(tx, '_address', 'UserLikedVideo'), accounts[1])
+    assert.equal(getInfoFromLogs(tx, '_address', 'LogLikeVideo'), accounts[1])
     assert.equal(getInfoFromLogs(tx, '_videoId'), videoId)
     assert.equal(getInfoFromLogs(tx, '_liked'), true)
 

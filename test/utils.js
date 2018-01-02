@@ -105,7 +105,16 @@ export function getInfoFromLogs (tx, arg, eventName, index = 0) {
       }
     }
     if (index === undefined) {
-      let msg = `There is no event "${eventName}" in the logs (these are the logged events)`
+      let msg = `There is no event "${eventName}" in the logs`
+
+      if (tx.logs.length > 0) {
+        msg += ' ('
+        for (let i = 0; i < tx.logs.length; i++) {
+          msg += tx.logs[i].event + ' '
+        }
+        msg += ')'
+      }
+
       throw msg
     }
   } else {
