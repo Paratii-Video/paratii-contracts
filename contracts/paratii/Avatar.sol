@@ -17,12 +17,12 @@ contract Avatar is Ownable {
         _;
     }
 
-    function Avatar(Registry _registry) {
+    function Avatar(Registry _registry) public {
         registry = _registry;
         owner = msg.sender;
     }
 
-    function addToWhitelist(address _address) onlyOwner {
+    function addToWhitelist(address _address) public onlyOwner {
       // check if the address is already known, and if there is a free space in the whitelist
       uint freeSpace = whitelist.length;
       for (uint i=0; i < whitelist.length; i++) {
@@ -40,7 +40,7 @@ contract Avatar is Ownable {
       }
     }
 
-    function removeFromWhitelist(address _address) onlyOwner {
+    function removeFromWhitelist(address _address) public onlyOwner {
       for (uint i=0; i < whitelist.length; i++) {
           if (whitelist[i] == _address) {
               delete whitelist[i];
@@ -57,7 +57,7 @@ contract Avatar is Ownable {
       return false;
     }
 
-    function transferFrom(address _from, address _to, uint256 _value) onlyWhitelist returns (bool)   {
+    function transferFrom(address _from, address _to, uint256 _value) public onlyWhitelist returns (bool)   {
         ParatiiToken token = ParatiiToken(registry.getContract('ParatiiToken'));
         return token.transferFrom(_from, _to, _value);
     }
