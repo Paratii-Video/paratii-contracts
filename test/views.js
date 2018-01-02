@@ -24,9 +24,9 @@ contract('Views: ', function (accounts) {
 
     // TODO: why does this not work?
     // assert.equal(await views.get(buyer, videoId), 'something or other')
-    tx = await views.delete(accounts[1], videoId)
-    assert.equal(getInfoFromLogs(tx, '_address', 'LogDeleteView'), accounts[1])
-    assert.equal(getInfoFromLogs(tx, '_videoId', 'LogDeleteView'), videoId)
+    tx = await views.remove(accounts[1], videoId)
+    assert.equal(getInfoFromLogs(tx, '_address', 'LogRemoveView'), accounts[1])
+    assert.equal(getInfoFromLogs(tx, '_videoId', 'LogRemoveView'), videoId)
 
     assert.equal(await views.userViewedVideo(buyer, videoId), false)
   })
