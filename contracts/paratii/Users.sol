@@ -17,14 +17,14 @@ contract Users is Ownable {
 
     mapping (address=>UserInfo) public users;
 
-    event LogRegisterUser(
+    event LogCreateUser(
       address _address,
       string _name,
       string _email,
       string _ipfsData
     );
 
-    event LogUnregisterUser(address _address);
+    event LogRemoveUser(address _address);
 
     modifier onlyOwnerOrUser(address _address) {
       require(msg.sender == owner || msg.sender == _address);
@@ -43,7 +43,7 @@ contract Users is Ownable {
      * @param _email - the email address of the user
      * @param _ipfsData - the hash of a JSON file with data of the video
      */
-    function registerUser(
+    function create(
       address _address,
       string _name,
       string _email,
@@ -55,7 +55,7 @@ contract Users is Ownable {
           ipfsData: _ipfsData
       });
 
-      LogRegisterUser(_address, _name, _email, _ipfsData);
+      LogCreateUser(_address, _name, _email, _ipfsData);
     }
 
     /**
@@ -63,9 +63,9 @@ contract Users is Ownable {
      * Deletes the data of the user from users
      * @param _address the address of the user to be unregistered
      */
-    function unregisterUser(address _address) public onlyOwnerOrUser(_address) {
+    function remove(address _address) public onlyOwnerOrUser(_address) {
         delete users[_address];
-        LogUnregisterUser(_address);
+        LogRemoveUser(_address);
     }
 
     /**
@@ -73,7 +73,7 @@ contract Users is Ownable {
      * @param _address the address of the user
      * @return a tuple (name, email, ipfsData)
      */
-    function getUserInfo(address _address) public constant returns(string, string, string) {
+    function get(address _address) public constant returns(string, string, string) {
       UserInfo storage userInfo = users[_address];
       return (userInfo.name, userInfo.email, userInfo.ipfsData);
     }

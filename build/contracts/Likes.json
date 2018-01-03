@@ -251,7 +251,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 1810,
+          "SourceUnit": 1924,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 594,
@@ -266,7 +266,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 1754,
+          "SourceUnit": 1868,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "scope": 594,
@@ -297,14 +297,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            1809
+            1923
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             593,
-            1809
+            1923
           ],
           "name": "Likes",
           "scope": 594
@@ -321,7 +321,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 1809,
+                  "referencedDeclaration": 1923,
                   "type": "contract Ownable"
                 },
                 "id": 293,
@@ -849,7 +849,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1757,
+                              "referencedDeclaration": 1871,
                               "type": "address",
                               "value": "owner"
                             },
@@ -875,7 +875,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2225,
+                                  "referencedDeclaration": 2339,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1098,7 +1098,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2225,
+                              "referencedDeclaration": 2339,
                               "type": "msg",
                               "value": "msg"
                             },
@@ -1175,7 +1175,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2219,
+                              "referencedDeclaration": 2333,
                               "type": "function () pure returns (bytes32)",
                               "value": "keccak256"
                             },
@@ -3577,7 +3577,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2219,
+                                  "referencedDeclaration": 2333,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
@@ -3763,7 +3763,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2219,
+                                  "referencedDeclaration": 2333,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
@@ -4004,7 +4004,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2219,
+                                  "referencedDeclaration": 2333,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
@@ -4245,7 +4245,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2219,
+                                  "referencedDeclaration": 2333,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
@@ -4308,5 +4308,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-29T13:10:37.147Z"
+  "updatedAt": "2018-01-03T09:45:54.992Z"
 }
