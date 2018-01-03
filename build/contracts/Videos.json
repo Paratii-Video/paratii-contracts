@@ -206,7 +206,7 @@
       "absolutePath": "/media/data/projects/paratii/paratii-contracts/contracts/paratii/Videos.sol",
       "exportedSymbols": {
         "Videos": [
-          1171
+          1194
         ]
       }
     },
@@ -220,37 +220,37 @@
             ".18"
           ]
         },
-        "id": 958,
+        "id": 981,
         "name": "PragmaDirective",
         "src": "0:24:7"
       },
       {
         "attributes": {
-          "SourceUnit": 1326,
+          "SourceUnit": 1349,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
-          "scope": 1172,
+          "scope": 1195,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 959,
+        "id": 982,
         "name": "ImportDirective",
         "src": "26:59:7"
       },
       {
         "attributes": {
-          "SourceUnit": 1270,
+          "SourceUnit": 1293,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
-          "scope": 1172,
+          "scope": 1195,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 960,
+        "id": 983,
         "name": "ImportDirective",
         "src": "86:55:7"
       },
@@ -259,30 +259,30 @@
           "SourceUnit": 494,
           "absolutePath": "/media/data/projects/paratii/paratii-contracts/contracts/paratii/Registry.sol",
           "file": "./Registry.sol",
-          "scope": 1172,
+          "scope": 1195,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 961,
+        "id": 984,
         "name": "ImportDirective",
         "src": "142:24:7"
       },
       {
         "attributes": {
           "contractDependencies": [
-            1325
+            1348
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            1171,
-            1325
+            1194,
+            1348
           ],
           "name": "Videos",
-          "scope": 1172
+          "scope": 1195
         },
         "children": [
           {
@@ -296,15 +296,15 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 1325,
+                  "referencedDeclaration": 1348,
                   "type": "contract Ownable"
                 },
-                "id": 962,
+                "id": 985,
                 "name": "UserDefinedTypeName",
                 "src": "187:7:7"
               }
             ],
-            "id": 963,
+            "id": 986,
             "name": "InheritanceSpecifier",
             "src": "187:7:7"
           },
@@ -312,7 +312,7 @@
             "attributes": {
               "canonicalName": "Videos.VideoInfo",
               "name": "VideoInfo",
-              "scope": 1171,
+              "scope": 1194,
               "visibility": "public"
             },
             "children": [
@@ -320,7 +320,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "_id",
-                  "scope": 976,
+                  "scope": 999,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "bytes32",
@@ -333,12 +333,12 @@
                       "name": "bytes32",
                       "type": "bytes32"
                     },
-                    "id": 964,
+                    "id": 987,
                     "name": "ElementaryTypeName",
                     "src": "329:7:7"
                   }
                 ],
-                "id": 965,
+                "id": 988,
                 "name": "VariableDeclaration",
                 "src": "329:11:7"
               },
@@ -346,7 +346,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "ipfsHash",
-                  "scope": 976,
+                  "scope": 999,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "string storage pointer",
@@ -359,12 +359,12 @@
                       "name": "string",
                       "type": "string storage pointer"
                     },
-                    "id": 966,
+                    "id": 989,
                     "name": "ElementaryTypeName",
                     "src": "348:6:7"
                   }
                 ],
-                "id": 967,
+                "id": 990,
                 "name": "VariableDeclaration",
                 "src": "348:15:7"
               },
@@ -372,7 +372,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "ipfsData",
-                  "scope": 976,
+                  "scope": 999,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "string storage pointer",
@@ -385,12 +385,12 @@
                       "name": "string",
                       "type": "string storage pointer"
                     },
-                    "id": 968,
+                    "id": 991,
                     "name": "ElementaryTypeName",
                     "src": "371:6:7"
                   }
                 ],
-                "id": 969,
+                "id": 992,
                 "name": "VariableDeclaration",
                 "src": "371:15:7"
               },
@@ -398,7 +398,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "price",
-                  "scope": 976,
+                  "scope": 999,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -411,12 +411,12 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 970,
+                    "id": 993,
                     "name": "ElementaryTypeName",
                     "src": "394:7:7"
                   }
                 ],
-                "id": 971,
+                "id": 994,
                 "name": "VariableDeclaration",
                 "src": "394:13:7"
               },
@@ -424,7 +424,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "owner",
-                  "scope": 976,
+                  "scope": 999,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "address",
@@ -437,12 +437,12 @@
                       "name": "address",
                       "type": "address"
                     },
-                    "id": 972,
+                    "id": 995,
                     "name": "ElementaryTypeName",
                     "src": "435:7:7"
                   }
                 ],
-                "id": 973,
+                "id": 996,
                 "name": "VariableDeclaration",
                 "src": "435:13:7"
               },
@@ -450,7 +450,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "registrar",
-                  "scope": 976,
+                  "scope": 999,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "address",
@@ -463,17 +463,17 @@
                       "name": "address",
                       "type": "address"
                     },
-                    "id": 974,
+                    "id": 997,
                     "name": "ElementaryTypeName",
                     "src": "456:7:7"
                   }
                 ],
-                "id": 975,
+                "id": 998,
                 "name": "VariableDeclaration",
                 "src": "456:17:7"
               }
             ],
-            "id": 976,
+            "id": 999,
             "name": "StructDefinition",
             "src": "304:245:7"
           },
@@ -481,7 +481,7 @@
             "attributes": {
               "constant": false,
               "name": "videos",
-              "scope": 1171,
+              "scope": 1194,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(bytes32 => struct Videos.VideoInfo storage ref)",
@@ -499,7 +499,7 @@
                       "name": "bytes32",
                       "type": "bytes32"
                     },
-                    "id": 977,
+                    "id": 1000,
                     "name": "ElementaryTypeName",
                     "src": "564:7:7"
                   },
@@ -507,20 +507,20 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "VideoInfo",
-                      "referencedDeclaration": 976,
+                      "referencedDeclaration": 999,
                       "type": "struct Videos.VideoInfo storage pointer"
                     },
-                    "id": 978,
+                    "id": 1001,
                     "name": "UserDefinedTypeName",
                     "src": "573:9:7"
                   }
                 ],
-                "id": 979,
+                "id": 1002,
                 "name": "Mapping",
                 "src": "555:28:7"
               }
             ],
-            "id": 980,
+            "id": 1003,
             "name": "VariableDeclaration",
             "src": "555:35:7"
           },
@@ -528,7 +528,7 @@
             "attributes": {
               "constant": false,
               "name": "paratiiRegistry",
-              "scope": 1171,
+              "scope": 1194,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "contract Registry",
@@ -543,12 +543,12 @@
                   "referencedDeclaration": 493,
                   "type": "contract Registry"
                 },
-                "id": 981,
+                "id": 1004,
                 "name": "UserDefinedTypeName",
                 "src": "596:8:7"
               }
             ],
-            "id": 982,
+            "id": 1005,
             "name": "VariableDeclaration",
             "src": "596:31:7"
           },
@@ -565,7 +565,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "videoId",
-                      "scope": 994,
+                      "scope": 1017,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -578,12 +578,12 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 983,
+                        "id": 1006,
                         "name": "ElementaryTypeName",
                         "src": "664:6:7"
                       }
                     ],
-                    "id": 984,
+                    "id": 1007,
                     "name": "VariableDeclaration",
                     "src": "664:14:7"
                   },
@@ -592,7 +592,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "owner",
-                      "scope": 994,
+                      "scope": 1017,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -605,12 +605,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 985,
+                        "id": 1008,
                         "name": "ElementaryTypeName",
                         "src": "686:7:7"
                       }
                     ],
-                    "id": 986,
+                    "id": 1009,
                     "name": "VariableDeclaration",
                     "src": "686:13:7"
                   },
@@ -619,7 +619,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "price",
-                      "scope": 994,
+                      "scope": 1017,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -632,12 +632,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 987,
+                        "id": 1010,
                         "name": "ElementaryTypeName",
                         "src": "707:4:7"
                       }
                     ],
-                    "id": 988,
+                    "id": 1011,
                     "name": "VariableDeclaration",
                     "src": "707:10:7"
                   },
@@ -646,7 +646,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "ipfsHash",
-                      "scope": 994,
+                      "scope": 1017,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -659,12 +659,12 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 989,
+                        "id": 1012,
                         "name": "ElementaryTypeName",
                         "src": "725:6:7"
                       }
                     ],
-                    "id": 990,
+                    "id": 1013,
                     "name": "VariableDeclaration",
                     "src": "725:15:7"
                   },
@@ -673,7 +673,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "registrar",
-                      "scope": 994,
+                      "scope": 1017,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -686,22 +686,22 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 991,
+                        "id": 1014,
                         "name": "ElementaryTypeName",
                         "src": "748:7:7"
                       }
                     ],
-                    "id": 992,
+                    "id": 1015,
                     "name": "VariableDeclaration",
                     "src": "748:17:7"
                   }
                 ],
-                "id": 993,
+                "id": 1016,
                 "name": "ParameterList",
                 "src": "656:115:7"
               }
             ],
-            "id": 994,
+            "id": 1017,
             "name": "EventDefinition",
             "src": "634:138:7"
           },
@@ -718,7 +718,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "videoId",
-                      "scope": 998,
+                      "scope": 1021,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -731,22 +731,22 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 995,
+                        "id": 1018,
                         "name": "ElementaryTypeName",
                         "src": "803:6:7"
                       }
                     ],
-                    "id": 996,
+                    "id": 1019,
                     "name": "VariableDeclaration",
                     "src": "803:14:7"
                   }
                 ],
-                "id": 997,
+                "id": 1020,
                 "name": "ParameterList",
                 "src": "802:16:7"
               }
             ],
-            "id": 998,
+            "id": 1021,
             "name": "EventDefinition",
             "src": "778:41:7"
           },
@@ -763,7 +763,7 @@
                   ]
                 },
                 "children": [],
-                "id": 999,
+                "id": 1022,
                 "name": "ParameterList",
                 "src": "861:2:7"
               },
@@ -797,11 +797,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1744,
+                              "referencedDeclaration": 1767,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1000,
+                            "id": 1023,
                             "name": "Identifier",
                             "src": "874:7:7"
                           },
@@ -838,16 +838,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1741,
+                                      "referencedDeclaration": 1764,
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 1001,
+                                    "id": 1024,
                                     "name": "Identifier",
                                     "src": "882:3:7"
                                   }
                                 ],
-                                "id": 1002,
+                                "id": 1025,
                                 "name": "MemberAccess",
                                 "src": "882:10:7"
                               },
@@ -889,16 +889,16 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 982,
+                                          "referencedDeclaration": 1005,
                                           "type": "contract Registry",
                                           "value": "paratiiRegistry"
                                         },
-                                        "id": 1003,
+                                        "id": 1026,
                                         "name": "Identifier",
                                         "src": "896:15:7"
                                       }
                                     ],
-                                    "id": 1004,
+                                    "id": 1027,
                                     "name": "MemberAccess",
                                     "src": "896:27:7"
                                   },
@@ -915,42 +915,42 @@
                                       "type": "literal_string \"Users\"",
                                       "value": "Users"
                                     },
-                                    "id": 1005,
+                                    "id": 1028,
                                     "name": "Literal",
                                     "src": "924:7:7"
                                   }
                                 ],
-                                "id": 1006,
+                                "id": 1029,
                                 "name": "FunctionCall",
                                 "src": "896:36:7"
                               }
                             ],
-                            "id": 1007,
+                            "id": 1030,
                             "name": "BinaryOperation",
                             "src": "882:50:7"
                           }
                         ],
-                        "id": 1008,
+                        "id": 1031,
                         "name": "FunctionCall",
                         "src": "874:59:7"
                       }
                     ],
-                    "id": 1009,
+                    "id": 1032,
                     "name": "ExpressionStatement",
                     "src": "874:59:7"
                   },
                   {
-                    "id": 1010,
+                    "id": 1033,
                     "name": "PlaceholderStatement",
                     "src": "943:1:7"
                   }
                 ],
-                "id": 1011,
+                "id": 1034,
                 "name": "Block",
                 "src": "864:87:7"
               }
             ],
-            "id": 1012,
+            "id": 1035,
             "name": "ModifierDefinition",
             "src": "836:115:7"
           },
@@ -966,7 +966,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_videoId",
-                      "scope": 1049,
+                      "scope": 1072,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -979,17 +979,17 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1013,
+                        "id": 1036,
                         "name": "ElementaryTypeName",
                         "src": "988:6:7"
                       }
                     ],
-                    "id": 1014,
+                    "id": 1037,
                     "name": "VariableDeclaration",
                     "src": "988:15:7"
                   }
                 ],
-                "id": 1015,
+                "id": 1038,
                 "name": "ParameterList",
                 "src": "987:17:7"
               },
@@ -998,7 +998,7 @@
                   {
                     "attributes": {
                       "assignments": [
-                        1017
+                        1040
                       ]
                     },
                     "children": [
@@ -1006,7 +1006,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "id",
-                          "scope": 1049,
+                          "scope": 1072,
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "bytes32",
@@ -1019,12 +1019,12 @@
                               "name": "bytes32",
                               "type": "bytes32"
                             },
-                            "id": 1016,
+                            "id": 1039,
                             "name": "ElementaryTypeName",
                             "src": "1013:7:7"
                           }
                         ],
-                        "id": 1017,
+                        "id": 1040,
                         "name": "VariableDeclaration",
                         "src": "1013:10:7"
                       },
@@ -1054,11 +1054,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1735,
+                              "referencedDeclaration": 1758,
                               "type": "function () pure returns (bytes32)",
                               "value": "keccak256"
                             },
-                            "id": 1018,
+                            "id": 1041,
                             "name": "Identifier",
                             "src": "1026:9:7"
                           },
@@ -1068,28 +1068,28 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1014,
+                              "referencedDeclaration": 1037,
                               "type": "string memory",
                               "value": "_videoId"
                             },
-                            "id": 1019,
+                            "id": 1042,
                             "name": "Identifier",
                             "src": "1036:8:7"
                           }
                         ],
-                        "id": 1020,
+                        "id": 1043,
                         "name": "FunctionCall",
                         "src": "1026:19:7"
                       }
                     ],
-                    "id": 1021,
+                    "id": 1044,
                     "name": "VariableDeclarationStatement",
                     "src": "1013:32:7"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        1023
+                        1046
                       ]
                     },
                     "children": [
@@ -1097,7 +1097,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "videoInfo",
-                          "scope": 1049,
+                          "scope": 1072,
                           "stateVariable": false,
                           "storageLocation": "storage",
                           "type": "struct Videos.VideoInfo storage pointer",
@@ -1109,15 +1109,15 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "VideoInfo",
-                              "referencedDeclaration": 976,
+                              "referencedDeclaration": 999,
                               "type": "struct Videos.VideoInfo storage pointer"
                             },
-                            "id": 1022,
+                            "id": 1045,
                             "name": "UserDefinedTypeName",
                             "src": "1053:9:7"
                           }
                         ],
-                        "id": 1023,
+                        "id": 1046,
                         "name": "VariableDeclaration",
                         "src": "1053:27:7"
                       },
@@ -1137,11 +1137,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 980,
+                              "referencedDeclaration": 1003,
                               "type": "mapping(bytes32 => struct Videos.VideoInfo storage ref)",
                               "value": "videos"
                             },
-                            "id": 1024,
+                            "id": 1047,
                             "name": "Identifier",
                             "src": "1083:6:7"
                           },
@@ -1151,21 +1151,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1017,
+                              "referencedDeclaration": 1040,
                               "type": "bytes32",
                               "value": "id"
                             },
-                            "id": 1025,
+                            "id": 1048,
                             "name": "Identifier",
                             "src": "1090:2:7"
                           }
                         ],
-                        "id": 1026,
+                        "id": 1049,
                         "name": "IndexAccess",
                         "src": "1083:10:7"
                       }
                     ],
-                    "id": 1027,
+                    "id": 1050,
                     "name": "VariableDeclarationStatement",
                     "src": "1053:40:7"
                   },
@@ -1197,11 +1197,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1744,
+                              "referencedDeclaration": 1767,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1028,
+                            "id": 1051,
                             "name": "Identifier",
                             "src": "1101:7:7"
                           },
@@ -1253,16 +1253,16 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1741,
+                                          "referencedDeclaration": 1764,
                                           "type": "msg",
                                           "value": "msg"
                                         },
-                                        "id": 1029,
+                                        "id": 1052,
                                         "name": "Identifier",
                                         "src": "1109:3:7"
                                       }
                                     ],
-                                    "id": 1030,
+                                    "id": 1053,
                                     "name": "MemberAccess",
                                     "src": "1109:10:7"
                                   },
@@ -1272,16 +1272,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1273,
+                                      "referencedDeclaration": 1296,
                                       "type": "address",
                                       "value": "owner"
                                     },
-                                    "id": 1031,
+                                    "id": 1054,
                                     "name": "Identifier",
                                     "src": "1123:5:7"
                                   }
                                 ],
-                                "id": 1032,
+                                "id": 1055,
                                 "name": "BinaryOperation",
                                 "src": "1109:19:7"
                               },
@@ -1334,7 +1334,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "registrar",
-                                              "referencedDeclaration": 975,
+                                              "referencedDeclaration": 998,
                                               "type": "address"
                                             },
                                             "children": [
@@ -1344,16 +1344,16 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1023,
+                                                  "referencedDeclaration": 1046,
                                                   "type": "struct Videos.VideoInfo storage pointer",
                                                   "value": "videoInfo"
                                                 },
-                                                "id": 1033,
+                                                "id": 1056,
                                                 "name": "Identifier",
                                                 "src": "1133:9:7"
                                               }
                                             ],
-                                            "id": 1034,
+                                            "id": 1057,
                                             "name": "MemberAccess",
                                             "src": "1133:19:7"
                                           },
@@ -1370,12 +1370,12 @@
                                               "type": "int_const 0",
                                               "value": "0"
                                             },
-                                            "id": 1035,
+                                            "id": 1058,
                                             "name": "Literal",
                                             "src": "1156:1:7"
                                           }
                                         ],
-                                        "id": 1036,
+                                        "id": 1059,
                                         "name": "BinaryOperation",
                                         "src": "1133:24:7"
                                       },
@@ -1412,16 +1412,16 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1741,
+                                                  "referencedDeclaration": 1764,
                                                   "type": "msg",
                                                   "value": "msg"
                                                 },
-                                                "id": 1037,
+                                                "id": 1060,
                                                 "name": "Identifier",
                                                 "src": "1161:3:7"
                                               }
                                             ],
-                                            "id": 1038,
+                                            "id": 1061,
                                             "name": "MemberAccess",
                                             "src": "1161:10:7"
                                           },
@@ -1433,7 +1433,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "registrar",
-                                              "referencedDeclaration": 975,
+                                              "referencedDeclaration": 998,
                                               "type": "address"
                                             },
                                             "children": [
@@ -1443,61 +1443,61 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1023,
+                                                  "referencedDeclaration": 1046,
                                                   "type": "struct Videos.VideoInfo storage pointer",
                                                   "value": "videoInfo"
                                                 },
-                                                "id": 1039,
+                                                "id": 1062,
                                                 "name": "Identifier",
                                                 "src": "1175:9:7"
                                               }
                                             ],
-                                            "id": 1040,
+                                            "id": 1063,
                                             "name": "MemberAccess",
                                             "src": "1175:19:7"
                                           }
                                         ],
-                                        "id": 1041,
+                                        "id": 1064,
                                         "name": "BinaryOperation",
                                         "src": "1161:33:7"
                                       }
                                     ],
-                                    "id": 1042,
+                                    "id": 1065,
                                     "name": "BinaryOperation",
                                     "src": "1133:61:7"
                                   }
                                 ],
-                                "id": 1043,
+                                "id": 1066,
                                 "name": "TupleExpression",
                                 "src": "1132:63:7"
                               }
                             ],
-                            "id": 1044,
+                            "id": 1067,
                             "name": "BinaryOperation",
                             "src": "1109:86:7"
                           }
                         ],
-                        "id": 1045,
+                        "id": 1068,
                         "name": "FunctionCall",
                         "src": "1101:95:7"
                       }
                     ],
-                    "id": 1046,
+                    "id": 1069,
                     "name": "ExpressionStatement",
                     "src": "1101:95:7"
                   },
                   {
-                    "id": 1047,
+                    "id": 1070,
                     "name": "PlaceholderStatement",
                     "src": "1204:1:7"
                   }
                 ],
-                "id": 1048,
+                "id": 1071,
                 "name": "Block",
                 "src": "1005:207:7"
               }
             ],
-            "id": 1049,
+            "id": 1072,
             "name": "ModifierDefinition",
             "src": "957:255:7"
           },
@@ -1511,7 +1511,7 @@
               ],
               "name": "Videos",
               "payable": false,
-              "scope": 1171,
+              "scope": 1194,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1523,7 +1523,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_paratiiRegistry",
-                      "scope": 1064,
+                      "scope": 1087,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "contract Registry",
@@ -1538,17 +1538,17 @@
                           "referencedDeclaration": 493,
                           "type": "contract Registry"
                         },
-                        "id": 1050,
+                        "id": 1073,
                         "name": "UserDefinedTypeName",
                         "src": "1234:8:7"
                       }
                     ],
-                    "id": 1051,
+                    "id": 1074,
                     "name": "VariableDeclaration",
                     "src": "1234:25:7"
                   }
                 ],
-                "id": 1052,
+                "id": 1075,
                 "name": "ParameterList",
                 "src": "1233:27:7"
               },
@@ -1559,7 +1559,7 @@
                   ]
                 },
                 "children": [],
-                "id": 1053,
+                "id": 1076,
                 "name": "ParameterList",
                 "src": "1268:0:7"
               },
@@ -1584,11 +1584,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1273,
+                              "referencedDeclaration": 1296,
                               "type": "address",
                               "value": "owner"
                             },
-                            "id": 1054,
+                            "id": 1077,
                             "name": "Identifier",
                             "src": "1278:5:7"
                           },
@@ -1610,26 +1610,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1741,
+                                  "referencedDeclaration": 1764,
                                   "type": "msg",
                                   "value": "msg"
                                 },
-                                "id": 1055,
+                                "id": 1078,
                                 "name": "Identifier",
                                 "src": "1286:3:7"
                               }
                             ],
-                            "id": 1056,
+                            "id": 1079,
                             "name": "MemberAccess",
                             "src": "1286:10:7"
                           }
                         ],
-                        "id": 1057,
+                        "id": 1080,
                         "name": "Assignment",
                         "src": "1278:18:7"
                       }
                     ],
-                    "id": 1058,
+                    "id": 1081,
                     "name": "ExpressionStatement",
                     "src": "1278:18:7"
                   },
@@ -1652,11 +1652,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 982,
+                              "referencedDeclaration": 1005,
                               "type": "contract Registry",
                               "value": "paratiiRegistry"
                             },
-                            "id": 1059,
+                            "id": 1082,
                             "name": "Identifier",
                             "src": "1306:15:7"
                           },
@@ -1666,31 +1666,31 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1051,
+                              "referencedDeclaration": 1074,
                               "type": "contract Registry",
                               "value": "_paratiiRegistry"
                             },
-                            "id": 1060,
+                            "id": 1083,
                             "name": "Identifier",
                             "src": "1324:16:7"
                           }
                         ],
-                        "id": 1061,
+                        "id": 1084,
                         "name": "Assignment",
                         "src": "1306:34:7"
                       }
                     ],
-                    "id": 1062,
+                    "id": 1085,
                     "name": "ExpressionStatement",
                     "src": "1306:34:7"
                   }
                 ],
-                "id": 1063,
+                "id": 1086,
                 "name": "Block",
                 "src": "1268:79:7"
               }
             ],
-            "id": 1064,
+            "id": 1087,
             "name": "FunctionDefinition",
             "src": "1218:129:7"
           },
@@ -1701,7 +1701,7 @@
               "isConstructor": false,
               "name": "registerVideo",
               "payable": false,
-              "scope": 1171,
+              "scope": 1194,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1713,7 +1713,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_videoId",
-                      "scope": 1110,
+                      "scope": 1133,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -1726,12 +1726,12 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1065,
+                        "id": 1088,
                         "name": "ElementaryTypeName",
                         "src": "1810:6:7"
                       }
                     ],
-                    "id": 1066,
+                    "id": 1089,
                     "name": "VariableDeclaration",
                     "src": "1810:15:7"
                   },
@@ -1739,7 +1739,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_owner",
-                      "scope": 1110,
+                      "scope": 1133,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1752,12 +1752,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1067,
+                        "id": 1090,
                         "name": "ElementaryTypeName",
                         "src": "1835:7:7"
                       }
                     ],
-                    "id": 1068,
+                    "id": 1091,
                     "name": "VariableDeclaration",
                     "src": "1835:14:7"
                   },
@@ -1765,7 +1765,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_price",
-                      "scope": 1110,
+                      "scope": 1133,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1778,12 +1778,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 1069,
+                        "id": 1092,
                         "name": "ElementaryTypeName",
                         "src": "1859:7:7"
                       }
                     ],
-                    "id": 1070,
+                    "id": 1093,
                     "name": "VariableDeclaration",
                     "src": "1859:14:7"
                   },
@@ -1791,7 +1791,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_ipfsHash",
-                      "scope": 1110,
+                      "scope": 1133,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -1804,12 +1804,12 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1071,
+                        "id": 1094,
                         "name": "ElementaryTypeName",
                         "src": "1883:6:7"
                       }
                     ],
-                    "id": 1072,
+                    "id": 1095,
                     "name": "VariableDeclaration",
                     "src": "1883:16:7"
                   },
@@ -1817,7 +1817,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_ipfsData",
-                      "scope": 1110,
+                      "scope": 1133,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -1830,17 +1830,17 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1073,
+                        "id": 1096,
                         "name": "ElementaryTypeName",
                         "src": "1909:6:7"
                       }
                     ],
-                    "id": 1074,
+                    "id": 1097,
                     "name": "VariableDeclaration",
                     "src": "1909:16:7"
                   }
                 ],
-                "id": 1075,
+                "id": 1098,
                 "name": "ParameterList",
                 "src": "1800:131:7"
               },
@@ -1851,7 +1851,7 @@
                   ]
                 },
                 "children": [],
-                "id": 1079,
+                "id": 1102,
                 "name": "ParameterList",
                 "src": "1971:0:7"
               },
@@ -1863,11 +1863,11 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 1049,
+                      "referencedDeclaration": 1072,
                       "type": "modifier (string memory)",
                       "value": "onlyRegistrarOrAvatar"
                     },
-                    "id": 1076,
+                    "id": 1099,
                     "name": "Identifier",
                     "src": "1932:21:7"
                   },
@@ -1877,16 +1877,16 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 1066,
+                      "referencedDeclaration": 1089,
                       "type": "string memory",
                       "value": "_videoId"
                     },
-                    "id": 1077,
+                    "id": 1100,
                     "name": "Identifier",
                     "src": "1954:8:7"
                   }
                 ],
-                "id": 1078,
+                "id": 1101,
                 "name": "ModifierInvocation",
                 "src": "1932:31:7"
               },
@@ -1895,7 +1895,7 @@
                   {
                     "attributes": {
                       "assignments": [
-                        1081
+                        1104
                       ]
                     },
                     "children": [
@@ -1903,7 +1903,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "id",
-                          "scope": 1110,
+                          "scope": 1133,
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "bytes32",
@@ -1916,12 +1916,12 @@
                               "name": "bytes32",
                               "type": "bytes32"
                             },
-                            "id": 1080,
+                            "id": 1103,
                             "name": "ElementaryTypeName",
                             "src": "1982:7:7"
                           }
                         ],
-                        "id": 1081,
+                        "id": 1104,
                         "name": "VariableDeclaration",
                         "src": "1982:10:7"
                       },
@@ -1951,11 +1951,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1735,
+                              "referencedDeclaration": 1758,
                               "type": "function () pure returns (bytes32)",
                               "value": "keccak256"
                             },
-                            "id": 1082,
+                            "id": 1105,
                             "name": "Identifier",
                             "src": "1995:9:7"
                           },
@@ -1965,21 +1965,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1066,
+                              "referencedDeclaration": 1089,
                               "type": "string memory",
                               "value": "_videoId"
                             },
-                            "id": 1083,
+                            "id": 1106,
                             "name": "Identifier",
                             "src": "2005:8:7"
                           }
                         ],
-                        "id": 1084,
+                        "id": 1107,
                         "name": "FunctionCall",
                         "src": "1995:19:7"
                       }
                     ],
-                    "id": 1085,
+                    "id": 1108,
                     "name": "VariableDeclarationStatement",
                     "src": "1982:32:7"
                   },
@@ -2012,11 +2012,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 980,
+                                  "referencedDeclaration": 1003,
                                   "type": "mapping(bytes32 => struct Videos.VideoInfo storage ref)",
                                   "value": "videos"
                                 },
-                                "id": 1086,
+                                "id": 1109,
                                 "name": "Identifier",
                                 "src": "2025:6:7"
                               },
@@ -2026,16 +2026,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1081,
+                                  "referencedDeclaration": 1104,
                                   "type": "bytes32",
                                   "value": "id"
                                 },
-                                "id": 1087,
+                                "id": 1110,
                                 "name": "Identifier",
                                 "src": "2032:2:7"
                               }
                             ],
-                            "id": 1088,
+                            "id": 1111,
                             "name": "IndexAccess",
                             "src": "2025:10:7"
                           },
@@ -2065,11 +2065,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 976,
+                                  "referencedDeclaration": 999,
                                   "type": "type(struct Videos.VideoInfo storage pointer)",
                                   "value": "VideoInfo"
                                 },
-                                "id": 1089,
+                                "id": 1112,
                                 "name": "Identifier",
                                 "src": "2038:9:7"
                               },
@@ -2079,11 +2079,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1081,
+                                  "referencedDeclaration": 1104,
                                   "type": "bytes32",
                                   "value": "id"
                                 },
-                                "id": 1090,
+                                "id": 1113,
                                 "name": "Identifier",
                                 "src": "2067:2:7"
                               },
@@ -2093,11 +2093,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1070,
+                                  "referencedDeclaration": 1093,
                                   "type": "uint256",
                                   "value": "_price"
                                 },
-                                "id": 1091,
+                                "id": 1114,
                                 "name": "Identifier",
                                 "src": "2090:6:7"
                               },
@@ -2107,11 +2107,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1068,
+                                  "referencedDeclaration": 1091,
                                   "type": "address",
                                   "value": "_owner"
                                 },
-                                "id": 1092,
+                                "id": 1115,
                                 "name": "Identifier",
                                 "src": "2117:6:7"
                               },
@@ -2121,11 +2121,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1072,
+                                  "referencedDeclaration": 1095,
                                   "type": "string memory",
                                   "value": "_ipfsHash"
                                 },
-                                "id": 1093,
+                                "id": 1116,
                                 "name": "Identifier",
                                 "src": "2147:9:7"
                               },
@@ -2135,11 +2135,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1074,
+                                  "referencedDeclaration": 1097,
                                   "type": "string memory",
                                   "value": "_ipfsData"
                                 },
-                                "id": 1094,
+                                "id": 1117,
                                 "name": "Identifier",
                                 "src": "2180:9:7"
                               },
@@ -2161,31 +2161,31 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1741,
+                                      "referencedDeclaration": 1764,
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 1095,
+                                    "id": 1118,
                                     "name": "Identifier",
                                     "src": "2214:3:7"
                                   }
                                 ],
-                                "id": 1096,
+                                "id": 1119,
                                 "name": "MemberAccess",
                                 "src": "2214:10:7"
                               }
                             ],
-                            "id": 1097,
+                            "id": 1120,
                             "name": "FunctionCall",
                             "src": "2038:199:7"
                           }
                         ],
-                        "id": 1098,
+                        "id": 1121,
                         "name": "Assignment",
                         "src": "2025:212:7"
                       }
                     ],
-                    "id": 1099,
+                    "id": 1122,
                     "name": "ExpressionStatement",
                     "src": "2025:212:7"
                   },
@@ -2233,11 +2233,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 994,
+                              "referencedDeclaration": 1017,
                               "type": "function (string memory,address,uint256,string memory,address)",
                               "value": "LogRegisterVideo"
                             },
-                            "id": 1100,
+                            "id": 1123,
                             "name": "Identifier",
                             "src": "2248:16:7"
                           },
@@ -2247,11 +2247,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1066,
+                              "referencedDeclaration": 1089,
                               "type": "string memory",
                               "value": "_videoId"
                             },
-                            "id": 1101,
+                            "id": 1124,
                             "name": "Identifier",
                             "src": "2265:8:7"
                           },
@@ -2261,11 +2261,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1068,
+                              "referencedDeclaration": 1091,
                               "type": "address",
                               "value": "_owner"
                             },
-                            "id": 1102,
+                            "id": 1125,
                             "name": "Identifier",
                             "src": "2275:6:7"
                           },
@@ -2275,11 +2275,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1070,
+                              "referencedDeclaration": 1093,
                               "type": "uint256",
                               "value": "_price"
                             },
-                            "id": 1103,
+                            "id": 1126,
                             "name": "Identifier",
                             "src": "2283:6:7"
                           },
@@ -2289,11 +2289,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1072,
+                              "referencedDeclaration": 1095,
                               "type": "string memory",
                               "value": "_ipfsHash"
                             },
-                            "id": 1104,
+                            "id": 1127,
                             "name": "Identifier",
                             "src": "2291:9:7"
                           },
@@ -2315,36 +2315,36 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1741,
+                                  "referencedDeclaration": 1764,
                                   "type": "msg",
                                   "value": "msg"
                                 },
-                                "id": 1105,
+                                "id": 1128,
                                 "name": "Identifier",
                                 "src": "2302:3:7"
                               }
                             ],
-                            "id": 1106,
+                            "id": 1129,
                             "name": "MemberAccess",
                             "src": "2302:10:7"
                           }
                         ],
-                        "id": 1107,
+                        "id": 1130,
                         "name": "FunctionCall",
                         "src": "2248:65:7"
                       }
                     ],
-                    "id": 1108,
+                    "id": 1131,
                     "name": "ExpressionStatement",
                     "src": "2248:65:7"
                   }
                 ],
-                "id": 1109,
+                "id": 1132,
                 "name": "Block",
                 "src": "1971:349:7"
               }
             ],
-            "id": 1110,
+            "id": 1133,
             "name": "FunctionDefinition",
             "src": "1778:542:7"
           },
@@ -2355,7 +2355,7 @@
               "isConstructor": false,
               "name": "unregisterVideo",
               "payable": false,
-              "scope": 1171,
+              "scope": 1194,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -2367,7 +2367,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_videoId",
-                      "scope": 1134,
+                      "scope": 1157,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -2380,17 +2380,17 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1111,
+                        "id": 1134,
                         "name": "ElementaryTypeName",
                         "src": "2351:6:7"
                       }
                     ],
-                    "id": 1112,
+                    "id": 1135,
                     "name": "VariableDeclaration",
                     "src": "2351:15:7"
                   }
                 ],
-                "id": 1113,
+                "id": 1136,
                 "name": "ParameterList",
                 "src": "2350:17:7"
               },
@@ -2401,7 +2401,7 @@
                   ]
                 },
                 "children": [],
-                "id": 1117,
+                "id": 1140,
                 "name": "ParameterList",
                 "src": "2407:0:7"
               },
@@ -2413,11 +2413,11 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 1049,
+                      "referencedDeclaration": 1072,
                       "type": "modifier (string memory)",
                       "value": "onlyRegistrarOrAvatar"
                     },
-                    "id": 1114,
+                    "id": 1137,
                     "name": "Identifier",
                     "src": "2375:21:7"
                   },
@@ -2427,16 +2427,16 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 1112,
+                      "referencedDeclaration": 1135,
                       "type": "string memory",
                       "value": "_videoId"
                     },
-                    "id": 1115,
+                    "id": 1138,
                     "name": "Identifier",
                     "src": "2397:8:7"
                   }
                 ],
-                "id": 1116,
+                "id": 1139,
                 "name": "ModifierInvocation",
                 "src": "2375:31:7"
               },
@@ -2445,7 +2445,7 @@
                   {
                     "attributes": {
                       "assignments": [
-                        1119
+                        1142
                       ]
                     },
                     "children": [
@@ -2453,7 +2453,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "id",
-                          "scope": 1134,
+                          "scope": 1157,
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "bytes32",
@@ -2466,12 +2466,12 @@
                               "name": "bytes32",
                               "type": "bytes32"
                             },
-                            "id": 1118,
+                            "id": 1141,
                             "name": "ElementaryTypeName",
                             "src": "2417:7:7"
                           }
                         ],
-                        "id": 1119,
+                        "id": 1142,
                         "name": "VariableDeclaration",
                         "src": "2417:10:7"
                       },
@@ -2501,11 +2501,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1735,
+                              "referencedDeclaration": 1758,
                               "type": "function () pure returns (bytes32)",
                               "value": "keccak256"
                             },
-                            "id": 1120,
+                            "id": 1143,
                             "name": "Identifier",
                             "src": "2430:9:7"
                           },
@@ -2515,21 +2515,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1112,
+                              "referencedDeclaration": 1135,
                               "type": "string memory",
                               "value": "_videoId"
                             },
-                            "id": 1121,
+                            "id": 1144,
                             "name": "Identifier",
                             "src": "2440:8:7"
                           }
                         ],
-                        "id": 1122,
+                        "id": 1145,
                         "name": "FunctionCall",
                         "src": "2430:19:7"
                       }
                     ],
-                    "id": 1123,
+                    "id": 1146,
                     "name": "VariableDeclarationStatement",
                     "src": "2417:32:7"
                   },
@@ -2563,11 +2563,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 980,
+                                  "referencedDeclaration": 1003,
                                   "type": "mapping(bytes32 => struct Videos.VideoInfo storage ref)",
                                   "value": "videos"
                                 },
-                                "id": 1124,
+                                "id": 1147,
                                 "name": "Identifier",
                                 "src": "2466:6:7"
                               },
@@ -2577,26 +2577,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1119,
+                                  "referencedDeclaration": 1142,
                                   "type": "bytes32",
                                   "value": "id"
                                 },
-                                "id": 1125,
+                                "id": 1148,
                                 "name": "Identifier",
                                 "src": "2473:2:7"
                               }
                             ],
-                            "id": 1126,
+                            "id": 1149,
                             "name": "IndexAccess",
                             "src": "2466:10:7"
                           }
                         ],
-                        "id": 1127,
+                        "id": 1150,
                         "name": "UnaryOperation",
                         "src": "2459:17:7"
                       }
                     ],
-                    "id": 1128,
+                    "id": 1151,
                     "name": "ExpressionStatement",
                     "src": "2459:17:7"
                   },
@@ -2628,11 +2628,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 998,
+                              "referencedDeclaration": 1021,
                               "type": "function (string memory)",
                               "value": "LogUnregisterVideo"
                             },
-                            "id": 1129,
+                            "id": 1152,
                             "name": "Identifier",
                             "src": "2486:18:7"
                           },
@@ -2642,31 +2642,31 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1112,
+                              "referencedDeclaration": 1135,
                               "type": "string memory",
                               "value": "_videoId"
                             },
-                            "id": 1130,
+                            "id": 1153,
                             "name": "Identifier",
                             "src": "2505:8:7"
                           }
                         ],
-                        "id": 1131,
+                        "id": 1154,
                         "name": "FunctionCall",
                         "src": "2486:28:7"
                       }
                     ],
-                    "id": 1132,
+                    "id": 1155,
                     "name": "ExpressionStatement",
                     "src": "2486:28:7"
                   }
                 ],
-                "id": 1133,
+                "id": 1156,
                 "name": "Block",
                 "src": "2407:114:7"
               }
             ],
-            "id": 1134,
+            "id": 1157,
             "name": "FunctionDefinition",
             "src": "2326:195:7"
           },
@@ -2680,7 +2680,7 @@
               ],
               "name": "getVideoInfo",
               "payable": false,
-              "scope": 1171,
+              "scope": 1194,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -2692,7 +2692,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_videoId",
-                      "scope": 1170,
+                      "scope": 1193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -2705,17 +2705,17 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1135,
+                        "id": 1158,
                         "name": "ElementaryTypeName",
                         "src": "2678:6:7"
                       }
                     ],
-                    "id": 1136,
+                    "id": 1159,
                     "name": "VariableDeclaration",
                     "src": "2678:15:7"
                   }
                 ],
-                "id": 1137,
+                "id": 1160,
                 "name": "ParameterList",
                 "src": "2677:17:7"
               },
@@ -2725,7 +2725,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1170,
+                      "scope": 1193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -2738,12 +2738,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1138,
+                        "id": 1161,
                         "name": "ElementaryTypeName",
                         "src": "2725:7:7"
                       }
                     ],
-                    "id": 1139,
+                    "id": 1162,
                     "name": "VariableDeclaration",
                     "src": "2725:7:7"
                   },
@@ -2751,7 +2751,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1170,
+                      "scope": 1193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2764,12 +2764,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 1140,
+                        "id": 1163,
                         "name": "ElementaryTypeName",
                         "src": "2734:7:7"
                       }
                     ],
-                    "id": 1141,
+                    "id": 1164,
                     "name": "VariableDeclaration",
                     "src": "2734:7:7"
                   },
@@ -2777,7 +2777,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1170,
+                      "scope": 1193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -2790,12 +2790,12 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1142,
+                        "id": 1165,
                         "name": "ElementaryTypeName",
                         "src": "2743:6:7"
                       }
                     ],
-                    "id": 1143,
+                    "id": 1166,
                     "name": "VariableDeclaration",
                     "src": "2743:6:7"
                   },
@@ -2803,7 +2803,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1170,
+                      "scope": 1193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "string memory",
@@ -2816,12 +2816,12 @@
                           "name": "string",
                           "type": "string storage pointer"
                         },
-                        "id": 1144,
+                        "id": 1167,
                         "name": "ElementaryTypeName",
                         "src": "2751:6:7"
                       }
                     ],
-                    "id": 1145,
+                    "id": 1168,
                     "name": "VariableDeclaration",
                     "src": "2751:6:7"
                   },
@@ -2829,7 +2829,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1170,
+                      "scope": 1193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -2842,17 +2842,17 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1146,
+                        "id": 1169,
                         "name": "ElementaryTypeName",
                         "src": "2759:7:7"
                       }
                     ],
-                    "id": 1147,
+                    "id": 1170,
                     "name": "VariableDeclaration",
                     "src": "2759:7:7"
                   }
                 ],
-                "id": 1148,
+                "id": 1171,
                 "name": "ParameterList",
                 "src": "2724:43:7"
               },
@@ -2861,7 +2861,7 @@
                   {
                     "attributes": {
                       "assignments": [
-                        1150
+                        1173
                       ]
                     },
                     "children": [
@@ -2869,7 +2869,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "videoInfo",
-                          "scope": 1170,
+                          "scope": 1193,
                           "stateVariable": false,
                           "storageLocation": "storage",
                           "type": "struct Videos.VideoInfo storage pointer",
@@ -2881,15 +2881,15 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "VideoInfo",
-                              "referencedDeclaration": 976,
+                              "referencedDeclaration": 999,
                               "type": "struct Videos.VideoInfo storage pointer"
                             },
-                            "id": 1149,
+                            "id": 1172,
                             "name": "UserDefinedTypeName",
                             "src": "2780:9:7"
                           }
                         ],
-                        "id": 1150,
+                        "id": 1173,
                         "name": "VariableDeclaration",
                         "src": "2780:27:7"
                       },
@@ -2909,11 +2909,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 980,
+                              "referencedDeclaration": 1003,
                               "type": "mapping(bytes32 => struct Videos.VideoInfo storage ref)",
                               "value": "videos"
                             },
-                            "id": 1151,
+                            "id": 1174,
                             "name": "Identifier",
                             "src": "2810:6:7"
                           },
@@ -2943,11 +2943,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1735,
+                                  "referencedDeclaration": 1758,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
-                                "id": 1152,
+                                "id": 1175,
                                 "name": "Identifier",
                                 "src": "2817:9:7"
                               },
@@ -2957,32 +2957,32 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1136,
+                                  "referencedDeclaration": 1159,
                                   "type": "string memory",
                                   "value": "_videoId"
                                 },
-                                "id": 1153,
+                                "id": 1176,
                                 "name": "Identifier",
                                 "src": "2827:8:7"
                               }
                             ],
-                            "id": 1154,
+                            "id": 1177,
                             "name": "FunctionCall",
                             "src": "2817:19:7"
                           }
                         ],
-                        "id": 1155,
+                        "id": 1178,
                         "name": "IndexAccess",
                         "src": "2810:27:7"
                       }
                     ],
-                    "id": 1156,
+                    "id": 1179,
                     "name": "VariableDeclarationStatement",
                     "src": "2780:57:7"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1148
+                      "functionReturnParameters": 1171
                     },
                     "children": [
                       {
@@ -3004,7 +3004,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "owner",
-                              "referencedDeclaration": 973,
+                              "referencedDeclaration": 996,
                               "type": "address"
                             },
                             "children": [
@@ -3014,16 +3014,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1150,
+                                  "referencedDeclaration": 1173,
                                   "type": "struct Videos.VideoInfo storage pointer",
                                   "value": "videoInfo"
                                 },
-                                "id": 1157,
+                                "id": 1180,
                                 "name": "Identifier",
                                 "src": "2853:9:7"
                               }
                             ],
-                            "id": 1158,
+                            "id": 1181,
                             "name": "MemberAccess",
                             "src": "2853:15:7"
                           },
@@ -3035,7 +3035,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "price",
-                              "referencedDeclaration": 971,
+                              "referencedDeclaration": 994,
                               "type": "uint256"
                             },
                             "children": [
@@ -3045,16 +3045,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1150,
+                                  "referencedDeclaration": 1173,
                                   "type": "struct Videos.VideoInfo storage pointer",
                                   "value": "videoInfo"
                                 },
-                                "id": 1159,
+                                "id": 1182,
                                 "name": "Identifier",
                                 "src": "2870:9:7"
                               }
                             ],
-                            "id": 1160,
+                            "id": 1183,
                             "name": "MemberAccess",
                             "src": "2870:15:7"
                           },
@@ -3066,7 +3066,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "ipfsHash",
-                              "referencedDeclaration": 967,
+                              "referencedDeclaration": 990,
                               "type": "string storage ref"
                             },
                             "children": [
@@ -3076,16 +3076,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1150,
+                                  "referencedDeclaration": 1173,
                                   "type": "struct Videos.VideoInfo storage pointer",
                                   "value": "videoInfo"
                                 },
-                                "id": 1161,
+                                "id": 1184,
                                 "name": "Identifier",
                                 "src": "2887:9:7"
                               }
                             ],
-                            "id": 1162,
+                            "id": 1185,
                             "name": "MemberAccess",
                             "src": "2887:18:7"
                           },
@@ -3097,7 +3097,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "ipfsData",
-                              "referencedDeclaration": 969,
+                              "referencedDeclaration": 992,
                               "type": "string storage ref"
                             },
                             "children": [
@@ -3107,16 +3107,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1150,
+                                  "referencedDeclaration": 1173,
                                   "type": "struct Videos.VideoInfo storage pointer",
                                   "value": "videoInfo"
                                 },
-                                "id": 1163,
+                                "id": 1186,
                                 "name": "Identifier",
                                 "src": "2907:9:7"
                               }
                             ],
-                            "id": 1164,
+                            "id": 1187,
                             "name": "MemberAccess",
                             "src": "2907:18:7"
                           },
@@ -3128,7 +3128,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "registrar",
-                              "referencedDeclaration": 975,
+                              "referencedDeclaration": 998,
                               "type": "address"
                             },
                             "children": [
@@ -3138,46 +3138,46 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1150,
+                                  "referencedDeclaration": 1173,
                                   "type": "struct Videos.VideoInfo storage pointer",
                                   "value": "videoInfo"
                                 },
-                                "id": 1165,
+                                "id": 1188,
                                 "name": "Identifier",
                                 "src": "2927:9:7"
                               }
                             ],
-                            "id": 1166,
+                            "id": 1189,
                             "name": "MemberAccess",
                             "src": "2927:19:7"
                           }
                         ],
-                        "id": 1167,
+                        "id": 1190,
                         "name": "TupleExpression",
                         "src": "2852:95:7"
                       }
                     ],
-                    "id": 1168,
+                    "id": 1191,
                     "name": "Return",
                     "src": "2845:102:7"
                   }
                 ],
-                "id": 1169,
+                "id": 1192,
                 "name": "Block",
                 "src": "2772:182:7"
               }
             ],
-            "id": 1170,
+            "id": 1193,
             "name": "FunctionDefinition",
             "src": "2656:298:7"
           }
         ],
-        "id": 1171,
+        "id": 1194,
         "name": "ContractDefinition",
         "src": "168:3745:7"
       }
     ],
-    "id": 1172,
+    "id": 1195,
     "name": "SourceUnit",
     "src": "0:3914:7"
   },
@@ -3187,5 +3187,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-02T13:20:39.018Z"
+  "updatedAt": "2018-01-03T09:31:26.144Z"
 }

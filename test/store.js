@@ -29,6 +29,7 @@ contract('Store', function (accounts) {
     assert.isOk(price === Number(web3.toWei(14)))
     price = web3.toWei(14)
 
+    // register the video
     await videoRegistry.registerVideo(videoId, owner, Number(price), ipfsHash, ipfsData)
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, Number(price) + (1 * 10 ** 18))
@@ -48,9 +49,9 @@ contract('Store', function (accounts) {
 
     //  (2) instruct the avatar to actually buy the video (calling store.buyVideo())
     let tx = await store.buyVideo(videoId, ipfsDataProofOfBuy, {from: buyer})
-    assert.equal(getInfoFromLogs(tx, '_videoId', 'LogCreateSale'), videoId)
-    assert.equal(getInfoFromLogs(tx, '_buyer', 'LogCreateSale'), buyer)
-    assert.equal(Number(getInfoFromLogs(tx, '_price', 'LogCreateSale')), price)
+    assert.equal(getInfoFromLogs(tx, '_videoId', 'LogBuyVideo'), videoId)
+    assert.equal(getInfoFromLogs(tx, '_buyer', 'LogBuyVideo'), buyer)
+    assert.equal(Number(getInfoFromLogs(tx, '_price', 'LogBuyVideo')), price)
 
     // 30% of the price should have gone to the redistribution pool (i.e. the avatar)
     assert.equal(Number(await paratiiToken.balanceOf(avatar.address)) - avatarBalance, 0.3 * price)
