@@ -30,7 +30,7 @@ contract('Store', function (accounts) {
     price = web3.toWei(14)
 
     // register the video
-    await videoRegistry.registerVideo(videoId, owner, Number(price), ipfsHash, ipfsData)
+    await videoRegistry.create(videoId, owner, Number(price), ipfsHash, ipfsData)
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, Number(price) + (1 * 10 ** 18))
 

@@ -43,7 +43,7 @@ contract Store is Ownable, Debug {
        // get the info about the video
        Avatar avatar = Avatar(registry.getContract('Avatar'));
        Videos videos = Videos(registry.getContract('Videos'));
-       var (owner, price, _3, _4_, _5) = videos.getVideoInfo(videoId);
+       var (owner, price, _3, _4_, _5) = videos.get(videoId);
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        avatar.transferFrom(msg.sender, address(avatar), paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);

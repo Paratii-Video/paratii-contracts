@@ -6,12 +6,6 @@ import './Registry.sol';
 
 contract Videos is Ownable {
 
-    /*struct Stats {
-        uint256 views;
-        uint256 likes;
-        uint256 dislikes;
-    }
-*/
     struct VideoInfo {
       bytes32 _id;
       string ipfsHash;
@@ -19,13 +13,12 @@ contract Videos is Ownable {
       uint256 price; // price in PTI-wei
       address owner;
       address registrar; // the account that has registered this video
-      /*Stats stats;*/
     }
 
     mapping (bytes32=>VideoInfo) videos;
     Registry public paratiiRegistry;
 
-    event LogRegisterVideo(
+    event LogCreateVideo(
       string videoId,
       address owner,
       uint price,
@@ -33,7 +26,7 @@ contract Videos is Ownable {
       address registrar
     );
 
-    event LogUnregisterVideo(string videoId);
+    event LogRemoveVideo(string videoId);
 
     // ???
     modifier onlyUserRegistry() {
@@ -62,7 +55,7 @@ contract Videos is Ownable {
      * @param _ipfsData the IPFS hash where a JSON with further information about htis video can be found
      **/
 
-    function registerVideo(
+    function create(
         string _videoId,
         address _owner,
         uint256 _price,
@@ -81,13 +74,13 @@ contract Videos is Ownable {
             registrar: msg.sender
           });
 
-        LogRegisterVideo(_videoId, _owner, _price, _ipfsHash, msg.sender);
+        LogCreateVideo(_videoId, _owner, _price, _ipfsHash, msg.sender);
     }
 
-    function unregisterVideo(string _videoId) public onlyRegistrarOrAvatar(_videoId) {
+    function remove(string _videoId) public onlyRegistrarOrAvatar(_videoId) {
         bytes32 id = keccak256(_videoId);
         delete videos[id];
-        LogUnregisterVideo(_videoId);
+        LogRemoveVideo(_videoId);
     }
 
     /**
@@ -95,7 +88,7 @@ contract Videos is Ownable {
      * @return a tuple (owner, price, ipfsHash, ipfsData, registrar)
      */
 
-    function getVideoInfo(string _videoId) public constant
+    function get(string _videoId) public constant
       returns(address, uint256, string, string, address)
     {
       VideoInfo storage videoInfo = videos[keccak256(_videoId)];
