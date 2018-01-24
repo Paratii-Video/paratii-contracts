@@ -42,8 +42,8 @@ contract Store is Ownable, Debug {
     function buyVideo(string videoId, string ipfsData) public returns(bool)  {
        // get the info about the video
        Avatar avatar = Avatar(registry.getContract('Avatar'));
-       Videos videos = Videos(registry.getContract('Videos'));
-       var (owner, price, _3, _4_, _5) = videos.get(videoId);
+       /*Videos videos = Videos(registry.getContract('Videos'));*/
+       var (owner, price, _3, _4_, _5, _6) = Videos(registry.getContract('Videos')).get(videoId);
        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
        avatar.transferFrom(msg.sender, address(avatar), paratiiPart);
        uint256 ownerPart = price.sub(paratiiPart);
