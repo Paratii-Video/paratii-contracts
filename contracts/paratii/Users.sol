@@ -16,13 +16,13 @@ contract Users is Ownable {
     mapping (address=>UserInfo) public users;
 
     event LogCreateUser(
-      address _address,
+      address indexed _address,
       string _name,
       string _email,
       string _ipfsData
     );
 
-    event LogRemoveUser(address _address);
+    event LogRemoveUser(address indexed _address);
 
     modifier onlyOwnerOrUser(address _address) {
       require(msg.sender == owner || msg.sender == _address);

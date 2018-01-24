@@ -29,7 +29,7 @@ contract Videos is Ownable {
       address registrar
     );
 
-    event LogRemoveVideo(string videoId);
+    event LogRemoveVideo(string indexed videoId);
 
     // ???
     modifier onlyUserRegistry() {
