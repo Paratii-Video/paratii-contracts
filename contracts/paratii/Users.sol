@@ -1,13 +1,11 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import './Videos.sol';
 import './Registry.sol';
 
 contract Users is Ownable {
 
     Registry registry;
-    Videos videoRegistry;
 
     struct UserInfo {
       string name;
