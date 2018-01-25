@@ -20,7 +20,7 @@ contract Videos is Ownable {
     Registry public paratiiRegistry;
 
     event LogCreateVideo(
-      string indexed videoId,
+      string videoId,
       address owner,
       uint price,
       string ipfsHashOrig,
@@ -29,7 +29,7 @@ contract Videos is Ownable {
       address registrar
     );
 
-    event LogRemoveVideo(string indexed videoId);
+    event LogRemoveVideo(string videoId);
 
     // ???
     modifier onlyUserRegistry() {
