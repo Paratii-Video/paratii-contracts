@@ -52,6 +52,6 @@ contract('Sales contract:', function (accounts) {
     tx = await sales.create(accounts[1], videoId, 0, ipfsData, {from: storeAddress})
     assert.equal(getInfoFromLogs(tx, '_videoId', 'LogCreateSale'), videoId)
 
-    expectError(function () { return sales.create(accounts[1], videoId, 0, ipfsData, {from: accounts[4]}) })
+    await expectError(function () { return sales.create(accounts[1], videoId, 0, ipfsData, {from: accounts[4]}) })
   })
 })
