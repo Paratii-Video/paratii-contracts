@@ -36,7 +36,7 @@ export async function expectError (f, expectedErrorMsg) {
   } catch (err) {
     // assert.equal(String(err), expectedErrorMsg)
     if (expectedErrorMsg) {
-      assert(String(err).find(expectedErrorMsg) > 0)
+      assert(String(err).indexOf(expectedErrorMsg) >= 0)
     }
     return
   }
