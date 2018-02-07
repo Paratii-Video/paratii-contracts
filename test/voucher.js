@@ -48,12 +48,12 @@ contract('Vouchers: ', function (accounts) {
     await vouchers.redeem(voucher, {from: accounts[2]})
     await expectError(function () {
       return vouchers.redeem(voucher, {from: accounts[2]})
-    })
+    }, 'revert')
   })
 
   it('only the owner can add vouchers', async function () {
     await expectError(function () {
       return vouchers.create('some-new-code', amount, {from: accounts[2]})
-    }, 'xx')
+    }, 'revert')
   })
 })

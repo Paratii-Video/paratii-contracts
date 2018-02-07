@@ -36,7 +36,8 @@ export async function expectError (f, expectedErrorMsg) {
   } catch (err) {
     // assert.equal(String(err), expectedErrorMsg)
     if (expectedErrorMsg) {
-      assert(String(err).indexOf(expectedErrorMsg) >= 0)
+      let msg = `Expected to find ${expectedErrorMsg}, got ${err} instead`
+      assert(String(err).indexOf(expectedErrorMsg) >= 0, msg)
     }
     return
   }
