@@ -21,7 +21,7 @@ More information about the Paratii Project can be found on [paratii.video](http:
 
 In one window, run:
 
-    yarn testrpc
+    yarn ganache
 
 and in another:  
 

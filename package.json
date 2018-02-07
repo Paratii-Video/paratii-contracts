@@ -8,8 +8,10 @@
   },
   "scripts": {
     "test": "truffle test",
-    "testrpc": "testrpc --deterministic",
-    "testrpc_pm2": "pm2 start testrpc",
+    "ganache": "ganache-cli --deterministic",
+    "ganache_pm2": "pm2 start ganache-cli",
+    "testrpc": "yarn run ganache",
+    "testrpc_pm2": "yarn run ganache_pm2",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "truffle": "truffle",

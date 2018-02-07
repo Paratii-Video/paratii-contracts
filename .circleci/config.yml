@@ -37,7 +37,7 @@ jobs:
 
       - run: yarn lint
       - run:
-          name: run testrpc in background
-          command: yarn testrpc
+          name: run ganache (testrpc) in background
+          command: yarn ganache
           background: true
       - run: yarn test

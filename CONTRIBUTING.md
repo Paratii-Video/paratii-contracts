@@ -21,9 +21,9 @@ Installation of dependencies. After cloning the repository run:
 
 ## Run the tests
 
-To run the test locally use a local blockchain using testrpc, just run:
+To run the test locally use a local blockchain using ganache (testrpc), open a terminal window and run:
 
-    yarn testrpc
+    yarn ganache
 
 On a second terminal, run the tests:
 
