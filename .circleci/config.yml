@@ -22,18 +22,15 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+          - v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: yarn truffle compile
       # next line seems to be needed to get the latest version - ???
-      - run: npm install web3
+      # - run: npm install web3
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run: yarn lint
       - run:
