@@ -6,9 +6,11 @@ const Views = artifacts.require('./Views')
 const Registry = artifacts.require('./Registry')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 const SendEther = artifacts.require('./SendEther')
+const Store = artifacts.require('./Store')
 const Users = artifacts.require('./Users')
 const Videos = artifacts.require('./Videos')
-const Store = artifacts.require('./Store')
+const Vouchers = artifacts.require('./Vouchers')
+
 export const NULL_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
@@ -22,7 +24,8 @@ export let
   userRegistry,
   videoRegistry,
   store,
-  views
+  views,
+  vouchers
 
 export async function expectError (f, expectedErrorMsg) {
   // let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
@@ -67,8 +70,12 @@ export async function setupParatiiContracts () {
 
   store = await Store.new(paratiiRegistry.address)
   await paratiiRegistry.registerAddress('Store', store.address)
+
   views = await Views.new(paratiiRegistry.address)
   await paratiiRegistry.registerAddress('Views', views.address)
+
+  vouchers = await Vouchers.new(paratiiRegistry.address)
+  await paratiiRegistry.registerAddress('Vouchers', vouchers.address)
 
   // give 30 percent of eah video to the redistribution pool
   await paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
