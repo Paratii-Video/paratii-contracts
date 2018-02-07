@@ -1,4 +1,4 @@
-import { NULL_ADDRESS, expectError, getInfoFromLogs, setupParatiiContracts, videoRegistry } from './utils.js'
+import { NULL_ADDRESS, expectError, getInfoFromLogs, setupParatiiContracts, videoRegistry, paratiiRegistry } from './utils.js'
 
 var Videos = artifacts.require('./Videos.sol')
 
@@ -10,9 +10,11 @@ contract('Videos: ', function (accounts) {
   let ipfsHash = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsHash'
   let ipfsData = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsData'
   let videoInfo
+  before(function () {
+    setupParatiiContracts()
+  })
 
   it('should register a video', async function () {
-    await setupParatiiContracts()
     let tx = await videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
     assert.equal(getInfoFromLogs(tx, 'videoId', 'LogCreateVideo'), videoId)
     assert.equal(getInfoFromLogs(tx, 'owner', 'LogCreateVideo'), videoOwner)
@@ -28,12 +30,12 @@ contract('Videos: ', function (accounts) {
   })
 
   it('anyone can register a video', async function () {
-    let videoRegistry = await Videos.new()
+    let videoRegistry = await Videos.new(paratiiRegistry.options.address)
     return videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
   })
 
   it('only registrar or the Avatar can unregister a video', async function () {
-    let videoRegistry = await Videos.new()
+    let videoRegistry = await Videos.new(paratiiRegistry.options.address)
     await videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
 
     // accounts[1] is the registrar
@@ -53,7 +55,7 @@ contract('Videos: ', function (accounts) {
   })
 
   it('only registrar or the Avatar update the information of a video', async function () {
-    let videoRegistry = await Videos.new()
+    let videoRegistry = await Videos.new(paratiiRegistry.options.address)
     await videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
 
     videoInfo = await videoRegistry.get(videoId)

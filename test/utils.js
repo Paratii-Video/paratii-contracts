@@ -45,35 +45,35 @@ export async function setupParatiiContracts () {
   paratiiRegistry = await Registry.new()
 
   paratiiToken = await ParatiiToken.new()
-  paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
+  await paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
 
   sendEther = await SendEther.new()
-  paratiiRegistry.registerAddress('SendEther', sendEther.address)
+  await paratiiRegistry.registerAddress('SendEther', sendEther.address)
 
   videoRegistry = await Videos.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Videos', videoRegistry.address)
+  await paratiiRegistry.registerAddress('Videos', videoRegistry.address)
 
   avatar = await Avatar.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Avatar', avatar.address)
+  await paratiiRegistry.registerAddress('Avatar', avatar.address)
 
   userRegistry = await Users.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Users', userRegistry.address)
+  await paratiiRegistry.registerAddress('Users', userRegistry.address)
 
   likes = await Likes.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Likes', likes.address)
+  await paratiiRegistry.registerAddress('Likes', likes.address)
 
   sales = await Sales.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Sales', sales.address)
+  await paratiiRegistry.registerAddress('Sales', sales.address)
 
   store = await Store.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Store', store.address)
+  await paratiiRegistry.registerAddress('Store', store.address)
   views = await Views.new(paratiiRegistry.address)
-  paratiiRegistry.registerAddress('Views', views.address)
+  await paratiiRegistry.registerAddress('Views', views.address)
 
   // give 30 percent of eah video to the redistribution pool
-  paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
+  await paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 
-  avatar.addToWhitelist(store.address)
+  await avatar.addToWhitelist(store.address)
   return paratiiRegistry
 }
 

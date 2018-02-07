@@ -7,10 +7,12 @@ import {
 contract('Likes', function (accounts) {
   let videoId = '1234'
   let tx
+  // before(function () {
+  //   setupParatiiContracts()
+  // })
 
   it('like video should work as expected', async function () {
     await setupParatiiContracts()
-
     assert.equal(await likes.userLikesVideo(accounts[1], videoId).valueOf(), false)
     assert.equal(await likes.userDislikesVideo(accounts[1], videoId).valueOf(), false)
 
