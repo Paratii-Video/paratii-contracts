@@ -6,21 +6,17 @@ import {
   paratiiToken,
   setupParatiiContracts,
   videoRegistry,
-  paratiiRegistry,
   store
 } from './utils.js'
 
 contract('Store', function (accounts) {
-  it.skip('should be initialized', async function () {
-    assert.equal(await store.registry(), paratiiRegistry.address)
-  })
-
   it('should be able to buy a registered video', async function () {
     await setupParatiiContracts()
     let buyer = accounts[1]
     let owner = accounts[2]
     let videoId = '0x1234'
     let price = 14 * 10 ** 18
+    let ipfsHashOrig = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkgyipfsHashOrig'
     let ipfsHash = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsHash'
     let ipfsData = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsData'
     let ipfsDataProofOfBuy = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsData'
@@ -30,7 +26,7 @@ contract('Store', function (accounts) {
     price = web3.toWei(14)
 
     // register the video
-    await videoRegistry.create(videoId, owner, Number(price), ipfsHash, ipfsData)
+    await videoRegistry.create(videoId, owner, Number(price), ipfsHashOrig, ipfsHash, ipfsData)
     // get the buyer some PTI
     await paratiiToken.transfer(buyer, Number(price) + (1 * 10 ** 18))
 
@@ -60,6 +56,6 @@ contract('Store', function (accounts) {
     assert.equal(Number(await paratiiToken.balanceOf(owner)) - ownerBalance, 0.7 * price)
 
    // video purchase was properly recorded
-    assert.equal(Boolean(sales.userBoughtVideo(buyer, videoId)), true)
+    assert.equal(Boolean(await sales.userBoughtVideo(buyer, videoId)), true)
   })
 })

@@ -10,8 +10,9 @@ contract('Videos: ', function (accounts) {
   let ipfsHash = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsHash'
   let ipfsData = 'QmZW1CRFwc1RR7ceUtsaHjjb4zAjmXmkg29pQyipfsData'
   let videoInfo
-  before(function () {
-    setupParatiiContracts()
+
+  before(async function () {
+    await setupParatiiContracts()
   })
 
   it('should register a video', async function () {
@@ -30,12 +31,12 @@ contract('Videos: ', function (accounts) {
   })
 
   it('anyone can register a video', async function () {
-    let videoRegistry = await Videos.new(paratiiRegistry.options.address)
+    let videoRegistry = await Videos.new(paratiiRegistry.address)
     return videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
   })
 
   it('only registrar or the Avatar can unregister a video', async function () {
-    let videoRegistry = await Videos.new(paratiiRegistry.options.address)
+    let videoRegistry = await Videos.new(paratiiRegistry.address)
     await videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
 
     // accounts[1] is the registrar
@@ -55,7 +56,7 @@ contract('Videos: ', function (accounts) {
   })
 
   it('only registrar or the Avatar update the information of a video', async function () {
-    let videoRegistry = await Videos.new(paratiiRegistry.options.address)
+    let videoRegistry = await Videos.new(paratiiRegistry.address)
     await videoRegistry.create(videoId, videoOwner, price, ipfsHashOrig, ipfsHash, ipfsData, {from: accounts[1]})
 
     videoInfo = await videoRegistry.get(videoId)
