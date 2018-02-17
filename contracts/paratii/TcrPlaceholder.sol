@@ -1,10 +1,12 @@
 pragma solidity ^0.4.18;
 
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./ParatiiToken.sol";
+import './Registry.sol';
 
 /// WARNING , NOT PRODUCTION READY, based on ADCHAIN Registry.
 /// THIS IS JUST A PLACEHOLDER..
-contract TcrPlaceholder {
+contract TcrPlaceholder is Ownable {
 
   // Events
   // ---------
@@ -16,7 +18,7 @@ contract TcrPlaceholder {
     uint applicationExpiry; // Expiration date of apply stage
     bool whitelisted;       // registration status
     address owner;          // Owner of the video.
-    uint unstakedDeposit;   // unlocked tokens
+    uint unstakedDeposit;   // Number of tokens in the listing not locked in a challenge
     uint challengeID;       // ID of canonical challenge
   }
 
@@ -26,16 +28,20 @@ contract TcrPlaceholder {
   ParatiiToken public token;
   uint public minDeposit;
   uint public applyStageLen;
+  Registry public registry;
 
   // ---------------------------------------------------------------------------
   // CONSTRUCTOR
   // ------------------
 
   function TcrPlaceholder(
+    Registry _registry,
     address _tokenAddr,
     uint _minDeposit,
     uint _applyStageLen
   ) {
+    owner = msg.sender;
+    registry = _registry;
     token = ParatiiToken(_tokenAddr);
     minDeposit = _minDeposit;
     applyStageLen = _applyStageLen; // 100 blocks.
@@ -88,10 +94,30 @@ contract TcrPlaceholder {
 
   /**
    * allow video creator to remove a video from the listing and return tokens.
-   * @param  videoId videoId to remove
+   * @param  _videoId videoId to remove
    */
-  function exit(string videoId) external {
+  function exit(string _videoId) external {
+    Listing storage listing = listings[keccak256(_videoId)];
 
+    require(msg.sender == listing.owner);
+    require(isWhitelisted(_videoId));
+
+    // Cannot exit during ongoing challenge
+    /* require(!challenges[listing.challengeID].isInitialized() ||
+            challenges[listing.challengeID].isResolved()); */
+
+    // Remove domain & return tokens
+    resetListing(_videoId);
+  }
+
+  /**
+   * remove a video , Only the TCR owner can do this.
+   * @param  _videoId id of the video to remove.
+   */
+  function removeListing(string _videoId) public onlyOwner {
+    Listing storage listing = listings[keccak256(_videoId)];
+    require(isWhitelisted(_videoId));
+    resetListing(_videoId);
   }
 
   /**
@@ -165,5 +191,19 @@ contract TcrPlaceholder {
     return false;
   }
 
+  /**
+  @dev deletes a listing from the whitelist and transfers tokens back to owner
+  @param _videoId the videoId to be removed
+  */
+  function resetListing(string _videoId) private {
+    bytes32 videoHash = keccak256(_videoId);
+    Listing storage listing = listings[videoHash];
+
+    // Transfers any remaining balance back to the owner
+    if (listing.unstakedDeposit > 0)
+        require(token.transfer(listing.owner, listing.unstakedDeposit));
+
+    delete listings[videoHash];
+  }
 
 }

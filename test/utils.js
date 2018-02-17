@@ -83,7 +83,7 @@ export async function setupParatiiContracts () {
   await paratiiRegistry.registerAddress('Vouchers', vouchers.address)
 
   // initiate a TCR with 5 min deposit, 100 blocks apply stage.
-  tcrPlaceholder = await TcrPlaceholder.new(paratiiToken.address, 5, 100)
+  tcrPlaceholder = await TcrPlaceholder.new(paratiiRegistry.address, paratiiToken.address, 5, 100)
   await paratiiRegistry.registerAddress('TcrPlaceholder', tcrPlaceholder.address)
 
   // give 30 percent of eah video to the redistribution pool

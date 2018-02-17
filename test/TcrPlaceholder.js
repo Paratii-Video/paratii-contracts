@@ -48,4 +48,15 @@ contract('TcrPlaceholder', function (accounts) {
       done()
     })
   })
+
+  it('removeListing', async function () {
+    let tx = await tcrPlaceholder.exit(videoId, {from: accounts[1]})
+    assert.isOk(tx)
+    let isWhitelisted = await tcrPlaceholder.isWhitelisted(videoId)
+    assert.isFalse(isWhitelisted)
+
+    let appWasMade = await tcrPlaceholder.appWasMade(videoId)
+    assert.isFalse(appWasMade)
+    // console.log('tx: ', tx)
+  })
 })
