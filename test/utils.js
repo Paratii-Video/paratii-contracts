@@ -1,4 +1,6 @@
 
+const { timesSeries } = require('async')
+
 const Avatar = artifacts.require('./Avatar')
 const Sales = artifacts.require('./Sales')
 const Likes = artifacts.require('./Likes')
@@ -10,6 +12,7 @@ const Store = artifacts.require('./Store')
 const Users = artifacts.require('./Users')
 const Videos = artifacts.require('./Videos')
 const Vouchers = artifacts.require('./Vouchers')
+const TcrPlaceholder = artifacts.require('./TcrPlaceholder')
 
 export const NULL_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
@@ -25,7 +28,8 @@ export let
   videoRegistry,
   store,
   views,
-  vouchers
+  vouchers,
+  tcrPlaceholder
 
 export async function expectError (f, expectedErrorMsg) {
   // let expectedErrorMsg = 'Error: VM Exception while processing transaction: invalid opcode'
@@ -77,6 +81,10 @@ export async function setupParatiiContracts () {
 
   vouchers = await Vouchers.new(paratiiRegistry.address)
   await paratiiRegistry.registerAddress('Vouchers', vouchers.address)
+
+  // initiate a TCR with 5 min deposit, 100 blocks apply stage.
+  tcrPlaceholder = await TcrPlaceholder.new(paratiiToken.address, 5, 100)
+  await paratiiRegistry.registerAddress('TcrPlaceholder', tcrPlaceholder.address)
 
   // give 30 percent of eah video to the redistribution pool
   await paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
@@ -139,4 +147,24 @@ export function getInfoFromLogs (tx, arg, eventName, index = 0) {
     throw Error(msg)
   }
   return result
+}
+
+export function fastForward (blocks2Mine, cb) {
+  // this._w3.currentProvider.sendAsync({
+  //   jsonrpc: '2.0',
+  //   method: 'evm_mine',
+  //   id: blocks2Mine
+  // }, cb)
+
+  const result = timesSeries(blocks2Mine, (n, next) => {
+    // simulate the passage of time on testrpc thanks to: https://ethereum.stackexchange.com/a/15767
+    web3.currentProvider.sendAsync({
+      jsonrpc: '2.0',
+      method: 'evm_mine',
+      // id: blocks2Mine
+    }, next)
+  }, (err, results) => {
+    // console.log('#', blocks2Mine, ' mined.')
+    cb(err, results)
+  })
 }
