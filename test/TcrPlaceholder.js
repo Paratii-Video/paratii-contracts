@@ -1,4 +1,3 @@
-var TcrPlaceholder = artifacts.require('./TcrPlaceholder.sol')
 import {
   getInfoFromLogs,
   paratiiToken,
@@ -38,7 +37,7 @@ contract('TcrPlaceholder', function (accounts) {
     fastForward(101, async (err, result) => {
       assert.isNull(err)
       assert.isOk(result)
-      assert.equal(startingBlock + 101 , web3.eth.blockNumber)
+      assert.equal(startingBlock + 101, web3.eth.blockNumber)
 
       let tx = await tcrPlaceholder.updateStatus(videoId, {from: accounts[1]})
 
@@ -49,5 +48,4 @@ contract('TcrPlaceholder', function (accounts) {
       done()
     })
   })
-
 })

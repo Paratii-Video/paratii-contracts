@@ -156,11 +156,11 @@ export function fastForward (blocks2Mine, cb) {
   //   id: blocks2Mine
   // }, cb)
 
-  const result = timesSeries(blocks2Mine, (n, next) => {
+  timesSeries(blocks2Mine, (n, next) => {
     // simulate the passage of time on testrpc thanks to: https://ethereum.stackexchange.com/a/15767
     web3.currentProvider.sendAsync({
       jsonrpc: '2.0',
-      method: 'evm_mine',
+      method: 'evm_mine'
       // id: blocks2Mine
     }, next)
   }, (err, results) => {
