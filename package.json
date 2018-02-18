@@ -21,6 +21,7 @@
   },
   "precommit": [],
   "dependencies": {
+    "async": "^2.6.0",
     "babel-cli": "^6.26.0",
     "default-options": "^1.0.0",
     "promisify-node": "^0.4.0",
