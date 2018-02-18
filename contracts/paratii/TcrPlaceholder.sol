@@ -115,8 +115,6 @@ contract TcrPlaceholder is Ownable {
    * @param  _videoId id of the video to remove.
    */
   function removeListing(string _videoId) public onlyOwner {
-    Listing storage listing = listings[keccak256(_videoId)];
-    require(isWhitelisted(_videoId));
     resetListing(_videoId);
   }
 
