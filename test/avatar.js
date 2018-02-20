@@ -25,12 +25,14 @@ contract('Avatar', function (accounts) {
     let receiver = accounts[2]
     let whitelistAccount = accounts[3]
     let amount = web3.toWei(14)
+    let amountPTI = Number(amount) + (1 * 10 ** 18)
 
     // get the sender some PTI
-    await paratiiToken.transfer(sender, Number(amount) + (1 * 10 ** 18))
+    await paratiiToken.transfer(sender, amountPTI)
+    let senderBalance = await paratiiToken.balanceOf(sender)
+    assert.equal(senderBalance.valueOf(), amountPTI)
 
     // PTI balance of receiver before the transaction
-    // let senderBalance = await paratiiToken.balanceOf(sender)
     let receiverBalance = await paratiiToken.balanceOf(receiver)
     assert.equal(receiverBalance.valueOf(), 0)
 
@@ -47,10 +49,9 @@ contract('Avatar', function (accounts) {
 
     //  (2) instruct the avatar to actually buy the video (calling videoStore.buyVideo())
     await avatar.transferFrom(sender, receiver, amount, {from: whitelistAccount})
-    // let newSenderBalance = await paratiiToken.balanceOf(sender)
+    let newSenderBalance = await paratiiToken.balanceOf(sender)
     receiverBalance = await paratiiToken.balanceOf(receiver)
-    // TODO: why is this test commented?
-//    assert.equal(newSenderBalance.valueOf(), Number(senderBalance.valueOf() - amount))
+    assert.equal(newSenderBalance.valueOf(), Number(senderBalance.valueOf() - amount))
     assert.equal(receiverBalance.valueOf(), Number(amount))
   })
 })
