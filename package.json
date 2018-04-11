@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "install": "truffle install",
     "test": "truffle test",
     "ganache": "ganache-cli --deterministic",
     "ganache_pm2": "pm2 start ganache-cli",
@@ -26,7 +27,7 @@
     "default-options": "^1.0.0",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.27",
-    "zeppelin-solidity": "^1.3.0"
+    "zeppelin-solidity": "^1.8.0"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",
