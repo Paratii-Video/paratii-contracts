@@ -25,6 +25,7 @@
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
     "default-options": "^1.0.0",
+    "moment": "^2.19.3",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.27",
     "zeppelin-solidity": "^1.8.0"
