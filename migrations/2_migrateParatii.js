@@ -1,9 +1,9 @@
-var ParatiiToken = artifacts.require('./ParatiiToken.sol')
-var Avatar = artifacts.require('./Avatar.sol')
-var Registry = artifacts.require('./Registry.sol')
-var SendEther = artifacts.require('./SendEther.sol')
-var Videos = artifacts.require('./Videos.sol')
-var Store = artifacts.require('./Store.sol')
+var ParatiiToken = artifacts.require('./paratii/ParatiiToken.sol')
+var Avatar = artifacts.require('./paratii/Avatar.sol')
+var Registry = artifacts.require('./paratii/Registry.sol')
+var SendEther = artifacts.require('./paratii/SendEther.sol')
+var Videos = artifacts.require('./paratii/Videos.sol')
+var Store = artifacts.require('./paratii/Store.sol')
 
 module.exports = async function (deployer) {
   console.log('deploying contracts')
