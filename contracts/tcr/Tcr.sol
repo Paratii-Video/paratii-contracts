@@ -56,7 +56,7 @@ contract Tcr {
     mapping(bytes32 => Listing) public listings;
 
     // Global Variables
-    EIP20 public token;
+    StandardToken public token;
     PLCRVoting public voting;
     Parameterizer public parameterizer;
 
@@ -90,7 +90,7 @@ contract Tcr {
     ) public {
         require(address(token) == 0);
 
-        token = EIP20(_tokenAddr);
+        token = StandardToken(_tokenAddr);
         voting = PLCRVoting(_plcrAddr);
         parameterizer = Parameterizer(_paramsAddr);
         name = _name;
