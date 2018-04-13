@@ -10,7 +10,7 @@ module.exports = async function (deployer, network) {
   await deployer.deploy(Registry)
   let paratiiRegistry = await Registry.deployed()
   console.log('registry Address', paratiiRegistry.address)
-  
+
   await deployer.deploy(Avatar, paratiiRegistry.address)
   let avatar = await Avatar.deployed()
   // await deployer.deploy(ParatiiToken)
