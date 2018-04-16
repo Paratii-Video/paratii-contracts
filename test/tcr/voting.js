@@ -33,7 +33,7 @@ contract('PLCRVoting', (accounts) => {
 
       assert.strictEqual(
         insertPoint.toString(10), expectedInsertPoint.toString(10),
-        'The insert point was not correct',
+        'The insert point was not correct'
       )
     })
   })
