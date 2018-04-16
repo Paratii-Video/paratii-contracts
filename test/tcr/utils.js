@@ -1,23 +1,23 @@
 /* eslint-env mocha */
 /* global artifacts */
 
-const Eth = require('ethjs');
-const HttpProvider = require('ethjs-provider-http');
-const EthRPC = require('ethjs-rpc');
-const abi = require('ethereumjs-abi');
-const fs = require('fs');
+const Eth = require('ethjs')
+const HttpProvider = require('ethjs-provider-http')
+const EthRPC = require('ethjs-rpc')
+const abi = require('ethereumjs-abi')
+const fs = require('fs')
 
-const ethRPC = new EthRPC(new HttpProvider('http://localhost:7545'));
+const ethRPC = new EthRPC(new HttpProvider('http://localhost:7545'))
 
-const PLCRVoting = artifacts.require('PLCRVoting.sol');
-const Parameterizer = artifacts.require('Parameterizer.sol');
-const Tcr = artifacts.require('Tcr.sol');
-const Token = artifacts.require('ParatiiToken.sol');
+const PLCRVoting = artifacts.require('PLCRVoting.sol')
+const Parameterizer = artifacts.require('Parameterizer.sol')
+const Tcr = artifacts.require('Tcr.sol')
+const Token = artifacts.require('ParatiiToken.sol')
 
-const config = JSON.parse(fs.readFileSync('./conf/config.json'));
-const paramConfig = config.paramDefaults;
+const config = JSON.parse(fs.readFileSync('./conf/config.json'))
+const paramConfig = config.paramDefaults
 
-const BN = small => new Eth.BN(small.toString(10), 10);
+const BN = small => new Eth.BN(small.toString(10), 10)
 
 const utils = {
   getVoting: async () => {
@@ -38,14 +38,14 @@ const utils = {
   increaseTime: async seconds =>
     new Promise((resolve, reject) => ethRPC.sendAsync({
       method: 'evm_increaseTime',
-      params: [seconds],
+      params: [seconds]
     }, (err) => {
       if (err) reject(err)
       resolve()
     }))
       .then(() => new Promise((resolve, reject) => ethRPC.sendAsync({
         method: 'evm_mine',
-        params: [],
+        params: []
       }, (err) => {
         if (err) reject(err)
         resolve()
@@ -74,13 +74,13 @@ const utils = {
   },
 
   as: (actor, fn, ...args) => {
-    function detectSendObject(potentialSendObj) {
-      function hasOwnProperty(obj, prop) {
+    function detectSendObject (potentialSendObj) {
+      function hasOwnProperty (obj, prop) {
         const proto = obj.constructor.prototype
         return (prop in obj) &&
           (!(prop in proto) || proto[prop] !== obj[prop])
       }
-      if (typeof potentialSendObj !== 'object') { return undefined; }
+      if (typeof potentialSendObj !== 'object') { return undefined }
       if (
         hasOwnProperty(potentialSendObj, 'from') ||
         hasOwnProperty(potentialSendObj, 'to') ||
@@ -92,7 +92,7 @@ const utils = {
       }
       return undefined
     }
-    detectSendObject(args[args.length - 1]);
+    detectSendObject(args[args.length - 1])
     const sendObject = { from: actor }
     return fn(...args, sendObject)
   },
@@ -146,16 +146,16 @@ const utils = {
 
   multiplyFromWei: (x, weiBN) => {
     if (!Eth.BN.isBN(weiBN)) {
-      return false;
+      return false
     }
-    const weiProduct = BN(x).mul(weiBN);
+    const weiProduct = BN(x).mul(weiBN)
     return BN(Eth.fromWei(weiProduct, 'gwei'))
   },
 
   multiplyByPercentage: (x, y, z = 100) => {
     const weiQuotient = utils.divideAndGetWei(y, z)
     return utils.multiplyFromWei(x, weiQuotient)
-  },
+  }
 }
 
 module.exports = utils
