@@ -73,7 +73,7 @@ contract Tcr {
     @param _plcrAddr        Address of a PLCR voting contract for the provided token
     @param _paramsAddr      Address of a Parameterizer contract
     */
-    function Registry(
+    function Tcr(
         address _tokenAddr,
         address _plcrAddr,
         address _paramsAddr,

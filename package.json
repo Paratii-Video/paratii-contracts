@@ -24,7 +24,12 @@
   "dependencies": {
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
+    "bignumber.js": "^6.0.0",
     "default-options": "^1.0.0",
+    "ethereumjs-abi": "^0.6.5",
+    "ethjs": "^0.3.6",
+    "ethjs-provider-http": "^0.1.6",
+    "ethjs-rpc": "^0.1.9",
     "moment": "^2.19.3",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.27",
