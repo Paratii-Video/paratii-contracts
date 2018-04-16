@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "install": "truffle install",
     "test": "truffle test",
     "ganache": "ganache-cli --deterministic",
     "ganache_pm2": "pm2 start ganache-cli",
@@ -23,10 +24,16 @@
   "dependencies": {
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
+    "bignumber.js": "^6.0.0",
     "default-options": "^1.0.0",
+    "ethereumjs-abi": "^0.6.5",
+    "ethjs": "^0.3.6",
+    "ethjs-provider-http": "^0.1.6",
+    "ethjs-rpc": "^0.1.9",
+    "moment": "^2.19.3",
     "promisify-node": "^0.4.0",
     "web3": "^1.0.0-beta.27",
-    "zeppelin-solidity": "^1.3.0"
+    "zeppelin-solidity": "^1.8.0"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.1.4",

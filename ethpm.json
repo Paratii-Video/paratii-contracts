@@ -1,0 +1,18 @@
+{
+  "package_name": "paratii-contracts",
+  "version": "0.0.3",
+  "description": "Paratii Smart Contracts",
+  "authors": [
+    "Paratii <we@paratii.video>"
+  ],
+  "keywords": [
+    "ethereum",
+    "tcr"
+  ],
+  "dependencies": {
+    "tokens": "1.0.0",
+    "dll": "1.0.4",
+    "attrstore": "1.0.0"
+  },
+  "license": "GPL-3.0"
+}
