@@ -57,10 +57,10 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b61025e8061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610051575b341561004c57600080fd5b600080fd5b6100c0600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506100da565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050151561011c57600080fd5b7fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101eb5780820151818401526020810190506101d0565b50505050905090810190601f1680156102185780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a7230582053187ea4f9eafd1aedb9ce4a349860a3de48487ad7bd67e0ba7d31ea267c8c560029",
-  "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610051575b341561004c57600080fd5b600080fd5b6100c0600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506100da565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050151561011c57600080fd5b7fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101eb5780820151818401526020810190506101d0565b50505050905090810190601f1680156102185780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a7230582053187ea4f9eafd1aedb9ce4a349860a3de48487ad7bd67e0ba7d31ea267c8c560029",
-  "sourceMap": "133:704:8:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "133:704:8:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;363:8;;;637:197;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;705:4;721:3;:12;;:23;734:9;721:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;753:54;766:10;778:3;783:9;794:12;753:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;753:54:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;823:4;816:11;;637:197;;;;:::o",
+  "bytecode": "0x608060405234801561001057600080fd5b50610272806100206000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610053575b34801561004d57600080fd5b50600080fd5b6100cd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506100e7565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561012f573d6000803e3d6000fd5b507fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101ff5780820151818401526020810190506101e4565b50505050905090810190601f16801561022c5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a7230582029f53759094c3113ac324cc6d59beea78ce235c3d246ce98f31c79e7b50115b70029",
+  "deployedBytecode": "0x608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610053575b34801561004d57600080fd5b50600080fd5b6100cd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506100e7565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561012f573d6000803e3d6000fd5b507fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101ff5780820151818401526020810190506101e4565b50505050905090810190601f16801561022c5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a7230582029f53759094c3113ac324cc6d59beea78ce235c3d246ce98f31c79e7b50115b70029",
+  "sourceMap": "133:704:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;133:704:8;;;;;;;",
+  "deployedSourceMap": "133:704:8:-;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;133:704:8;363:8;;;637:197;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;705:4;721:3;:12;;:23;734:9;721:23;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;721:23:8;753:54;766:10;778:3;783:9;794:12;753:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;753:54:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;823:4;816:11;;637:197;;;;:::o",
   "source": "pragma solidity ^0.4.18;\n\n/**\n * @title SendEther\n * @dev A Contract that wraps the native transfer function and logs an event.\n */\n\ncontract SendEther {\n\n    event LogSendEther(\n      address from,\n      address to,\n      uint value,\n      string description\n    );\n\n    // If someone accidentally sends ether to this contract, revert;\n    function () {\n        revert();\n    }\n\n    /**\n     * @dev Transfer ether to address _to, providing a description\n     * The only difference with sending ETH directly is that the action is logged\n     * @param _to recipient of the ETH\n     * @param _description  A description to log\n     */\n    function transfer(address _to, string _description) payable returns(bool)  {\n       _to.transfer(msg.value);\n       LogSendEther(msg.sender, _to, msg.value, _description);\n       return true;\n    }\n\n}\n",
   "sourcePath": "/media/op/w3/paratii/paratii-contracts/contracts/paratii/SendEther.sol",
   "ast": {
@@ -200,7 +200,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string memory"
+                    "typeString": "string"
                   },
                   "typeName": {
                     "id": 1271,
@@ -209,7 +209,7 @@
                     "src": "241:6:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string storage pointer"
+                      "typeString": "string"
                     }
                   },
                   "value": null,
@@ -235,8 +235,11 @@
                       "id": 1277,
                       "name": "revert",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 3145,
+                      "overloadedDeclarations": [
+                        3188,
+                        3189
+                      ],
+                      "referencedDeclaration": 3188,
                       "src": "363:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
@@ -308,7 +311,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3141,
+                          "referencedDeclaration": 3183,
                           "src": "734:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -394,7 +397,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3141,
+                          "referencedDeclaration": 3183,
                           "src": "766:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -436,7 +439,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3141,
+                          "referencedDeclaration": 3183,
                           "src": "783:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -594,7 +597,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string memory"
+                    "typeString": "string"
                   },
                   "typeName": {
                     "id": 1284,
@@ -603,7 +606,7 @@
                     "src": "668:6:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string storage pointer"
+                      "typeString": "string"
                     }
                   },
                   "value": null,
@@ -796,7 +799,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string memory"
+                    "typeString": "string"
                   },
                   "typeName": {
                     "id": 1271,
@@ -805,7 +808,7 @@
                     "src": "241:6:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string storage pointer"
+                      "typeString": "string"
                     }
                   },
                   "value": null,
@@ -831,8 +834,11 @@
                       "id": 1277,
                       "name": "revert",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 3145,
+                      "overloadedDeclarations": [
+                        3188,
+                        3189
+                      ],
+                      "referencedDeclaration": 3188,
                       "src": "363:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
@@ -904,7 +910,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3141,
+                          "referencedDeclaration": 3183,
                           "src": "734:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -990,7 +996,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3141,
+                          "referencedDeclaration": 3183,
                           "src": "766:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1032,7 +1038,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3141,
+                          "referencedDeclaration": 3183,
                           "src": "783:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1190,7 +1196,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string memory"
+                    "typeString": "string"
                   },
                   "typeName": {
                     "id": 1284,
@@ -1199,7 +1205,7 @@
                     "src": "668:6:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string storage pointer"
+                      "typeString": "string"
                     }
                   },
                   "value": null,
@@ -1257,9 +1263,9 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-26T18:13:05.736Z"
+  "updatedAt": "2018-04-26T18:28:32.697Z"
 }

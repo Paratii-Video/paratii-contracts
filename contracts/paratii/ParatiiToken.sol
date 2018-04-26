@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import "zeppelin-solidity/contracts/token/StandardToken.sol";
+import "zeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 
 contract ParatiiToken is StandardToken {
 
@@ -10,7 +10,7 @@ contract ParatiiToken is StandardToken {
     uint public INITIAL_SUPPLY = 21000000 * (10**decimals);
 
     function ParatiiToken() public {
-        totalSupply = INITIAL_SUPPLY;
+        totalSupply_ = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
     }
 }

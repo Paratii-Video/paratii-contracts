@@ -86,9 +86,9 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582046f461be7821235ea54279d0c7d811f6b6a42554eb54d1a9b839390ed73d4e7f0029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a7230582046f461be7821235ea54279d0c7d811f6b6a42554eb54d1a9b839390ed73d4e7f0029",
-  "sourceMap": "117:244:1:-;;;;;;;;;;;;;;;;;",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058205655251a35a799255e0e23e8f80c52c0e750a7cfc6e2caee7d1a5ba9bd5be4550029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058205655251a35a799255e0e23e8f80c52c0e750a7cfc6e2caee7d1a5ba9bd5be4550029",
+  "sourceMap": "117:244:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;117:244:1;;;;;;;",
   "deployedSourceMap": "117:244:1:-;;;;;",
   "source": "pragma solidity ^0.4.18;\n\n/*\n    A contract you can inherit from that has some useful Events to print statements.\n*/\ncontract Debug {\n    event LogAddress(address _msg);\n    event LogInt(int _msg);\n    event LogString(string _msg);\n    event LogUint(uint _msg);\n    event LogBytes(bytes _msg);\n    event LogBytes32(bytes32 _msg);\n    event LogBool(bool _msg);\n}\n",
   "sourcePath": "/media/op/w3/paratii/paratii-contracts/contracts/debug/Debug.sol",
@@ -232,7 +232,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string memory"
+                    "typeString": "string"
                   },
                   "typeName": {
                     "id": 67,
@@ -241,7 +241,7 @@
                     "src": "218:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string storage pointer"
+                      "typeString": "string"
                     }
                   },
                   "value": null,
@@ -316,7 +316,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes_memory_ptr",
-                    "typeString": "bytes memory"
+                    "typeString": "bytes"
                   },
                   "typeName": {
                     "id": 75,
@@ -325,7 +325,7 @@
                     "src": "281:5:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
-                      "typeString": "bytes storage pointer"
+                      "typeString": "bytes"
                     }
                   },
                   "value": null,
@@ -567,7 +567,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string memory"
+                    "typeString": "string"
                   },
                   "typeName": {
                     "id": 67,
@@ -576,7 +576,7 @@
                     "src": "218:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string storage pointer"
+                      "typeString": "string"
                     }
                   },
                   "value": null,
@@ -651,7 +651,7 @@
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes_memory_ptr",
-                    "typeString": "bytes memory"
+                    "typeString": "bytes"
                   },
                   "typeName": {
                     "id": 75,
@@ -660,7 +660,7 @@
                     "src": "281:5:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
-                      "typeString": "bytes storage pointer"
+                      "typeString": "bytes"
                     }
                   },
                   "value": null,
@@ -764,9 +764,9 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-26T18:13:05.731Z"
+  "updatedAt": "2018-04-26T18:28:32.692Z"
 }
