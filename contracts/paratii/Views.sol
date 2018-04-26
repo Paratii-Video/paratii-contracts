@@ -38,8 +38,9 @@ contract Views is Ownable {
        LogRemoveView(_viewer, _videoId);
     }
 
-    function get(address _viewer, string _videoId) public constant onlyOwnerOrAvatar returns(Data) {
-       return _views[_viewer][keccak256(_videoId)];
+    function get(address _viewer, string _videoId) public constant onlyOwnerOrAvatar returns(bool, string) {
+       Data data = _views[_viewer][keccak256(_videoId)];
+       return (data._isRegistered, data._ipfsData);
     }
 
     function userViewedVideo(address _viewer, string _videoId) public constant returns(bool) {
