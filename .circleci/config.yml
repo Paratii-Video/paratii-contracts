@@ -22,19 +22,19 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn install
-      - run: yarn truffle compile
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - run: npm run truffle compile
       # next line seems to be needed to get the latest version - ???
       # - run: npm install web3
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
 
-      - run: yarn lint
+      - run: npm run lint
       - run:
           name: run ganache (testrpc) in background
-          command: yarn ganache
+          command: npm run ganache
           background: true
-      - run: yarn test
+      - run: npm run test
