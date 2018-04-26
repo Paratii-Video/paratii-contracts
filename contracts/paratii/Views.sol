@@ -37,15 +37,12 @@ contract Views is Ownable {
        delete _views[_viewer][keccak256(_videoId)];
        LogRemoveView(_viewer, _videoId);
     }
-    //  disabling returning a struct , ref: https://ethereum.stackexchange.com/a/43054
-    /* function get(address _viewer, string _videoId) public constant onlyOwnerOrAvatar returns(Data) {
-       return _views[_viewer][keccak256(_videoId)];
-    } */
 
-    function get(address _viewer, string _videoId) public constant onlyOwnerOrAvatar returns (bool, string) {
-      Data storage d = _views[_viewer][keccak256(_videoId)];
-      return (d._isRegistered, d._ipfsData);
+    function get(address _viewer, string _videoId) public constant onlyOwnerOrAvatar returns(bool, string) {
+       Data data = _views[_viewer][keccak256(_videoId)];
+       return (data._isRegistered, data._ipfsData);
     }
+
     function userViewedVideo(address _viewer, string _videoId) public constant returns(bool) {
       return _views[_viewer][keccak256(_videoId)]._isRegistered;
     }
