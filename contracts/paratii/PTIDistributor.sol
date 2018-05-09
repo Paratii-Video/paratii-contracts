@@ -8,7 +8,7 @@ contract PTIDistributor is Ownable {
 
     Registry public registry;
 
-    event LogDistribute(bytes32 _hashedVoucher, uint _amount);
+    event LogDistribute(address _toAddress, uint _amount, string _reason);
 
     function PTIDistributor(Registry _registry) public {
         owner = msg.sender;
@@ -25,7 +25,7 @@ contract PTIDistributor is Ownable {
     function distribute(address _toAddress, uint _amount, string _reason) public onlyOwnerOrAvatar returns(bool) {
         //reason: reason of the distribute,
         ParatiiToken token = ParatiiToken(registry.getContract('ParatiiToken'));
-        token.transfer(msg.sender, voucher._amount);
+        token.transfer(msg.sender, _amount);
         LogDistribute(_toAddress, _amount, _reason);
     }
 }
