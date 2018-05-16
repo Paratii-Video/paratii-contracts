@@ -12,7 +12,7 @@ contract PTIDistributor is Ownable {
     event LogDebug(bytes32 _hashing);
     event LogDebugOwner(address _owner);
 
-    mapping(uint256 => bool) public isUsed;
+    mapping(bytes32 => bool) public isUsed;
 
     function PTIDistributor(Registry _registry) public {
         owner = msg.sender;
@@ -21,7 +21,7 @@ contract PTIDistributor is Ownable {
 
     function() public payable { }
 
-    function distribute(address _toAddress, uint256 _amount, uint256 _salt, uint8 _v, bytes32 _r, bytes32 _s) {
+    function distribute(address _toAddress, uint256 _amount, bytes32 _salt, uint8 _v, bytes32 _r, bytes32 _s) {
       bytes32 message = keccak256(_amount, _salt);
       bytes memory prefix = "\x19Ethereum Signed Message:\n32";
       bytes32 prefixedHash = keccak256(prefix, message);
@@ -32,7 +32,7 @@ contract PTIDistributor is Ownable {
       LogDistribute(_toAddress, _amount);
     }
 
-    function checkOwnerPacked(uint256 _amount, uint256 _salt, uint8 _v, bytes32 _r, bytes32 _s) {
+    function checkOwnerPacked(uint256 _amount, bytes32 _salt, uint8 _v, bytes32 _r, bytes32 _s) {
       bytes32 message = keccak256(_amount, _salt);
       bytes memory prefix = "\x19Ethereum Signed Message:\n32";
       bytes32 prefixedHash = keccak256(prefix, message);
@@ -44,7 +44,7 @@ contract PTIDistributor is Ownable {
       return ecrecover(prefixedHash, _v, _r, _s);
     }
 
-    function checkHashing(uint256 _amount, uint256 _salt) {
+    function checkHashing(uint256 _amount, bytes32 _salt) {
       bytes32 hashing = keccak256(_amount, _salt);
       LogDebug( hashing );
     }

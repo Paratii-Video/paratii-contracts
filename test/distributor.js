@@ -13,7 +13,7 @@ contract('Distributor', function (accounts) {
   let address = accounts[2]
   let owner = accounts[0]
   const amount = 5 ** 18
-  const salt = Date.now()
+  const salt = web3.sha3(Date.now())
   const hash = Web3Utils.soliditySha3('' + amount, '' + salt)
   const hash2 = Web3Utils.soliditySha3(amount, salt)
   const hash3 = Web3Utils.soliditySha3({type: 'uint256', value: amount}, {type: 'uint256', value: salt})
