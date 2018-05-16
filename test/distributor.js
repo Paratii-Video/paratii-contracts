@@ -13,10 +13,11 @@ contract('Distributor', function (accounts) {
   let address = accounts[2]
   let owner = accounts[0]
   const amount = 5 ** 18
+  const reason = 'email_verification'
   const salt = web3.sha3(Date.now())
-  const hash = Web3Utils.soliditySha3('' + amount, '' + salt)
-  const hash2 = Web3Utils.soliditySha3(amount, salt)
-  const hash3 = Web3Utils.soliditySha3({type: 'uint256', value: amount}, {type: 'uint256', value: salt})
+  const hash = Web3Utils.soliditySha3('' + amount, '' + salt, '' + reason)
+  const hash2 = Web3Utils.soliditySha3(amount, salt, reason)
+  const hash3 = Web3Utils.soliditySha3({type: 'uint256', value: amount}, {type: 'uint256', value: salt}, {type: 'string', value: reason})
 
   before(async function () {
     await setupParatiiContracts()
@@ -43,7 +44,7 @@ contract('Distributor', function (accounts) {
   it('the contract should work as expected', async function () {
     // check hashing
 
-    let checkHashing = await ptiDistributor.checkHashing(amount, salt)
+    let checkHashing = await ptiDistributor.checkHashing(amount, salt, reason)
 
     assert.equal(getInfoFromLogs(checkHashing, '_hashing', 'LogDebug'), hash3)
     assert.equal(getInfoFromLogs(checkHashing, '_hashing', 'LogDebug'), hash2)
@@ -58,12 +59,15 @@ contract('Distributor', function (accounts) {
     let r = ethUtil.bufferToHex(signatureData.r)
     let s = ethUtil.bufferToHex(signatureData.s)
 
-    let checkOwnerPacked = await ptiDistributor.checkOwnerPacked(amount, salt, v, r, s)
+    let checkOwnerPacked = await ptiDistributor.checkOwnerPacked(amount, salt, reason, v, r, s)
     assert.equal(getInfoFromLogs(checkOwnerPacked, '_owner', 'LogDebugOwner'), owner)
 
     // check distributing
-    let distribute = await ptiDistributor.distribute(address, amount, salt, v, r, s)
+    let distribute = await ptiDistributor.distribute(address, amount, salt, reason, v, r, s)
+    console.log(distribute.logs)
     assert.equal(getInfoFromLogs(distribute, '_toAddress', 'LogDistribute'), address)
+    assert.equal(getInfoFromLogs(distribute, '_amount', 'LogDistribute'), amount)
+    assert.equal(getInfoFromLogs(distribute, '_reason', 'LogDistribute'), reason)
   })
 
   it('the contract should failed if transaction is sent twice', async function () {
@@ -74,7 +78,7 @@ contract('Distributor', function (accounts) {
     let s = ethUtil.bufferToHex(signatureData.s)
 
     await expectError(async function () {
-      await ptiDistributor.distribute(address, amount, salt, v, r, s)
+      await ptiDistributor.distribute(address, amount, salt, reason, v, r, s)
     })
   })
 
@@ -93,15 +97,24 @@ contract('Distributor', function (accounts) {
   it('the contract should failed if transaction is sent with wrong salt', async function () {
     const signature = await web3.eth.sign(owner, hash)
     const signatureData = ethUtil.fromRpcSig(signature)
-    console.log(amount)
-    console.log('real salt', salt)
-    console.log('fake salt', salt + 2)
-    console.log(hash)
+
     let v = ethUtil.bufferToHex(signatureData.v)
     let r = ethUtil.bufferToHex(signatureData.r)
     let s = ethUtil.bufferToHex(signatureData.s)
     await expectError(async function () {
       await ptiDistributor.distribute(address, amount, 2, v, r, s)
+    })
+  })
+
+  it('the contract should failed if transaction is sent with wrong reason', async function () {
+    const signature = await web3.eth.sign(owner, hash)
+    const signatureData = ethUtil.fromRpcSig(signature)
+
+    let v = ethUtil.bufferToHex(signatureData.v)
+    let r = ethUtil.bufferToHex(signatureData.r)
+    let s = ethUtil.bufferToHex(signatureData.s)
+    await expectError(async function () {
+      await ptiDistributor.distribute(address, amount, salt, 'wrong_reason', v, r, s)
     })
   })
 })
