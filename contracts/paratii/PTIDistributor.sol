@@ -28,9 +28,8 @@ contract PTIDistributor is Ownable {
       require(!isUsed[_salt] && ecrecover(prefixedHash, _v, _r, _s) == owner);
       isUsed[_salt] = true;
       ParatiiToken token = ParatiiToken(registry.getContract('ParatiiToken'));
-      token.transfer(msg.sender, _amount);
+      require(token.transfer(msg.sender, _amount));
       LogDistribute(_toAddress, _amount);
-
     }
 
     function checkOwnerPacked(uint256 _amount, uint256 _salt, uint8 _v, bytes32 _r, bytes32 _s) {
