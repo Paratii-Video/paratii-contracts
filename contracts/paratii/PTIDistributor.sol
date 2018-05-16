@@ -19,7 +19,6 @@ contract PTIDistributor is Ownable {
         registry = _registry;
     }
 
-    function() public payable { }
 
     function distribute(address _toAddress, uint256 _amount, bytes32 _salt, string _reason, uint8 _v, bytes32 _r, bytes32 _s) {
       bytes32 message = keccak256(_amount, _salt, _reason);
@@ -28,7 +27,7 @@ contract PTIDistributor is Ownable {
       require(!isUsed[_salt] && ecrecover(prefixedHash, _v, _r, _s) == owner);
       isUsed[_salt] = true;
       ParatiiToken token = ParatiiToken(registry.getContract('ParatiiToken'));
-      require(token.transfer(msg.sender, _amount));
+      require(token.transfer(_toAddress, _amount));
       LogDistribute(_toAddress, _amount, _reason);
     }
 
