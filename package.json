@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "truffle test",
-    "ganache": "ganache-cli --deterministic --defaultBalanceEther 100000000000000000000000000000000000000000",
+    "ganache": "ganache-cli --deterministic",
     "ganache_pm2": "pm2 start ganache-cli",
     "testrpc": "yarn run ganache",
     "testrpc_pm2": "yarn run ganache_pm2",
@@ -24,10 +24,11 @@
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
     "default-options": "^1.0.0",
-    "ethereumjs-util": "^5.2.0",
+    "ethereumjs-util": "^5.1.2",
     "promisify-node": "^0.4.0",
     "uuid": "^3.2.1",
     "web3": "^1.0.0-beta2",
+    "web3-utils": "^1.0.0-beta.34",
     "zeppelin-solidity": "^1.8.0"
   },
   "devDependencies": {

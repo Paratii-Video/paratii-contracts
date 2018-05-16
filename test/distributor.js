@@ -2,16 +2,21 @@ import {
   setupParatiiContracts,
   ptiDistributor,
   paratiiToken,
-  getInfoFromLogs
+  getInfoFromLogs,
+  expectError
 } from './utils.js'
-var ethUtil = require('ethereumjs-util')
-var uuidv1 = require('uuid/v1')
 
-contract('Distributor: ', function (accounts) {
+var ethUtil = require('ethereumjs-util')
+var Web3Utils = require('web3-utils')
+
+contract('Distributor', function (accounts) {
   let address = accounts[2]
   let owner = accounts[0]
-  const amount = 1 * 10 ** 18
-  const nonce = uuidv1()
+  const amount = 5 ** 18
+  const salt = Date.now()
+  const hash = Web3Utils.soliditySha3('' + amount, '' + salt)
+  const hash2 = Web3Utils.soliditySha3(amount, salt)
+  const hash3 = Web3Utils.soliditySha3({type: 'uint256', value: amount}, {type: 'uint256', value: salt})
 
   before(async function () {
     await setupParatiiContracts()
@@ -19,38 +24,84 @@ contract('Distributor: ', function (accounts) {
   })
 
   // this test is inspired from https://github.com/davidmichaelakers/ecrecover/ TY!
+  it('checkOwner: Signed messages should return signing address', async function () {
+    const messagetoSign = web3.sha3('Message to sign here.')
+    let messagetoSend = messagetoSign
 
-  it('the contract should work as expected', async function () {
-    let messagetoSign = ethUtil.bufferToHex(Buffer.alloc(nonce.length, nonce))
-    let messagetoSend
-    let hashBuff
-    let msgHashBuff
-
-    switch (this.nodeVersion) {
-      default:
-        hashBuff = ethUtil.toBuffer(nonce)
-        msgHashBuff = ethUtil.hashPersonalMessage(hashBuff)
-        messagetoSend = ethUtil.bufferToHex(msgHashBuff)
-        break
-    }
-
-    var signature = await web3.eth.sign(owner, messagetoSign)
-
-    console.log(this.nodeVersion)
-    console.log(this.nodeVersion + ' sig: ' + signature)
-    console.log(this.nodeVersion + ' msg2sign: ' + messagetoSign)
-    console.log(this.nodeVersion + ' msg2send: ' + messagetoSend)
-    console.log()
-    console.log()
+    const unlockedAccount = accounts[0]
+    var signature = await web3.eth.sign(unlockedAccount, messagetoSign)
 
     const signatureData = ethUtil.fromRpcSig(signature)
     let v = ethUtil.bufferToHex(signatureData.v)
     let r = ethUtil.bufferToHex(signatureData.r)
     let s = ethUtil.bufferToHex(signatureData.s)
 
-    let distribute = await ptiDistributor.distribute(address, amount, messagetoSend, v, r, s)
-    console.log(distribute.logs)
-    console.log(owner)
-    assert.equal(getInfoFromLogs(distribute, '_toAddress', 'LogDistribute'), accounts[2])
+    const recoveredAddress = await ptiDistributor.checkOwner(messagetoSend, v, r, s)
+    assert.equal(recoveredAddress, accounts[0])
+  })
+
+  it('the contract should work as expected', async function () {
+    // check hashing
+
+    let checkHashing = await ptiDistributor.checkHashing(amount, salt)
+
+    assert.equal(getInfoFromLogs(checkHashing, '_hashing', 'LogDebug'), hash3)
+    assert.equal(getInfoFromLogs(checkHashing, '_hashing', 'LogDebug'), hash2)
+    assert.equal(getInfoFromLogs(checkHashing, '_hashing', 'LogDebug'), hash)
+
+    // check hashing packed
+
+    const signature = await web3.eth.sign(owner, hash)
+
+    const signatureData = ethUtil.fromRpcSig(signature)
+    let v = ethUtil.bufferToHex(signatureData.v)
+    let r = ethUtil.bufferToHex(signatureData.r)
+    let s = ethUtil.bufferToHex(signatureData.s)
+
+    let checkOwnerPacked = await ptiDistributor.checkOwnerPacked(amount, salt, v, r, s)
+    assert.equal(getInfoFromLogs(checkOwnerPacked, '_owner', 'LogDebugOwner'), owner)
+
+    // check distributing
+    let distribute = await ptiDistributor.distribute(address, amount, salt, v, r, s)
+    assert.equal(getInfoFromLogs(distribute, '_toAddress', 'LogDistribute'), address)
+  })
+
+  it('the contract should failed if transaction is sent twice', async function () {
+    const signature = await web3.eth.sign(owner, hash)
+    const signatureData = ethUtil.fromRpcSig(signature)
+    let v = ethUtil.bufferToHex(signatureData.v)
+    let r = ethUtil.bufferToHex(signatureData.r)
+    let s = ethUtil.bufferToHex(signatureData.s)
+
+    await expectError(async function () {
+      await ptiDistributor.distribute(address, amount, salt, v, r, s)
+    })
+  })
+
+  it('the contract should failed if transaction is sent with wrong amount', async function () {
+    const signature = await web3.eth.sign(owner, hash)
+    const signatureData = ethUtil.fromRpcSig(signature)
+    let v = ethUtil.bufferToHex(signatureData.v)
+    let r = ethUtil.bufferToHex(signatureData.r)
+    let s = ethUtil.bufferToHex(signatureData.s)
+
+    await expectError(async function () {
+      await ptiDistributor.distribute(address, amount + 1, salt, v, r, s)
+    })
+  })
+
+  it('the contract should failed if transaction is sent with wrong salt', async function () {
+    const signature = await web3.eth.sign(owner, hash)
+    const signatureData = ethUtil.fromRpcSig(signature)
+    console.log(amount)
+    console.log('real salt', salt)
+    console.log('fake salt', salt + 2)
+    console.log(hash)
+    let v = ethUtil.bufferToHex(signatureData.v)
+    let r = ethUtil.bufferToHex(signatureData.r)
+    let s = ethUtil.bufferToHex(signatureData.s)
+    await expectError(async function () {
+      await ptiDistributor.distribute(address, amount, 2, v, r, s)
+    })
   })
 })
