@@ -86,15 +86,15 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820bfd32399b38ef86ec36f0bf566108001b2aad8e5bb61fa8795b395ba9eec32a70029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820bfd32399b38ef86ec36f0bf566108001b2aad8e5bb61fa8795b395ba9eec32a70029",
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820267a199b2c282a0e5d51fab0bc04af5c1e7e4a0b7a302854393ba39b2c0bd2ed0029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820267a199b2c282a0e5d51fab0bc04af5c1e7e4a0b7a302854393ba39b2c0bd2ed0029",
   "sourceMap": "117:244:1:-;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "117:244:1:-;;;;;",
   "source": "pragma solidity ^0.4.18;\n\n/*\n    A contract you can inherit from that has some useful Events to print statements.\n*/\ncontract Debug {\n    event LogAddress(address _msg);\n    event LogInt(int _msg);\n    event LogString(string _msg);\n    event LogUint(uint _msg);\n    event LogBytes(bytes _msg);\n    event LogBytes32(bytes32 _msg);\n    event LogBool(bool _msg);\n}\n",
-  "sourcePath": "/media/data/projects/paratii/paratii-contracts/contracts/debug/Debug.sol",
+  "sourcePath": "/home/enrico/paratii/paratii-contracts/contracts/debug/Debug.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/media/data/projects/paratii/paratii-contracts/contracts/debug/Debug.sol",
+      "absolutePath": "/home/enrico/paratii/paratii-contracts/contracts/debug/Debug.sol",
       "exportedSymbols": {
         "Debug": [
           87
@@ -464,5 +464,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-27T20:11:27.530Z"
+  "updatedAt": "2018-05-17T13:59:31.981Z"
 }
