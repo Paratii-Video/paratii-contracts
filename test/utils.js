@@ -92,7 +92,7 @@ export async function setupParatiiContracts () {
   await paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 
   ptiDistributor = await PTIDistributor.new(paratiiRegistry.address)
-  await paratiiRegistry.registerAddress('PTIDistributor', vouchers.address)
+  await paratiiRegistry.registerAddress('PTIDistributor', ptiDistributor.address)
 
   await avatar.addToWhitelist(store.address)
   return paratiiRegistry
