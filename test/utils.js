@@ -98,6 +98,14 @@ export async function setupParatiiContracts () {
   return paratiiRegistry
 }
 
+export function toHex (str) {
+  var hex = ''
+  for (var i = 0; i < str.length; i++) {
+    hex += '' + str.charCodeAt(i).toString(16)
+  }
+  return hex
+}
+
 export function getInfoFromLogs (tx, arg, eventName, index = 0) {
   // tx.logs look like this:
   //
