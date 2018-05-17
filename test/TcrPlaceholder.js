@@ -30,6 +30,11 @@ contract('TcrPlaceholder', function (accounts) {
     let tx = await tcrPlaceholder.apply(videoId, amount, {from: accounts[1]})
     assert.equal(getInfoFromLogs(tx, 'videoId', '_Application'), videoId)
     assert.equal(getInfoFromLogs(tx, 'deposit', '_Application'), amount)
+    console.log('xxx')
+    let x = tcrPlaceholder.minDeposit.call()
+    console.log(x)
+    console.log(await x)
+    console.log('00000000000000000000000000')
   })
 
   it('fastForward 101 blocks & updateStatus', (done) => {
