@@ -20,9 +20,9 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #     - v1-dependencies-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: yarn truffle compile
       # next line seems to be needed to get the latest version - ???
