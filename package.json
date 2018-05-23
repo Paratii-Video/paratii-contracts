@@ -16,7 +16,7 @@
     "lint-fix": "standard --fix",
     "truffle": "truffle",
     "develop": "truffle develop",
-    "build": "rm -r build && truffle compile",
+    "build": "rm -rf build && truffle compile",
     "node": "node"
   },
   "precommit": [],
