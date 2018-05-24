@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import './Registry.sol';
 
 contract Views is Ownable {

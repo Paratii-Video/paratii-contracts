@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 import './Registry.sol';
 import './ParatiiToken.sol';
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 /*
  * @dev A contract that holds PTI for the paratii DAO
  *
