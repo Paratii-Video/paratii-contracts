@@ -23,7 +23,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn install
+      - run: yarn --pure-lockfile
       - run: yarn truffle compile
       # next line seems to be needed to get the latest version - ???
       # - run: npm install web3
