@@ -9,6 +9,7 @@ contract PTIDistributor is Ownable {
     Registry public registry;
 
     event LogDistribute(address _toAddress, uint _amount, string _reason);
+    event LogDistributeTransferable(address _toAddress, uint _amount, string _reason);
     event LogDebug(bytes32 _hashing);
     event LogDebugOwner(address _owner);
 
@@ -21,7 +22,7 @@ contract PTIDistributor is Ownable {
 
 
     function distribute(address _toAddress, uint256 _amount, bytes32 _salt, string _reason, uint8 _v, bytes32 _r, bytes32 _s) {
-      bytes32 message = keccak256(_amount, _salt, _reason);
+      bytes32 message = keccak256(_toAddress, _amount, _salt, _reason);
       bytes memory prefix = "\x19Ethereum Signed Message:\n32";
       bytes32 prefixedHash = keccak256(prefix, message);
       require(!isUsed[_salt] && ecrecover(prefixedHash, _v, _r, _s) == owner);
@@ -31,8 +32,8 @@ contract PTIDistributor is Ownable {
       LogDistribute(_toAddress, _amount, _reason);
     }
 
-    function checkOwnerPacked(uint256 _amount, bytes32 _salt, string _reason, uint8 _v, bytes32 _r, bytes32 _s) {
-      bytes32 message = keccak256(_amount, _salt, _reason);
+    function checkOwnerPacked(address _toAddress, uint256 _amount, bytes32 _salt, string _reason, uint8 _v, bytes32 _r, bytes32 _s) {
+      bytes32 message = keccak256(_toAddress, _amount, _salt, _reason);
       bytes memory prefix = "\x19Ethereum Signed Message:\n32";
       bytes32 prefixedHash = keccak256(prefix, message);
       LogDebugOwner( ecrecover(prefixedHash, _v, _r, _s) );
@@ -43,8 +44,8 @@ contract PTIDistributor is Ownable {
       return ecrecover(prefixedHash, _v, _r, _s);
     }
 
-    function checkHashing(uint256 _amount, bytes32 _salt, string _reason) {
-      bytes32 hashing = keccak256(_amount, _salt, _reason);
+    function checkHashing(address _toAddress, uint256 _amount, bytes32 _salt, string _reason) {
+      bytes32 hashing = keccak256(_toAddress, _amount, _salt, _reason);
       LogDebug( hashing );
     }
 }
