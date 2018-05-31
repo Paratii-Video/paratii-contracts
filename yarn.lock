@@ -4275,6 +4275,10 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+openzeppelin-solidity@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/openzeppelin-solidity/-/openzeppelin-solidity-1.9.0.tgz#929c2e8eab5d1935a048390a77645b36dfc5cfad"
+
 optionator@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
@@ -5405,9 +5409,9 @@ sntp@2.x.x:
   dependencies:
     hoek "4.x.x"
 
-solc@0.4.21:
-  version "0.4.21"
-  resolved "https://registry.yarnpkg.com/solc/-/solc-0.4.21.tgz#6a7ecd505bfa0fc268330d5de6b9ae65c8c68264"
+solc@0.4.23:
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/solc/-/solc-0.4.23.tgz#54a0ff4015827b32fddb62c0a418b5247310a58e"
   dependencies:
     fs-extra "^0.30.0"
     memorystream "^0.3.1"
@@ -5817,13 +5821,13 @@ trim@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
 
-truffle@4.1.6:
-  version "4.1.6"
-  resolved "https://registry.yarnpkg.com/truffle/-/truffle-4.1.6.tgz#3887081d73973c4e79de52fb25c27bac5e527dd7"
+truffle@4.1.7:
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/truffle/-/truffle-4.1.7.tgz#b2d66d26eafd92da868d67765953e12c8160aedb"
   dependencies:
     mocha "^3.4.2"
     original-require "^1.0.1"
-    solc "0.4.21"
+    solc "0.4.23"
 
 tryit@^1.0.1:
   version "1.0.3"
@@ -6358,7 +6362,3 @@ yeoman-generator@^2.0.5:
     text-table "^0.2.0"
     through2 "^2.0.0"
     yeoman-environment "^2.0.5"
-
-zeppelin-solidity@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/zeppelin-solidity/-/zeppelin-solidity-1.3.0.tgz#066ab35d7e07510da391d1dbaaf319e0d06fcfc6"

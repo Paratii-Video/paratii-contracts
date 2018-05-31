@@ -1,6 +1,6 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import './ParatiiToken.sol';
 import './Registry.sol';
 
@@ -9,8 +9,8 @@ contract Vouchers is Ownable {
     Registry public registry;
 
     struct Data {
-      address _claimant;
-      uint _amount;
+        address _claimant;
+        uint _amount;
     }
 
     mapping (bytes32 => Data) public vouchers;
@@ -20,11 +20,11 @@ contract Vouchers is Ownable {
     event LogRedeemVoucher(bytes32 _hashedVoucher, string _voucher, uint _amount, address _claimant);
 
     modifier onlyOwnerOrAvatar() {
-        require((msg.sender == owner) || (msg.sender == registry.getContract('Avatar')));
+        require((msg.sender == owner) || (msg.sender == registry.getContract("Avatar")));
         _;
     }
 
-    function Vouchers(Registry _registry) public {
+    constructor(Registry _registry) public {
         owner = msg.sender;
         registry = _registry;
     }
@@ -35,17 +35,17 @@ contract Vouchers is Ownable {
     function create(bytes32 _hashedVoucher, uint _amount) public onlyOwnerOrAvatar {
         require(_amount > 0);
         vouchers[_hashedVoucher] = Data(address(0), _amount);
-        LogCreateVoucher(_hashedVoucher, _amount);
+        emit LogCreateVoucher(_hashedVoucher, _amount);
     }
 
     function remove(bytes32 _hashedVoucher) public onlyOwnerOrAvatar {
-       delete vouchers[_hashedVoucher];
-       LogRemoveVoucher(_hashedVoucher);
+        delete vouchers[_hashedVoucher];
+        emit LogRemoveVoucher(_hashedVoucher);
     }
 
     /* A convenience function that hashes teh voucher, to be call'ed locally */
     function hashVoucher(string _voucher) public pure returns(bytes32 _hashedVoucher) {
-      return keccak256(_voucher);
+        return keccak256(_voucher);
     }
 
     /*
@@ -62,8 +62,8 @@ contract Vouchers is Ownable {
         // invalidate the voucher, and send the money to the sender
         vouchers[hashedVoucher]._claimant = msg.sender;
         // get the pti token contract from the registry
-        ParatiiToken token = ParatiiToken(registry.getContract('ParatiiToken'));
+        ParatiiToken token = ParatiiToken(registry.getContract("ParatiiToken"));
         token.transfer(msg.sender, voucher._amount);
-        LogRedeemVoucher(hashedVoucher, _voucher, voucher._amount, msg.sender);
+        emit LogRedeemVoucher(hashedVoucher, _voucher, voucher._amount, msg.sender);
     }
 }

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 /*
     A contract you can inherit from that has some useful Events to print statements.
