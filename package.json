@@ -2,7 +2,7 @@
   "name": "paratii-contracts",
   "version": "0.0.3",
   "description": "Paratii Smart Contracts",
-  "main": ".",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
