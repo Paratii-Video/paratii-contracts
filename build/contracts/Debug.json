@@ -86,11 +86,11 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058201094d44eb8ca64069117a1b23e8b7f7e36150d733731d229b0484c71253be7140029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058201094d44eb8ca64069117a1b23e8b7f7e36150d733731d229b0484c71253be7140029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820b06fcbbb9d59be79d116a77e3a1df62139412116003db97565136fee173c7d550029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820b06fcbbb9d59be79d116a77e3a1df62139412116003db97565136fee173c7d550029",
   "sourceMap": "122:252:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;122:252:1;;;;;;;",
   "deployedSourceMap": "122:252:1:-;;;;;",
-  "source": "pragma solidity ^0.4.23;\r\n\r\n/*\r\n    A contract you can inherit from that has some useful Events to print statements.\r\n*/\r\ncontract Debug {\r\n    event LogAddress(address _msg);\r\n    event LogInt(int _msg);\r\n    event LogString(string _msg);\r\n    event LogUint(uint _msg);\r\n    event LogBytes(bytes _msg);\r\n    event LogBytes32(bytes32 _msg);\r\n    event LogBool(bool _msg);\r\n}\r\n",
+  "source": "pragma solidity ^0.4.24;\r\n\r\n/*\r\n    A contract you can inherit from that has some useful Events to print statements.\r\n*/\r\ncontract Debug {\r\n    event LogAddress(address _msg);\r\n    event LogInt(int _msg);\r\n    event LogString(string _msg);\r\n    event LogUint(uint _msg);\r\n    event LogBytes(bytes _msg);\r\n    event LogBytes32(bytes32 _msg);\r\n    event LogBool(bool _msg);\r\n}\r\n",
   "sourcePath": "C:\\workfolder\\luisparatii\\paratii-contracts\\contracts\\debug\\Debug.sol",
   "ast": {
     "absolutePath": "/C/workfolder/luisparatii/paratii-contracts/contracts/debug/Debug.sol",
@@ -108,7 +108,7 @@
           "solidity",
           "^",
           "0.4",
-          ".23"
+          ".24"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:24:1"
@@ -443,7 +443,7 @@
           "solidity",
           "^",
           "0.4",
-          ".23"
+          ".24"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:24:1"
@@ -764,9 +764,9 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-31T23:40:42.484Z"
+  "updatedAt": "2018-06-05T02:37:26.707Z"
 }
