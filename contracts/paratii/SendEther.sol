@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 
 /**
  * @title SendEther
@@ -15,7 +15,7 @@ contract SendEther {
     );
 
     // If someone accidentally sends ether to this contract, revert;
-    function () {
+    function () public {
         revert();
     }
 
@@ -25,9 +25,9 @@ contract SendEther {
      * @param _to recipient of the ETH
      * @param _description  A description to log
      */
-    function transfer(address _to, string _description) payable returns(bool)  {
+    function transfer(address _to, string _description) payable public returns(bool)  {
        _to.transfer(msg.value);
-       LogSendEther(msg.sender, _to, msg.value, _description);
+       emit LogSendEther(msg.sender, _to, msg.value, _description);
        return true;
     }
 

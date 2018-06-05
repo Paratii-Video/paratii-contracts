@@ -1,6 +1,6 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./ParatiiToken.sol";
 import './Registry.sol';
 
@@ -34,12 +34,12 @@ contract TcrPlaceholder is Ownable {
   // CONSTRUCTOR
   // ------------------
 
-  function TcrPlaceholder(
+  constructor(
     Registry _registry,
     address _tokenAddr,
     uint _minDeposit,
     uint _applyStageLen
-  ) {
+  ) public {
     owner = msg.sender;
     registry = _registry;
     token = ParatiiToken(_tokenAddr);
@@ -72,7 +72,7 @@ contract TcrPlaceholder is Ownable {
     listing.applicationExpiry = block.number + applyStageLen;
     listing.unstakedDeposit = _amount;
 
-    _Application(_videoId, _amount);
+    emit _Application(_videoId, _amount);
   }
 
   /**
@@ -126,7 +126,7 @@ contract TcrPlaceholder is Ownable {
   function updateStatus(string _videoId) public {
     if (canBeWhitelisted(_videoId)) {
       whitelistApplication(_videoId);
-      _NewVideoWhitelisted(_videoId);
+      emit _NewVideoWhitelisted(_videoId);
     } else {
       revert();
     }
@@ -152,21 +152,21 @@ contract TcrPlaceholder is Ownable {
   // Utilities
   //------------------------
   /// @dev returns true if video is whitelisted
-  function isWhitelisted(string _videoId) constant public returns (bool whitelisted) {
+  function isWhitelisted(string _videoId) view public returns (bool whitelisted) {
     return listings[keccak256(_videoId)].whitelisted;
   }
 
   // @dev returns true if apply was called for this video
-  function appWasMade(string _videoId) constant public returns (bool exists) {
+  function appWasMade(string _videoId) view public returns (bool exists) {
     return listings[keccak256(_videoId)].applicationExpiry > 0;
   }
 
   /// @dev returns true if the provided termDate has passed
-  function isExpired(uint _termDate) constant public returns (bool expired) {
+  function isExpired(uint _termDate) view public returns (bool expired) {
     return _termDate < block.number;
   }
 
-  function getMinDeposit() constant public returns (uint) {
+  function getMinDeposit() view public returns (uint) {
     return minDeposit;
   }
 
@@ -174,7 +174,7 @@ contract TcrPlaceholder is Ownable {
   @dev                Determines whether the video of an application can be whitelisted.
   @param _videoId      The videoId whose status should be examined
   */
-  function canBeWhitelisted(string _videoId) constant public returns (bool) {
+  function canBeWhitelisted(string _videoId) view public returns (bool) {
     bytes32 videoHash = keccak256(_videoId);
 
     // Ensures that the application was made,

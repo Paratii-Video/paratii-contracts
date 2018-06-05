@@ -1,6 +1,6 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import './Registry.sol';
 
 contract Users is Ownable {
@@ -29,7 +29,7 @@ contract Users is Ownable {
       _;
     }
 
-    function Users(Registry _registry) public {
+    constructor(Registry _registry) public {
         owner = msg.sender;
         registry = _registry;
     }
@@ -53,7 +53,7 @@ contract Users is Ownable {
           ipfsData: _ipfsData
       });
 
-      LogCreateUser(_address, _name, _email, _ipfsData);
+      emit LogCreateUser(_address, _name, _email, _ipfsData);
     }
 
     /**
@@ -63,7 +63,7 @@ contract Users is Ownable {
      */
     function remove(address _address) public onlyOwnerOrUser(_address) {
         delete users[_address];
-        LogRemoveUser(_address);
+        emit LogRemoveUser(_address);
     }
 
     /**
@@ -71,7 +71,7 @@ contract Users is Ownable {
      * @param _address the address of the user
      * @return a tuple (name, email, ipfsData)
      */
-    function get(address _address) public constant returns(string, string, string) {
+    function get(address _address) public view returns(string, string, string) {
       UserInfo storage userInfo = users[_address];
       return (userInfo.name, userInfo.email, userInfo.ipfsData);
     }
