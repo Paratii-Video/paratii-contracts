@@ -9,7 +9,6 @@ contract Users is Ownable {
 
     struct UserInfo {
       string name;
-      string email;
       string ipfsData;
     }
 
@@ -18,7 +17,6 @@ contract Users is Ownable {
     event LogCreateUser(
       address indexed _address,
       string _name,
-      string _email,
       string _ipfsData
     );
 
@@ -38,22 +36,19 @@ contract Users is Ownable {
      * @dev Register a new user
      * @param _address - the ethereum address of the user
      * @param _name - the name of the user
-     * @param _email - the email address of the user
      * @param _ipfsData - the hash of a JSON file with data of the video
      */
     function create(
       address _address,
       string _name,
-      string _email,
       string _ipfsData
     ) public onlyOwnerOrUser(_address) {
       users[_address] =  UserInfo({
           name: _name,
-          email: _email,
           ipfsData: _ipfsData
       });
 
-      LogCreateUser(_address, _name, _email, _ipfsData);
+      LogCreateUser(_address, _name, _ipfsData);
     }
 
     /**
@@ -69,10 +64,10 @@ contract Users is Ownable {
     /**
      * @dev return information about the user
      * @param _address the address of the user
-     * @return a tuple (name, email, ipfsData)
+     * @return a tuple (name, ipfsData)
      */
-    function get(address _address) public constant returns(string, string, string) {
+    function get(address _address) public constant returns(string, string) {
       UserInfo storage userInfo = users[_address];
-      return (userInfo.name, userInfo.email, userInfo.ipfsData);
+      return (userInfo.name, userInfo.ipfsData);
     }
 }
