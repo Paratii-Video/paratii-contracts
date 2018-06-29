@@ -34,7 +34,7 @@ contract TcrPlaceholder is Ownable {
   // CONSTRUCTOR
   // ------------------
 
-  function TcrPlaceholder(
+  function TcrPlaceholder public (
     Registry _registry,
     address _tokenAddr,
     uint _minDeposit,

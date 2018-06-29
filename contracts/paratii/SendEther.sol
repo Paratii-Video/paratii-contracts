@@ -15,7 +15,7 @@ contract SendEther {
     );
 
     // If someone accidentally sends ether to this contract, revert;
-    function () {
+    function () public {
         revert();
     }
 
@@ -25,7 +25,7 @@ contract SendEther {
      * @param _to recipient of the ETH
      * @param _description  A description to log
      */
-    function transfer(address _to, string _description) payable returns(bool)  {
+    function transfer(address _to, string _description) public payable returns(bool)  {
        _to.transfer(msg.value);
        LogSendEther(msg.sender, _to, msg.value, _description);
        return true;
