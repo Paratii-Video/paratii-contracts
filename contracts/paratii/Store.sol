@@ -1,13 +1,13 @@
 pragma solidity ^0.4.18;
 
-import 'zeppelin-solidity/contracts/math/SafeMath.sol';
-import './Avatar.sol';
-import './ParatiiToken.sol';
-import './Registry.sol';
-import './Sales.sol';
-import './Users.sol';
-import './Videos.sol';
-import '../debug/Debug.sol';
+import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "./Avatar.sol";
+import "./ParatiiToken.sol";
+import "./Registry.sol";
+import "./Sales.sol";
+import "./Users.sol";
+import "./Videos.sol";
+import "../debug/Debug.sol";
 
 
 /**
@@ -24,8 +24,8 @@ contract Store is Ownable, Debug {
 
     event LogBuyVideo(string _videoId, address _buyer, uint _price);
 
-    function Store(Registry _registry) public {
-      registry = _registry;
+    constructor(Registry _registry) public {
+        registry = _registry;
     }
 
     // If someone accidentally sends ether to this contract, revert;
@@ -40,21 +40,21 @@ contract Store is Ownable, Debug {
      * the sum to the owner and the redistribution pool.
      */
     function buyVideo(string videoId, string ipfsData) public returns(bool)  {
-       // get the info about the video
-       Avatar avatar = Avatar(registry.getContract('Avatar'));
-       /*Videos videos = Videos(registry.getContract('Videos'));*/
-       var (owner, price, _3, _4_, _5, _6) = Videos(registry.getContract('Videos')).get(videoId);
-       uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
-       avatar.transferFrom(msg.sender, address(avatar), paratiiPart);
-       uint256 ownerPart = price.sub(paratiiPart);
-       avatar.transferFrom(msg.sender, owner, ownerPart);
-       Sales(registry.getContract('Sales')).create(msg.sender, videoId, price, ipfsData);
-       LogBuyVideo(videoId, msg.sender, price);
-       return true;
+        // get the info about the video
+        Avatar avatar = Avatar(registry.getContract("Avatar"));
+        /*Videos videos = Videos(registry.getContract("Videos"));*/
+        var (owner, price, _3, _4_, _5, _6) = Videos(registry.getContract("Videos")).get(videoId);
+        uint256 paratiiPart = price.mul(redistributionPoolShare()).div(10 ** 18);
+        avatar.transferFrom(msg.sender, address(avatar), paratiiPart);
+        uint256 ownerPart = price.sub(paratiiPart);
+        avatar.transferFrom(msg.sender, owner, ownerPart);
+        Sales(registry.getContract("Sales")).create(msg.sender, videoId, price, ipfsData);
+        emit LogBuyVideo(videoId, msg.sender, price);
+        return true;
     }
 
     function redistributionPoolShare() internal constant returns(uint256) {
         // the "percentage" in precision 10**18
-        return registry.getUint('VideoRedistributionPoolShare');
+        return registry.getUint("VideoRedistributionPoolShare");
     }
 }

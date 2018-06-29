@@ -1,17 +1,17 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import 'zeppelin-solidity/contracts/math/SafeMath.sol';
-import './Registry.sol';
+import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "./Registry.sol";
 
 contract Sales is Ownable {
 
     Registry public registry;
 
     struct Data {
-      bool _isRegistered;
-      uint _price;
-      string _ipfsData;
+        bool _isRegistered;
+        uint _price;
+        string _ipfsData;
     }
 
 
@@ -22,11 +22,11 @@ contract Sales is Ownable {
     event LogRemoveSale(address _buyer, string _videoId);
 
     modifier onlyOwnerOrStore() {
-        require((msg.sender == owner) || (msg.sender == registry.getContract('Store')));
+        require((msg.sender == owner) || (msg.sender == registry.getContract("Store")));
         _;
     }
 
-    function Sales(Registry _registry) public {
+    constructor(Registry _registry) public {
         owner = msg.sender;
         registry = _registry;
     }
@@ -43,7 +43,7 @@ contract Sales is Ownable {
     function create(address _buyer, string _videoId, uint _price, string _ipfsData)
         public onlyOwnerOrStore {
         _sales[_buyer][keccak256(_videoId)] = Data(true, _price, _ipfsData);
-        LogCreateSale(_buyer, _videoId, _price, _ipfsData);
+        emit LogCreateSale(_buyer, _videoId, _price, _ipfsData);
     }
 
     /**
@@ -53,7 +53,7 @@ contract Sales is Ownable {
     function remove(address _buyer, string _videoId)
         public onlyOwnerOrStore {
         delete _sales[_buyer][keccak256(_videoId)];
-        LogRemoveSale(_buyer, _videoId);
+        emit LogRemoveSale(_buyer, _videoId);
     }
 
     /**
@@ -61,7 +61,7 @@ contract Sales is Ownable {
      * Only the Store contract or the owner can remove a sale
      * @return price and ipfsData
      */
-    function get(address _buyer, string _videoId) public  constant returns(uint, string) {
+    function get(address _buyer, string _videoId) public  view returns(uint, string) {
         Data storage _data = _sales[_buyer][keccak256(_videoId)];
         return (
             _data._price,
@@ -69,7 +69,7 @@ contract Sales is Ownable {
         );
     }
 
-    function userBoughtVideo(address _buyer, string _videoId) public constant returns(bool) {
+    function userBoughtVideo(address _buyer, string _videoId) public view returns(bool) {
         return _sales[_buyer][keccak256(_videoId)]._isRegistered;
     }
 }

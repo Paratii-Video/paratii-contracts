@@ -8,60 +8,60 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
  **/
 contract Registry is Ownable  {
 
-  mapping (bytes32=>address) public contracts;
-  mapping (bytes32=>uint) public numbers;
-  mapping (bytes32=>string) public strings;
+    mapping (bytes32=>address) public contracts;
+    mapping (bytes32=>uint) public numbers;
+    mapping (bytes32=>string) public strings;
 
-  event LogRegisterAddress(string _name, address _address);
-  event LogUnregisterAddress(string _name);
-  event LogRegisterUint(string _name, uint _number);
-  event LogUnregisterUint(string _name);
-  event LogRegisterString(string _name, string _string);
-  event LogUnregisterString(string _name);
+    event LogRegisterAddress(string _name, address _address);
+    event LogUnregisterAddress(string _name);
+    event LogRegisterUint(string _name, uint _number);
+    event LogUnregisterUint(string _name);
+    event LogRegisterString(string _name, string _string);
+    event LogUnregisterString(string _name);
 
-  function Registry() public {
-      owner = msg.sender;
-  }
+    constructor() public {
+        owner = msg.sender;
+    }
 
-  function registerAddress(string _name, address _address) public onlyOwner {
-    contracts[keccak256(_name)] = _address;
-    LogRegisterAddress(_name, _address);
-  }
+    function registerAddress(string _name, address _address) public onlyOwner {
+        contracts[keccak256(_name)] = _address;
+        emit LogRegisterAddress(_name, _address);
+    }
 
-  function unregisterAddress(string _name) public onlyOwner {
-    delete contracts[keccak256(_name)];
-    LogUnregisterAddress(_name);
-  }
+    function unregisterAddress(string _name) public onlyOwner {
+        delete contracts[keccak256(_name)];
+        emit LogUnregisterAddress(_name);
+    }
 
-  function getContract(string _name) public constant returns(address) {
-    return contracts[keccak256(_name)];
-  }
+    function getContract(string _name) public view returns(address) {
+        return contracts[keccak256(_name)];
+    }
 
-  function registerUint(string _name, uint _number) public onlyOwner {
-    numbers[keccak256(_name)] = _number;
-    LogRegisterUint(_name, _number);
-  }
+    function registerUint(string _name, uint _number) public onlyOwner {
+        numbers[keccak256(_name)] = _number;
+        emit LogRegisterUint(_name, _number);
+    }
 
-  function unregisterUint(string _name) public onlyOwner {
-    delete numbers[keccak256(_name)];
-    LogUnregisterUint(_name);
-  }
+    function unregisterUint(string _name) public onlyOwner {
+        delete numbers[keccak256(_name)];
+        emit LogUnregisterUint(_name);
+    }
 
-  function getUint(string _name) public constant returns(uint) {
-    return numbers[keccak256(_name)];
-  }
+    function getUint(string _name) public view returns(uint) {
+        return numbers[keccak256(_name)];
+    }
 
-  function registerString(string _name, string _string) public onlyOwner {
-    strings[keccak256(_name)] = _string;
-    LogRegisterString(_name, _string);
-  }
+    function registerString(string _name, string _string) public onlyOwner {
+        strings[keccak256(_name)] = _string;
+        emit LogRegisterString(_name, _string);
+    }
 
-  function unregisterString(string _name) public onlyOwner {
-    delete strings[keccak256(_name)];
-    LogUnregisterString(_name);
-  }
+    function unregisterString(string _name) public onlyOwner {
+        delete strings[keccak256(_name)];
+        emit LogUnregisterString(_name);
+    }
 
-  function getString(string _name) public constant returns(string) {
-    return strings[keccak256(_name)];
-  }
+    function getString(string _name) public view returns(string) {
+        return strings[keccak256(_name)];
+    }
 }
