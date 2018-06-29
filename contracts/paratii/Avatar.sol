@@ -25,7 +25,7 @@ contract Avatar is Ownable {
     function addToWhitelist(address _address) public onlyOwner {
         // check if the address is already known, and if there is a free space in the whitelist
         uint freeSpace = whitelist.length;
-        for (uint i=0; i < whitelist.length; i++) {
+        for (uint i = 0; i < whitelist.length; i++) {
             if (whitelist[i] == _address) {
                 return;
             }
