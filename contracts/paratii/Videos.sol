@@ -80,7 +80,7 @@ contract Videos is Ownable {
             registrar: msg.sender
         });
 
-        emitLogCreateVideo(_videoId, _owner, _price, _ipfsHashOrig, _ipfsHash, _ipfsData, msg.sender);
+        emit LogCreateVideo(_videoId, _owner, _price, _ipfsHashOrig, _ipfsHash, _ipfsData, msg.sender);
     }
 
     function remove(string _videoId) public onlyRegistrarOrAvatar(_videoId) {
