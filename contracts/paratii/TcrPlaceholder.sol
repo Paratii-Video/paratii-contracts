@@ -34,12 +34,12 @@ contract TcrPlaceholder is Ownable {
   // CONSTRUCTOR
   // ------------------
 
-  function TcrPlaceholder public (
+  function TcrPlaceholder (
     Registry _registry,
     address _tokenAddr,
     uint _minDeposit,
     uint _applyStageLen
-  ) {
+  ) public {
     owner = msg.sender;
     registry = _registry;
     token = ParatiiToken(_tokenAddr);
