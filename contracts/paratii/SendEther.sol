@@ -8,14 +8,14 @@ pragma solidity ^0.4.18;
 contract SendEther {
 
     event LogSendEther(
-      address from,
-      address to,
-      uint value,
-      string description
+        address from,
+        address to,
+        uint value,
+        string description
     );
 
     // If someone accidentally sends ether to this contract, revert;
-    function () {
+    function () public {
         revert();
     }
 
@@ -25,10 +25,10 @@ contract SendEther {
      * @param _to recipient of the ETH
      * @param _description  A description to log
      */
-    function transfer(address _to, string _description) payable returns(bool)  {
-       _to.transfer(msg.value);
-       LogSendEther(msg.sender, _to, msg.value, _description);
-       return true;
+    function transfer(address _to, string _description) public payable returns(bool)  {
+        _to.transfer(msg.value);
+        emit LogSendEther(msg.sender, _to, msg.value, _description);
+        return true;
     }
 
 }

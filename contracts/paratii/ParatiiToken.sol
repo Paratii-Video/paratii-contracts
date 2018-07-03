@@ -9,7 +9,7 @@ contract ParatiiToken is StandardToken {
     uint public decimals = 18;
     uint public INITIAL_SUPPLY = 21000000 * (10**decimals);
 
-    function ParatiiToken() public {
+    constructor() public {
         totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
     }
