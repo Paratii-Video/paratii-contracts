@@ -50,8 +50,7 @@ contract Videos is Ownable {
         _;
     }
 
-
-    constructor(Registry _paratiiRegistry) public {
+    function Videos(Registry _paratiiRegistry) public {
         owner = msg.sender;
         paratiiRegistry = _paratiiRegistry;
     }
