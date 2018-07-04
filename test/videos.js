@@ -44,7 +44,7 @@ contract('Videos: ', function (accounts) {
     assert.equal(videoInfo[5], accounts[1])
 
     await expectError(async function () {
-      await videoRegistry.remove(videoId, {from: accounts[2]})
+      await videoRegistry.remove(videoId, {from: accounts[3]})
     })
     // after this unsuccesful attempt, the information about the video is still there
     videoInfo = await videoRegistry.get(videoId)
