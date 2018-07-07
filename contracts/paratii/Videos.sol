@@ -38,13 +38,13 @@ contract Videos is Ownable {
     }
 
     modifier onlyRegistrarOrAvatar(string _videoId) {
-        bytes32 id = keccak256(_videoId);
+        bytes32 id = keccak256(abi.encodePacked(_videoId));
         VideoInfo storage videoInfo = videos[id];
         require(msg.sender == owner || (videoInfo.registrar == 0 || msg.sender == videoInfo.registrar));
         _;
     }
     modifier onlyRegistrarOrAvatarOrOwner(string _videoId) {
-        bytes32 id = keccak256(_videoId);
+        bytes32 id = keccak256(abi.encodePacked(_videoId));
         VideoInfo storage videoInfo = videos[id];
         require(msg.sender == owner || (videoInfo.registrar == 0 || msg.sender == videoInfo.registrar || msg.sender == videoInfo.owner));
         _;
@@ -74,7 +74,7 @@ contract Videos is Ownable {
         string _ipfsData
     ) onlyRegistrarOrAvatarOrOwner(_videoId) public {
 
-        bytes32 id = keccak256(_videoId);
+        bytes32 id = keccak256(abi.encodePacked(_videoId));
 
         videos[id] = VideoInfo({
             _id: id,
@@ -90,7 +90,7 @@ contract Videos is Ownable {
     }
 
     function remove(string _videoId) public onlyRegistrarOrAvatarOrOwner(_videoId) {
-        bytes32 id = keccak256(_videoId);
+        bytes32 id = keccak256(abi.encodePacked(_videoId));
         delete videos[id];
         emit LogRemoveVideo(_videoId);
     }
@@ -105,7 +105,7 @@ contract Videos is Ownable {
         view
         returns(address, uint256, string, string, string, address)
     {
-        VideoInfo storage videoInfo = videos[keccak256(_videoId)];
+        VideoInfo storage videoInfo = videos[keccak256(abi.encodePacked(_videoId))];
         return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHashOrig, videoInfo.ipfsHash, videoInfo.ipfsData, videoInfo.registrar);
     }
 }

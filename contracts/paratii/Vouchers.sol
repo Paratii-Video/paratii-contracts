@@ -45,7 +45,7 @@ contract Vouchers is Ownable {
 
     /* A convenience function that hashes teh voucher, to be call"ed locally */
     function hashVoucher(string _voucher) public pure returns(bytes32 _hashedVoucher) {
-        return keccak256(_voucher);
+        return keccak256(abi.encodePacked(_voucher));
     }
 
     /*

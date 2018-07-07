@@ -42,7 +42,7 @@ contract Sales is Ownable {
     */
     function create(address _buyer, string _videoId, uint _price, string _ipfsData)
         public onlyOwnerOrStore {
-        _sales[_buyer][keccak256(_videoId)] = Data(true, _price, _ipfsData);
+        _sales[_buyer][keccak256(abi.encodePacked(_videoId))] = Data(true, _price, _ipfsData);
         emit LogCreateSale(_buyer, _videoId, _price, _ipfsData);
     }
 
@@ -52,7 +52,7 @@ contract Sales is Ownable {
      */
     function remove(address _buyer, string _videoId)
         public onlyOwnerOrStore {
-        delete _sales[_buyer][keccak256(_videoId)];
+        delete _sales[_buyer][keccak256(abi.encodePacked(_videoId))];
         emit LogRemoveSale(_buyer, _videoId);
     }
 
@@ -62,7 +62,7 @@ contract Sales is Ownable {
      * @return price and ipfsData
      */
     function get(address _buyer, string _videoId) public  view returns(uint, string) {
-        Data storage _data = _sales[_buyer][keccak256(_videoId)];
+        Data storage _data = _sales[_buyer][keccak256(abi.encodePacked(_videoId))];
         return (
             _data._price,
             _data._ipfsData
@@ -70,6 +70,6 @@ contract Sales is Ownable {
     }
 
     function userBoughtVideo(address _buyer, string _videoId) public view returns(bool) {
-        return _sales[_buyer][keccak256(_videoId)]._isRegistered;
+        return _sales[_buyer][keccak256(abi.encodePacked(_videoId))]._isRegistered;
     }
 }

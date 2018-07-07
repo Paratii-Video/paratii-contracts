@@ -24,44 +24,44 @@ contract Registry is Ownable  {
     }
 
     function registerAddress(string _name, address _address) public onlyOwner {
-        contracts[keccak256(_name)] = _address;
+        contracts[keccak256(abi.encodePacked(_name))] = _address;
         emit LogRegisterAddress(_name, _address);
     }
 
     function unregisterAddress(string _name) public onlyOwner {
-        delete contracts[keccak256(_name)];
+        delete contracts[keccak256(abi.encodePacked(_name))];
         emit LogUnregisterAddress(_name);
     }
 
     function getContract(string _name) public view returns(address) {
-        return contracts[keccak256(_name)];
+        return contracts[keccak256(abi.encodePacked(_name))];
     }
 
     function registerUint(string _name, uint _number) public onlyOwner {
-        numbers[keccak256(_name)] = _number;
+        numbers[keccak256(abi.encodePacked(_name))] = _number;
         emit LogRegisterUint(_name, _number);
     }
 
     function unregisterUint(string _name) public onlyOwner {
-        delete numbers[keccak256(_name)];
+        delete numbers[keccak256(abi.encodePacked(_name))];
         emit LogUnregisterUint(_name);
     }
 
     function getUint(string _name) public view returns(uint) {
-        return numbers[keccak256(_name)];
+        return numbers[keccak256(abi.encodePacked(_name))];
     }
 
     function registerString(string _name, string _string) public onlyOwner {
-        strings[keccak256(_name)] = _string;
+        strings[keccak256(abi.encodePacked(_name))] = _string;
         emit LogRegisterString(_name, _string);
     }
 
     function unregisterString(string _name) public onlyOwner {
-        delete strings[keccak256(_name)];
+        delete strings[keccak256(abi.encodePacked(_name))];
         emit LogUnregisterString(_name);
     }
 
     function getString(string _name) public view returns(string) {
-        return strings[keccak256(_name)];
+        return strings[keccak256(abi.encodePacked(_name))];
     }
 }

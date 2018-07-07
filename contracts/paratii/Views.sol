@@ -29,21 +29,21 @@ contract Views is Ownable {
     }
 
     function create(address _viewer, string _videoId, string _ipfsData) public onlyOwnerOrAvatar {
-        _views[_viewer][keccak256(_videoId)] = Data(true, _ipfsData);
+        _views[_viewer][keccak256(abi.encodePacked(_videoId))] = Data(true, _ipfsData);
         emit LogCreateView(_viewer, _videoId, _ipfsData);
     }
 
     function remove(address _viewer, string _videoId) public onlyOwnerOrAvatar {
-        delete _views[_viewer][keccak256(_videoId)];
+        delete _views[_viewer][keccak256(abi.encodePacked(_videoId))];
         emit LogRemoveView(_viewer, _videoId);
     }
 
     function get(address _viewer, string _videoId) public view onlyOwnerOrAvatar returns(bool, string) {
-        Data data = _views[_viewer][keccak256(_videoId)];
+        Data storage data = _views[_viewer][keccak256(abi.encodePacked(_videoId))];
         return (data._isRegistered, data._ipfsData);
     }
 
     function userViewedVideo(address _viewer, string _videoId) public view returns(bool) {
-        return _views[_viewer][keccak256(_videoId)]._isRegistered;
+        return _views[_viewer][keccak256(abi.encodePacked(_videoId))]._isRegistered;
     }
 }
