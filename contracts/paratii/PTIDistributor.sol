@@ -49,9 +49,8 @@ contract PTIDistributor is Ownable {
         uint8 _v, 
         bytes32 _r, 
         bytes32 _s    
-    ) 
+    )
         public
-        pure
     {
         bytes32 message = keccak256(abi.encodePacked(_toAddress, _amount, _salt, _reason));
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
@@ -60,8 +59,8 @@ contract PTIDistributor is Ownable {
     }
 
     function checkOwner(bytes32 _hash, uint8 _v, bytes32 _r, bytes32 _s) 
-        public 
-        pure 
+        public
+        pure
         returns (address) 
     {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
@@ -70,8 +69,7 @@ contract PTIDistributor is Ownable {
     }
 
     function checkHashing(address _toAddress, uint256 _amount, bytes32 _salt, string _reason) 
-        public 
-        pure 
+        public
     {
         bytes32 hashing = keccak256(abi.encodePacked(_toAddress, _amount, _salt, _reason));
         emit LogDebug(hashing);
