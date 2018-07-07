@@ -48,7 +48,20 @@ contract Avatar is Ownable {
         }
     }
 
-    function isOnWhiteList(address _address) public constant returns(bool) {
+    function transferFrom(
+        address _from, 
+        address _to, 
+        uint256 _value
+    )  
+        public 
+        onlyWhitelist 
+        returns (bool)
+    {
+        ParatiiToken token = ParatiiToken(registry.getContract("ParatiiToken"));
+        return token.transferFrom(_from, _to, _value);
+    }
+
+    function isOnWhiteList(address _address) public view returns(bool) {
         for (uint i = 0; i < whitelist.length; i++) {
             if (whitelist[i] == _address) {
                 return true;
@@ -57,8 +70,4 @@ contract Avatar is Ownable {
         return false;
     }
 
-    function transferFrom(address _from, address _to, uint256 _value) public onlyWhitelist returns (bool)   {
-        ParatiiToken token = ParatiiToken(registry.getContract("ParatiiToken"));
-        return token.transferFrom(_from, _to, _value);
-    }
 }

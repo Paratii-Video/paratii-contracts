@@ -106,6 +106,14 @@ contract Videos is Ownable {
         returns(address, uint256, string, string, string, address)
     {
         VideoInfo storage videoInfo = videos[keccak256(abi.encodePacked(_videoId))];
-        return (videoInfo.owner, videoInfo.price, videoInfo.ipfsHashOrig, videoInfo.ipfsHash, videoInfo.ipfsData, videoInfo.registrar);
+        
+        return (
+            videoInfo.owner, 
+            videoInfo.price, 
+            videoInfo.ipfsHashOrig, 
+            videoInfo.ipfsHash, 
+            videoInfo.ipfsData, 
+            videoInfo.registrar
+        );
     }
 }

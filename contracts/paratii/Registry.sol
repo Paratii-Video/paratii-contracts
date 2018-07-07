@@ -33,10 +33,6 @@ contract Registry is Ownable  {
         emit LogUnregisterAddress(_name);
     }
 
-    function getContract(string _name) public view returns(address) {
-        return contracts[keccak256(abi.encodePacked(_name))];
-    }
-
     function registerUint(string _name, uint _number) public onlyOwner {
         numbers[keccak256(abi.encodePacked(_name))] = _number;
         emit LogRegisterUint(_name, _number);
@@ -47,10 +43,6 @@ contract Registry is Ownable  {
         emit LogUnregisterUint(_name);
     }
 
-    function getUint(string _name) public view returns(uint) {
-        return numbers[keccak256(abi.encodePacked(_name))];
-    }
-
     function registerString(string _name, string _string) public onlyOwner {
         strings[keccak256(abi.encodePacked(_name))] = _string;
         emit LogRegisterString(_name, _string);
@@ -59,6 +51,14 @@ contract Registry is Ownable  {
     function unregisterString(string _name) public onlyOwner {
         delete strings[keccak256(abi.encodePacked(_name))];
         emit LogUnregisterString(_name);
+    }
+
+    function getContract(string _name) public view returns(address) {
+        return contracts[keccak256(abi.encodePacked(_name))];
+    }
+
+    function getUint(string _name) public view returns(uint) {
+        return numbers[keccak256(abi.encodePacked(_name))];
     }
 
     function getString(string _name) public view returns(string) {

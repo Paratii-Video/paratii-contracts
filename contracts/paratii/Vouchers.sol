@@ -43,13 +43,13 @@ contract Vouchers is Ownable {
         emit LogRemoveVoucher(_hashedVoucher);
     }
 
-    /* A convenience function that hashes teh voucher, to be call"ed locally */
+    /* A convenience function that hashes the voucher, to be called locally */
     function hashVoucher(string _voucher) public pure returns(bytes32 _hashedVoucher) {
         return keccak256(abi.encodePacked(_voucher));
     }
 
     /*
-     * redeem the Voucher
+     * Redeem the Voucher. UNTRUSTED.
      * NOTE: This _is_ vulnerable to front-running attacks (the attacker can intercept the transaction,
        extract the voucher, and redeem it himself)
      */

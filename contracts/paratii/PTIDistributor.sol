@@ -20,8 +20,17 @@ contract PTIDistributor is Ownable {
         registry = _registry;
     }
 
-
-    function distribute(address _toAddress, uint256 _amount, bytes32 _salt, string _reason, uint8 _v, bytes32 _r, bytes32 _s) public {
+    function distribute(
+        address _toAddress, 
+        uint256 _amount, 
+        bytes32 _salt, 
+        string _reason, 
+        uint8 _v,        
+        bytes32 _r, 
+        bytes32 _s
+    ) 
+        public 
+    {
         bytes32 message = keccak256(abi.encodePacked(_toAddress, _amount, _salt, _reason));
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHash = keccak256(abi.encodePacked(prefix, message));
@@ -32,19 +41,38 @@ contract PTIDistributor is Ownable {
         emit LogDistribute(_toAddress, _amount, _reason);
     }
 
-    function checkOwnerPacked(address _toAddress, uint256 _amount, bytes32 _salt, string _reason, uint8 _v, bytes32 _r, bytes32 _s) public {
+    function checkOwnerPacked(
+        address _toAddress, 
+        uint256 _amount, 
+        bytes32 _salt, 
+        string _reason, 
+        uint8 _v, 
+        bytes32 _r, 
+        bytes32 _s    
+    ) 
+        public
+        pure
+    {
         bytes32 message = keccak256(abi.encodePacked(_toAddress, _amount, _salt, _reason));
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHash = keccak256(abi.encodePacked(prefix, message));
         emit LogDebugOwner(ecrecover(prefixedHash, _v, _r, _s));
     }
-    function checkOwner(bytes32 _hash, uint8 _v, bytes32 _r, bytes32 _s) public pure returns (address) {
+
+    function checkOwner(bytes32 _hash, uint8 _v, bytes32 _r, bytes32 _s) 
+        public 
+        pure 
+        returns (address) 
+    {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHash = keccak256(abi.encodePacked(prefix, _hash));
         return ecrecover(prefixedHash, _v, _r, _s);
     }
 
-    function checkHashing(address _toAddress, uint256 _amount, bytes32 _salt, string _reason) public {
+    function checkHashing(address _toAddress, uint256 _amount, bytes32 _salt, string _reason) 
+        public 
+        pure 
+    {
         bytes32 hashing = keccak256(abi.encodePacked(_toAddress, _amount, _salt, _reason));
         emit LogDebug(hashing);
     }
