@@ -57,24 +57,24 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610272806100206000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610053575b34801561004d57600080fd5b50600080fd5b6100cd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506100e7565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561012f573d6000803e3d6000fd5b507fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101ff5780820151818401526020810190506101e4565b50505050905090810190601f16801561022c5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a723058204fc2e97784d8979adaf76927420bff954e5a201667fd259b4c9d7b615c2500f70029",
-  "deployedBytecode": "0x608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610053575b34801561004d57600080fd5b50600080fd5b6100cd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506100e7565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561012f573d6000803e3d6000fd5b507fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101ff5780820151818401526020810190506101e4565b50505050905090810190601f16801561022c5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a723058204fc2e97784d8979adaf76927420bff954e5a201667fd259b4c9d7b615c2500f70029",
+  "bytecode": "0x608060405234801561001057600080fd5b50610272806100206000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610053575b34801561004d57600080fd5b50600080fd5b6100cd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506100e7565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561012f573d6000803e3d6000fd5b507fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101ff5780820151818401526020810190506101e4565b50505050905090810190601f16801561022c5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a72305820e8f41258ca1f39255c02ff297cf6853336b2ba1e1414344ae8298b7783823c3f0029",
+  "deployedBytecode": "0x608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630988664914610053575b34801561004d57600080fd5b50600080fd5b6100cd600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506100e7565b604051808215151515815260200191505060405180910390f35b60008273ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561012f573d6000803e3d6000fd5b507fa8da2a10447235381d4a8921c260b89c83b471b8aff2127abc1d434348812e7133843485604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101ff5780820151818401526020810190506101e4565b50505050905090810190601f16801561022c5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a160019050929150505600a165627a7a72305820e8f41258ca1f39255c02ff297cf6853336b2ba1e1414344ae8298b7783823c3f0029",
   "sourceMap": "133:734:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;133:734:8;;;;;;;",
   "deployedSourceMap": "133:734:8:-;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;133:734:8;378:8;;;652:212;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;727:4;744:3;:12;;:23;757:9;744:23;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;744:23:8;782:54;795:10;807:3;812:9;823:12;782:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;782:54:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;853:4;846:11;;652:212;;;;:::o",
   "source": "pragma solidity ^0.4.18;\n\n/**\n * @title SendEther\n * @dev A Contract that wraps the native transfer function and logs an event.\n */\n\ncontract SendEther {\n\n    event LogSendEther(\n        address from,\n        address to,\n        uint value,\n        string description\n    );\n\n    // If someone accidentally sends ether to this contract, revert;\n    function () public {\n        revert();\n    }\n\n    /**\n     * @dev Transfer ether to address _to, providing a description\n     * The only difference with sending ETH directly is that the action is logged\n     * @param _to recipient of the ETH\n     * @param _description  A description to log\n     */\n    function transfer(address _to, string _description) public payable returns(bool)  {\n        _to.transfer(msg.value);\n        emit LogSendEther(msg.sender, _to, msg.value, _description);\n        return true;\n    }\n\n}\n",
-  "sourcePath": "/media/data2/projects/paratii/contracts/contracts/paratii/SendEther.sol",
+  "sourcePath": "/home/rigel/Documents/paratii/paratii-contracts/contracts/paratii/SendEther.sol",
   "ast": {
-    "absolutePath": "/media/data2/projects/paratii/contracts/contracts/paratii/SendEther.sol",
+    "absolutePath": "/home/rigel/Documents/paratii/paratii-contracts/contracts/paratii/SendEther.sol",
     "exportedSymbols": {
       "SendEther": [
-        1325
+        1397
       ]
     },
-    "id": 1326,
+    "id": 1398,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1279,
+        "id": 1351,
         "literals": [
           "solidity",
           "^",
@@ -90,9 +90,9 @@
         "contractKind": "contract",
         "documentation": "@title SendEther\n@dev A Contract that wraps the native transfer function and logs an event.",
         "fullyImplemented": true,
-        "id": 1325,
+        "id": 1397,
         "linearizedBaseContracts": [
-          1325
+          1397
         ],
         "name": "SendEther",
         "nodeType": "ContractDefinition",
@@ -100,20 +100,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1289,
+            "id": 1361,
             "name": "LogSendEther",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1288,
+              "id": 1360,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1281,
+                  "id": 1353,
                   "indexed": false,
                   "name": "from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "187:12:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -122,7 +122,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1280,
+                    "id": 1352,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "187:7:8",
@@ -136,11 +136,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1283,
+                  "id": 1355,
                   "indexed": false,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "209:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -149,7 +149,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1282,
+                    "id": 1354,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "209:7:8",
@@ -163,11 +163,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1285,
+                  "id": 1357,
                   "indexed": false,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "229:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -176,7 +176,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1284,
+                    "id": 1356,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "229:4:8",
@@ -190,11 +190,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1287,
+                  "id": 1359,
                   "indexed": false,
                   "name": "description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "249:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -203,7 +203,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1286,
+                    "id": 1358,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "249:6:8",
@@ -222,7 +222,7 @@
           },
           {
             "body": {
-              "id": 1295,
+              "id": 1367,
               "nodeType": "Block",
               "src": "368:25:8",
               "statements": [
@@ -232,21 +232,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1292,
+                      "id": 1364,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3206,
-                        3207
+                        3349,
+                        3350
                       ],
-                      "referencedDeclaration": 3206,
+                      "referencedDeclaration": 3349,
                       "src": "378:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 1293,
+                    "id": 1365,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -260,14 +260,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1294,
+                  "id": 1366,
                   "nodeType": "ExpressionStatement",
                   "src": "378:8:8"
                 }
               ]
             },
             "documentation": null,
-            "id": 1296,
+            "id": 1368,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -275,19 +275,19 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1290,
+              "id": 1362,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "358:2:8"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1291,
+              "id": 1363,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "368:0:8"
             },
-            "scope": 1325,
+            "scope": 1397,
             "src": "349:44:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -295,7 +295,7 @@
           },
           {
             "body": {
-              "id": 1323,
+              "id": 1395,
               "nodeType": "Block",
               "src": "734:130:8",
               "statements": [
@@ -307,18 +307,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1308,
+                          "id": 1380,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3201,
+                          "referencedDeclaration": 3344,
                           "src": "757:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1309,
+                        "id": 1381,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -342,18 +342,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1305,
+                        "id": 1377,
                         "name": "_to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1298,
+                        "referencedDeclaration": 1370,
                         "src": "744:3:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
-                      "id": 1307,
+                      "id": 1379,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -367,7 +367,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 1310,
+                    "id": 1382,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -381,7 +381,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1311,
+                  "id": 1383,
                   "nodeType": "ExpressionStatement",
                   "src": "744:23:8"
                 },
@@ -393,18 +393,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1313,
+                          "id": 1385,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3201,
+                          "referencedDeclaration": 3344,
                           "src": "795:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1314,
+                        "id": 1386,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -420,11 +420,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 1315,
+                        "id": 1387,
                         "name": "_to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1298,
+                        "referencedDeclaration": 1370,
                         "src": "807:3:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -435,18 +435,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1316,
+                          "id": 1388,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3201,
+                          "referencedDeclaration": 3344,
                           "src": "812:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1317,
+                        "id": 1389,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -462,11 +462,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 1318,
+                        "id": 1390,
                         "name": "_description",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1300,
+                        "referencedDeclaration": 1372,
                         "src": "823:12:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -493,18 +493,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1312,
+                      "id": 1384,
                       "name": "LogSendEther",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1289,
+                      "referencedDeclaration": 1361,
                       "src": "782:12:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,string memory)"
                       }
                     },
-                    "id": 1319,
+                    "id": 1391,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -518,7 +518,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1320,
+                  "id": 1392,
                   "nodeType": "EmitStatement",
                   "src": "777:59:8"
                 },
@@ -526,7 +526,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1321,
+                    "id": 1393,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -541,15 +541,15 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1304,
-                  "id": 1322,
+                  "functionReturnParameters": 1376,
+                  "id": 1394,
                   "nodeType": "Return",
                   "src": "846:11:8"
                 }
               ]
             },
             "documentation": "@dev Transfer ether to address _to, providing a description\nThe only difference with sending ETH directly is that the action is logged\n@param _to recipient of the ETH\n@param _description  A description to log",
-            "id": 1324,
+            "id": 1396,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -557,15 +557,15 @@
             "name": "transfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1301,
+              "id": 1373,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1298,
+                  "id": 1370,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1324,
+                  "scope": 1396,
                   "src": "670:11:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -574,7 +574,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1297,
+                    "id": 1369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "670:7:8",
@@ -588,10 +588,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1300,
+                  "id": 1372,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1324,
+                  "scope": 1396,
                   "src": "683:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -600,7 +600,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1299,
+                    "id": 1371,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "683:6:8",
@@ -617,15 +617,15 @@
             },
             "payable": true,
             "returnParameters": {
-              "id": 1304,
+              "id": 1376,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1303,
+                  "id": 1375,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1324,
+                  "scope": 1396,
                   "src": "727:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -634,7 +634,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1302,
+                    "id": 1374,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "727:4:8",
@@ -649,31 +649,31 @@
               ],
               "src": "726:6:8"
             },
-            "scope": 1325,
+            "scope": 1397,
             "src": "652:212:8",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1326,
+        "scope": 1398,
         "src": "133:734:8"
       }
     ],
     "src": "0:868:8"
   },
   "legacyAST": {
-    "absolutePath": "/media/data2/projects/paratii/contracts/contracts/paratii/SendEther.sol",
+    "absolutePath": "/home/rigel/Documents/paratii/paratii-contracts/contracts/paratii/SendEther.sol",
     "exportedSymbols": {
       "SendEther": [
-        1325
+        1397
       ]
     },
-    "id": 1326,
+    "id": 1398,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1279,
+        "id": 1351,
         "literals": [
           "solidity",
           "^",
@@ -689,9 +689,9 @@
         "contractKind": "contract",
         "documentation": "@title SendEther\n@dev A Contract that wraps the native transfer function and logs an event.",
         "fullyImplemented": true,
-        "id": 1325,
+        "id": 1397,
         "linearizedBaseContracts": [
-          1325
+          1397
         ],
         "name": "SendEther",
         "nodeType": "ContractDefinition",
@@ -699,20 +699,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1289,
+            "id": 1361,
             "name": "LogSendEther",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1288,
+              "id": 1360,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1281,
+                  "id": 1353,
                   "indexed": false,
                   "name": "from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "187:12:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -721,7 +721,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1280,
+                    "id": 1352,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "187:7:8",
@@ -735,11 +735,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1283,
+                  "id": 1355,
                   "indexed": false,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "209:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -748,7 +748,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1282,
+                    "id": 1354,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "209:7:8",
@@ -762,11 +762,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1285,
+                  "id": 1357,
                   "indexed": false,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "229:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -775,7 +775,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1284,
+                    "id": 1356,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "229:4:8",
@@ -789,11 +789,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1287,
+                  "id": 1359,
                   "indexed": false,
                   "name": "description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1289,
+                  "scope": 1361,
                   "src": "249:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -802,7 +802,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1286,
+                    "id": 1358,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "249:6:8",
@@ -821,7 +821,7 @@
           },
           {
             "body": {
-              "id": 1295,
+              "id": 1367,
               "nodeType": "Block",
               "src": "368:25:8",
               "statements": [
@@ -831,21 +831,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1292,
+                      "id": 1364,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3206,
-                        3207
+                        3349,
+                        3350
                       ],
-                      "referencedDeclaration": 3206,
+                      "referencedDeclaration": 3349,
                       "src": "378:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 1293,
+                    "id": 1365,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -859,14 +859,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1294,
+                  "id": 1366,
                   "nodeType": "ExpressionStatement",
                   "src": "378:8:8"
                 }
               ]
             },
             "documentation": null,
-            "id": 1296,
+            "id": 1368,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -874,19 +874,19 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1290,
+              "id": 1362,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "358:2:8"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1291,
+              "id": 1363,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "368:0:8"
             },
-            "scope": 1325,
+            "scope": 1397,
             "src": "349:44:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -894,7 +894,7 @@
           },
           {
             "body": {
-              "id": 1323,
+              "id": 1395,
               "nodeType": "Block",
               "src": "734:130:8",
               "statements": [
@@ -906,18 +906,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1308,
+                          "id": 1380,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3201,
+                          "referencedDeclaration": 3344,
                           "src": "757:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1309,
+                        "id": 1381,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -941,18 +941,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1305,
+                        "id": 1377,
                         "name": "_to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1298,
+                        "referencedDeclaration": 1370,
                         "src": "744:3:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
-                      "id": 1307,
+                      "id": 1379,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -966,7 +966,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 1310,
+                    "id": 1382,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -980,7 +980,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1311,
+                  "id": 1383,
                   "nodeType": "ExpressionStatement",
                   "src": "744:23:8"
                 },
@@ -992,18 +992,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1313,
+                          "id": 1385,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3201,
+                          "referencedDeclaration": 3344,
                           "src": "795:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1314,
+                        "id": 1386,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1019,11 +1019,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 1315,
+                        "id": 1387,
                         "name": "_to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1298,
+                        "referencedDeclaration": 1370,
                         "src": "807:3:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1034,18 +1034,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1316,
+                          "id": 1388,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3201,
+                          "referencedDeclaration": 3344,
                           "src": "812:3:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1317,
+                        "id": 1389,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1061,11 +1061,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 1318,
+                        "id": 1390,
                         "name": "_description",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1300,
+                        "referencedDeclaration": 1372,
                         "src": "823:12:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1092,18 +1092,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1312,
+                      "id": 1384,
                       "name": "LogSendEther",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1289,
+                      "referencedDeclaration": 1361,
                       "src": "782:12:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,string memory)"
                       }
                     },
-                    "id": 1319,
+                    "id": 1391,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1117,7 +1117,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1320,
+                  "id": 1392,
                   "nodeType": "EmitStatement",
                   "src": "777:59:8"
                 },
@@ -1125,7 +1125,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1321,
+                    "id": 1393,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -1140,15 +1140,15 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1304,
-                  "id": 1322,
+                  "functionReturnParameters": 1376,
+                  "id": 1394,
                   "nodeType": "Return",
                   "src": "846:11:8"
                 }
               ]
             },
             "documentation": "@dev Transfer ether to address _to, providing a description\nThe only difference with sending ETH directly is that the action is logged\n@param _to recipient of the ETH\n@param _description  A description to log",
-            "id": 1324,
+            "id": 1396,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1156,15 +1156,15 @@
             "name": "transfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1301,
+              "id": 1373,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1298,
+                  "id": 1370,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1324,
+                  "scope": 1396,
                   "src": "670:11:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1173,7 +1173,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1297,
+                    "id": 1369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "670:7:8",
@@ -1187,10 +1187,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1300,
+                  "id": 1372,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1324,
+                  "scope": 1396,
                   "src": "683:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1199,7 +1199,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1299,
+                    "id": 1371,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "683:6:8",
@@ -1216,15 +1216,15 @@
             },
             "payable": true,
             "returnParameters": {
-              "id": 1304,
+              "id": 1376,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1303,
+                  "id": 1375,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1324,
+                  "scope": 1396,
                   "src": "727:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1233,7 +1233,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1302,
+                    "id": 1374,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "727:4:8",
@@ -1248,14 +1248,14 @@
               ],
               "src": "726:6:8"
             },
-            "scope": 1325,
+            "scope": 1397,
             "src": "652:212:8",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1326,
+        "scope": 1398,
         "src": "133:734:8"
       }
     ],
@@ -1267,5 +1267,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-07-05T11:09:36.677Z"
+  "updatedAt": "2018-07-14T17:23:22.041Z"
 }

@@ -26,7 +26,7 @@ contract Likes is Ownable {
 
     function likeVideo(string _videoId, bool _liked) public {
         address _address = msg.sender;
-        bytes32 _videoHash = keccak256(_videoId);
+        bytes32 _videoHash = keccak256(abi.encodePacked(_videoId));
         bool _userLikesVideo = userLikesVideo(_address, _videoId);
         bool _userDislikesVideo = userDislikesVideo(_address, _videoId);
 
@@ -84,18 +84,18 @@ contract Likes is Ownable {
     }
 
     function vidLikes(string _videoId) public view returns(uint) {
-        return _vidLikes[keccak256(_videoId)];
+        return _vidLikes[keccak256(abi.encodePacked(_videoId))];
     }
 
     function vidDislikes(string _videoId) public view returns(uint) {
-        return _vidDislikes[keccak256(_videoId)];
+        return _vidDislikes[keccak256(abi.encodePacked(_videoId))];
     }
 
     function userLikesVideo(address _address, string _videoId) public view returns(bool) {
-        return _likes[_address][keccak256(_videoId)];
+        return _likes[_address][keccak256(abi.encodePacked(_videoId))];
     }
 
     function userDislikesVideo(address _address, string _videoId) public view returns(bool) {
-        return _dislikes[_address][keccak256(_videoId)];
+        return _dislikes[_address][keccak256(abi.encodePacked(_videoId))];
     }
 }

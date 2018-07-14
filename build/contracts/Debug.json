@@ -86,14 +86,14 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820f1195c9349f61217a003a89a9ceea3db09fc866781858583c5d334526b4681860029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820f1195c9349f61217a003a89a9ceea3db09fc866781858583c5d334526b4681860029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058209f82e7c3f6ee115d751a8fc182e97d14bdc24eff083ac3eb7d18a54b9bfc56840029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058209f82e7c3f6ee115d751a8fc182e97d14bdc24eff083ac3eb7d18a54b9bfc56840029",
   "sourceMap": "117:244:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;117:244:1;;;;;;;",
   "deployedSourceMap": "117:244:1:-;;;;;",
   "source": "pragma solidity ^0.4.18;\n\n/*\n    A contract you can inherit from that has some useful Events to print statements.\n*/\ncontract Debug {\n    event LogAddress(address _msg);\n    event LogInt(int _msg);\n    event LogString(string _msg);\n    event LogUint(uint _msg);\n    event LogBytes(bytes _msg);\n    event LogBytes32(bytes32 _msg);\n    event LogBool(bool _msg);\n}\n",
-  "sourcePath": "/media/data2/projects/paratii/contracts/contracts/debug/Debug.sol",
+  "sourcePath": "/home/rigel/Documents/paratii/paratii-contracts/contracts/debug/Debug.sol",
   "ast": {
-    "absolutePath": "/media/data2/projects/paratii/contracts/contracts/debug/Debug.sol",
+    "absolutePath": "/home/rigel/Documents/paratii/paratii-contracts/contracts/debug/Debug.sol",
     "exportedSymbols": {
       "Debug": [
         87
@@ -428,7 +428,7 @@
     "src": "0:362:1"
   },
   "legacyAST": {
-    "absolutePath": "/media/data2/projects/paratii/contracts/contracts/debug/Debug.sol",
+    "absolutePath": "/home/rigel/Documents/paratii/paratii-contracts/contracts/debug/Debug.sol",
     "exportedSymbols": {
       "Debug": [
         87
@@ -768,5 +768,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-07-05T11:09:36.668Z"
+  "updatedAt": "2018-07-14T17:23:22.041Z"
 }

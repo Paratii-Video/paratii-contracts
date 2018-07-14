@@ -62,7 +62,7 @@ contract TcrPlaceholder is Ownable {
         require(_amount >= minDeposit);
 
         // set owner
-        Listing storage listing = listings[keccak256(_videoId)];
+        Listing storage listing = listings[keccak256(abi.encodePacked(_videoId))];
         listing.owner = msg.sender;
 
         // transfer tokens from user to TcrPlaceholder contract
@@ -97,7 +97,7 @@ contract TcrPlaceholder is Ownable {
     * @param  _videoId videoId to remove
     */
     function exit(string _videoId) external {
-        Listing storage listing = listings[keccak256(_videoId)];
+        Listing storage listing = listings[keccak256(abi.encodePacked(_videoId))];
 
         require(msg.sender == listing.owner);
         require(isWhitelisted(_videoId));
@@ -139,7 +139,7 @@ contract TcrPlaceholder is Ownable {
     @param _videoId The _videoId of an application/listing to be whitelisted
     */
     function whitelistApplication(string _videoId) private {
-        bytes32 videoHash = keccak256(_videoId);
+        bytes32 videoHash = keccak256(abi.encodePacked(_videoId));
 
         listings[videoHash].whitelisted = true;
     }
@@ -153,12 +153,12 @@ contract TcrPlaceholder is Ownable {
     //------------------------
     /// @dev returns true if video is whitelisted
     function isWhitelisted(string _videoId) view public returns (bool whitelisted) {
-        return listings[keccak256(_videoId)].whitelisted;
+        return listings[keccak256(abi.encodePacked(_videoId))].whitelisted;
     }
 
     // @dev returns true if apply was called for this video
     function appWasMade(string _videoId) view public returns (bool exists) {
-        return listings[keccak256(_videoId)].applicationExpiry > 0;
+        return listings[keccak256(abi.encodePacked(_videoId))].applicationExpiry > 0;
     }
 
     /// @dev returns true if the provided termDate has passed
@@ -175,7 +175,7 @@ contract TcrPlaceholder is Ownable {
     @param _videoId      The videoId whose status should be examined
     */
     function canBeWhitelisted(string _videoId) view public returns (bool) {
-        bytes32 videoHash = keccak256(_videoId);
+        bytes32 videoHash = keccak256(abi.encodePacked(_videoId));
 
         // Ensures that the application was made,
         // the application period has ended,
@@ -194,7 +194,7 @@ contract TcrPlaceholder is Ownable {
     @param _videoId the videoId to be removed
     */
     function resetListing(string _videoId) private {
-        bytes32 videoHash = keccak256(_videoId);
+        bytes32 videoHash = keccak256(abi.encodePacked(_videoId));
         Listing storage listing = listings[videoHash];
 
         // Transfers any remaining balance back to the owner

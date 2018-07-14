@@ -14,7 +14,6 @@ contract Sales is Ownable {
         string _ipfsData;
     }
 
-
     // mapping from user addrsses and video ids to booleans
     mapping (address=> mapping (bytes32 => Data)) private _sales;
 
@@ -41,8 +40,10 @@ contract Sales is Ownable {
     * @param _ipfsData a reference to further data that can be found on ipfs
     */
     function create(address _buyer, string _videoId, uint _price, string _ipfsData)
-        public onlyOwnerOrStore {
-        _sales[_buyer][keccak256(_videoId)] = Data(true, _price, _ipfsData);
+        public 
+        onlyOwnerOrStore 
+    {
+        _sales[_buyer][keccak256(abi.encodePacked(_videoId))] = Data(true, _price, _ipfsData);
         emit LogCreateSale(_buyer, _videoId, _price, _ipfsData);
     }
 
@@ -50,9 +51,8 @@ contract Sales is Ownable {
      * @dev Remove the sale from the registry
      * Only the Store contract or the owner can remove a sale
      */
-    function remove(address _buyer, string _videoId)
-        public onlyOwnerOrStore {
-        delete _sales[_buyer][keccak256(_videoId)];
+    function remove(address _buyer, string _videoId) public onlyOwnerOrStore {
+        delete _sales[_buyer][keccak256(abi.encodePacked(_videoId))];
         emit LogRemoveSale(_buyer, _videoId);
     }
 
@@ -62,7 +62,7 @@ contract Sales is Ownable {
      * @return price and ipfsData
      */
     function get(address _buyer, string _videoId) public  view returns(uint, string) {
-        Data storage _data = _sales[_buyer][keccak256(_videoId)];
+        Data storage _data = _sales[_buyer][keccak256(abi.encodePacked(_videoId))];
         return (
             _data._price,
             _data._ipfsData
@@ -70,6 +70,6 @@ contract Sales is Ownable {
     }
 
     function userBoughtVideo(address _buyer, string _videoId) public view returns(bool) {
-        return _sales[_buyer][keccak256(_videoId)]._isRegistered;
+        return _sales[_buyer][keccak256(abi.encodePacked(_videoId))]._isRegistered;
     }
 }
