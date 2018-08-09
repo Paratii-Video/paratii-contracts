@@ -1,84 +1,4 @@
-# Overview of the Paratii contracts and library
 
-
-
-- InterPlanetary Linked Data (IPLD) for formatting metadata under cross-industry standards.
-
-## Relevant Levels of Data
-
-- message: encompass wantlists, block references, chunk hashes, payload, signed / non-signed **(to be spec'd)**.
-- chunk: the data unit of storage at the heart of content-addressing, determiniscally pointed to by a unique hash. Relevant to storage operations, besides delivery/request and accounting.  
-- address: unique identifier of an agent in the network.
-- video: an IPFS multihash, relevant to high-level APIs.
-
-## Message formats
-
-The Paratii protocol is message-based, as opposed to request-response. It used IPFS' PKI-based identity, and messages are signed using the same private key used to create the `nodeID`, allowing for receivers to get the public key out of the signature and check it against that of the requesting node.
-
-Deep down, messages are stringified JSON objects, to be parsed back by receivers. To define them, we first outline _Fragments_. These are main building blocks, suited for requesting a job upon a payload (e.g. transcoding a file):
-
-    message Fragment {
-      optional bytes tid = 1;
-      optional int32 type = 2;
-      optional bytes payload = 3;
-      optional bytes args = 4;
-    }
-    
-| Field         | Type          | Description  |
-| ------------- |:-------------:| ----       |
-| `id`          | `bytes`       | The `nodeID`.   |
-| `type`        | `int32`       | `command` or `response`, signed.  |
-| `payload`     | `bytes`       | The actual command. e.g. a transcoding `jobRequest`.     |
-| `args`        | `bytes`       | The arguments for the command. E.g. a video file multihash. In the case of a `response` type, `args` holds the response itself.      |
-
-
-Or for peers to announce their conditions to party into a chequebook contract for data exchange, as [Swarm](https://github.com/ethersphere/swarm/wiki/Swap-demo-instructions) does:
-
-    message Hello {
-      required bytes eth = 1;
-      optional uint32 dropAt = 2;
-      optional uint32 payAt = 3;
-      optional uint32 buyAt = 4;
-      optional uint32 sellAt = 5;
-    }
-    
-| Field         | Type          | Description  |
-| ------------- |:-------------:| :-------       |
-| `eth`         | `bytes`       | The node's ethereum address.   |
-| `dropAt`      | `uint32`      | How many blocks of data the peer is willing to send without getting paid upfront.|
-| `payAt`       | `uint32`      | How many blocks of data this peer wants to pays for at a time, per transaction.     |
-| `buyAt`       | `uint32`      | How much it's willing to pay for a block of data.     |
-| `sellAt`      | `uint32`      | How much it's willing to sell a block of data for.       |
-
-**(WIP HERE)** 
-_Fragments_ are then wrapped up in a bigger message that has metadata like pti address , signature and things like that.
-
-    message Message {
-    message Hello {
-      required bytes eth = 1;
-      optional uint32 dropAt = 2;
-      optional uint32 payAt = 3;
-      optional uint32 buyAt = 4;
-      optional uint32 sellAt = 5;
-    }
-
-    message Fragment {
-      optional bytes tid = 1;
-      optional int32 type = 2;
-      optional bytes payload = 3;
-      optional bytes args = 4;
-    }
-
-    optional Hello hello = 1;
-    repeated Fragment fragments = 2;
-    }
-
-Nodes running the `paratii-protocol` are connected over libp2p and suited to do a basic set of operations:
-
-**(WIP HERE)**
-- Encode a message as in IPFS protobuf, transforming it into a series of key-value pairs and concatenating them into a bytestream.
-- Exchange and verify a message (`get`/`put` PTI/ETH address; checks if it's a valid account).
-- Deal with payload **(arbitrary commands to be spec'd)**, which can be a multihash in the case of a video (chunks a file into 1mb chunks, hashes them, seeks for the closest transcoding node, sends a jobRequest and asks for the chunks to be `get`, the transcoding node uploads its job to IPFS and gives back its multihash along links for thumbs/screenshots).
 
 ## Smart Contracts
 The system can be broken down into *administrative* contracts that primarily deal with the core infrastructure, and a series of *action* contracts that interact with users, videos, and metadata.
@@ -142,13 +62,8 @@ The `VideoStore` is a contracts that tracks ownership and prices of videos (be i
 
 In addition, Paratii currently uses a simple wrapper contract, [SendEther.sol](https://github.com/Paratii-Video/paratii-contracts/blob/master/contracts/paratii/SendEther.sol), that can be used to send Ether, and will log an event that can be read by clients and logged to transaction history.
 
+
+## Interacting with the Paratii contracts
+
 The [paratii.js](https://github.com/Paratii-Video/paratii-lib/blob/master/lib/paratii.js) library is the preferred way for clients to interact with the deployed contracts, offering access to them, wallet functionality, and convenience functions that provide more useful error handling than direct calls to the blockchain. 
-
-
-
-
-## library
-
-The Paratii javascript library is the preferred way for clients to interact with the deployed contracts on the blockchain.  It offers access to the contracts, and convenience functions that provide more useful error handling that making direct calls to the blockchain can offer. It also offers wallet functionality.
-
-It is still under development in https://github.com/Paratii-Video/paratii-js
+    
